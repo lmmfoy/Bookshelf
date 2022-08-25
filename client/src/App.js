@@ -1,14 +1,17 @@
-import LoginButton from "./components/login";
-import LogoutButton from "./components/logout";
-import Profile from "./components/profile";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
     return (
-        <div>
-            <LoginButton></LoginButton>
-            <LogoutButton></LogoutButton>
-            <Profile></Profile>
-        </div>
+        <BrowserRouter>
+            <GlobalStyles/>
+            <Routes>
+                <Route path="/" />
+                <Route path="/shelf" />
+                <Route path="/friends" />
+                <Route path="/search" />
+            </Routes>
+        </BrowserRouter>
     );
 };
 
