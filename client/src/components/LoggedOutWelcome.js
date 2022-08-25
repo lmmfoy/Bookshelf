@@ -6,6 +6,7 @@ const LoggedOutWelcome = () => {
         <StyledWelcome>
             <div className="welcome">
                 <h1>Welcome to Bookshelf</h1>
+                <p>some text here</p>
                 <LoginButton/>
             </div>
         </StyledWelcome>
@@ -26,7 +27,9 @@ const StyledWelcome = styled.div `
         width: 500px;
         border-radius: 20px;
         display: flex;
-        flex-direction: column;        
+        flex-direction: column;
+        align-items: center;   
+        justify-content: space-around;     
         padding: 15px;
     }
 `
