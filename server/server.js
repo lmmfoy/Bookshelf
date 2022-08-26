@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/search", bookSearch);
+app.get("/search/:search_terms", bookSearch);
 
 
 
