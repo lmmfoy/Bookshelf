@@ -1,10 +1,22 @@
+const {bookSearch} = require("./handlers/searchBooks") 
+
 const express = require("express");
 const app = express();
 
-app.get("/hi", (req, res) => {
-        res.status(200).json({status: 200, message: "success"});
-});
+app.use(express.json());
+
+app.get("/search", bookSearch);
+
+
+
+
+// app.get("*", (req, res) => {
+//     res.status(404).json({
+//         status: 404,
+//         message: "This is obviously not what you are looking for.",
+//     });
+// });
 
 app.listen(8000, () => {
-        console.log(`Server launched on port 8000`);
+    console.log(`Server launched on port 8000`);
 });
