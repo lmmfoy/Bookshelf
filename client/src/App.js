@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import Header from "./components/Header";
 import Homepage from "./components/pages/Homepage";
-import LoggedOutWelcome from "./components/LoggedOutWelcome";
+import LoggedOutWelcome from "./components/pages/LoggedOutWelcome";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const App = () => {
