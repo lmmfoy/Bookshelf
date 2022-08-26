@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import LoginButton from "./Login";
+import LoginButton from "../Login";
 
 const LoggedOutWelcome = () => {
     return (
