@@ -6,9 +6,6 @@ const NewBookSearch = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // const author = e.target[0].value;
-        // const title = e.target[1].value;
-
         const params = {
             author: e.target[0].value,
             title: e.target[1].value,
@@ -20,7 +17,7 @@ const NewBookSearch = () => {
             .map((param) => `${param}=${params[param]}`)
             .join("&");
         
-        fetch(`/search/${search_terms}`)
+        fetch(`/search/${search_terms}&language=eng`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
