@@ -1,6 +1,7 @@
-const NewBook = () => {
+const NewBook = ({book}) => {
     return (
         <div>
+            {book.title}
         </div>
     );
 };
