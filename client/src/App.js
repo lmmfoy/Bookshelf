@@ -1,9 +1,4 @@
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import Header from "./components/Header";
 import Homepage from "./components/pages/Homepage";
@@ -22,17 +17,19 @@ const App = () => {
                 <Route
                     path="/"
                     element={
-                        isAuthenticated ? (
+                        // Redirect to Welcome page if not signed in
+                        !isLoading &&
+                        (isAuthenticated ? (
                             <Homepage />
                         ) : (
                             <Navigate replace to="/welcome" />
-                        )
+                        ))
                     }
                 />
                 <Route path="/shelf" />
                 <Route path="/friends" />
                 <Route path="/search" />
-                <Route path="/welcome" element={<LoggedOutWelcome/>} />
+                <Route path="/welcome" element={<LoggedOutWelcome />} />
             </Routes>
         </BrowserRouter>
     );
