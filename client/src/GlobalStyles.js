@@ -57,11 +57,17 @@ export default createGlobalStyle`
       content: none;
   }
 
-  h1,
+  h1 {
+    font-size: 3em;
+  }
 h2,
 h3,
 label,
 button {
+    padding: 10px;
+    max-width: 70px;
+    border: none;
+    border-radius: 30px;
 
 }
 p,
