@@ -1,7 +1,9 @@
 const NewBook = ({book}) => {
     return (
         <div>
-            {book.title}
+            title: {book.title}
+            author: {book.author_name}
+            year: {book.first_publish_year}
         </div>
     );
 };
