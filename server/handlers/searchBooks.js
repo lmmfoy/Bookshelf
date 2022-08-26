@@ -2,11 +2,11 @@ const request = require("request-promise");
 const openLibrary = "https://openlibrary.org/search.json?";
 
 const bookSearch = async (req, res) => {
-    const { type, searchTerm } = req.body;
-    console.log(type, searchTerm);
-
+    const searchTerms = req.params.search_terms;
+    console.log(searchTerms);
+    console.log(`${openLibrary}${searchTerms}`)
     try {
-        const result = await request(`${openLibrary}${type}=${searchTerm}`);
+        const result = await request(`${openLibrary}${searchTerms}`);
         const parsedResult = await JSON.parse(result);
         const bookInfo = parsedResult.docs.map((item) => {
             const {
@@ -32,7 +32,8 @@ const bookSearch = async (req, res) => {
                 subject,
             };
         });
-        res.status(200).json({ status: 200, data: parsedResult.bookInfo });
+        console.log(bookInfo)
+        res.status(200).json({ status: 200, data: bookInfo });
     } catch (err) {
         res.status(404).json({ status: 404, data: err.message });
     }
