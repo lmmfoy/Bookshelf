@@ -9,20 +9,19 @@ import { BookSearchContext } from "../CurrentBookSearch";
 
 const SearchPage = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    const {newBooks, setNewBooks, page, setPage, numPages, setNumPages} = useContext(BookSearchContext)
+    const { newBooks, searchTerms } = useContext(BookSearchContext);
 
-    console.log(newBooks)
+    console.log(newBooks, searchTerms);
 
     return (
         <div>
-            <NewBookSearch setNewBooks={setNewBooks} page={page} setPage={setPage} setNumPages={setNumPages}/>
+            <NewBookSearch />
             <div>
                 {newBooks &&
                     newBooks.map((book) => {
-                        return <NewBook book={book}/>
-                    })
-                }
-            <AppPagination newBooks={newBooks} numPages={numPages} setPage={setPage} setNumPages={setNumPages}/>
+                        return <NewBook book={book} />;
+                    })}
+                <AppPagination />
             </div>
         </div>
     );

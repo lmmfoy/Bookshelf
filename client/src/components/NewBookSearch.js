@@ -1,10 +1,19 @@
 import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { BookSearchContext } from "./CurrentBookSearch";
+import { useNavigate } from "react-router-dom";
 
 const NewBookSearch = () => {
-    const [searchTerms, setSearchTerms] = useState({});
-    const {setNewBooks, page, setPage, setNumPages} = useContext(BookSearchContext)
+    const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState({});
+    const {
+        setNewBooks,
+        page,
+        setPage,
+        setNumPages,
+        searchTerms,
+        setSearchTerms,
+    } = useContext(BookSearchContext);
 
     // When form submitted, make fetch request to get back search data
     const handleSubmit = (e) => {
@@ -15,23 +24,25 @@ const NewBookSearch = () => {
             title: e.target[1].value.replace(/ /g, "+"),
         };
 
+        setSearchTerms(params);
+
         // Filter out the items in the params with empty values, then join the search parameters together
-        const search_terms = Object.keys(params)
+        const search_query = Object.keys(params)
             .filter((param) => params[param])
             .map((param) => {
                 return `${param}=${params[param]}`;
             })
             .join("&");
 
-        setSearchTerms(search_terms);
+        setSearchQuery(search_query);
 
         // Fetch first 10 books that satisfy search criteria
-        fetch(`/search/${search_terms}&language=eng&limit=10`)
+        fetch(`/search/${search_query}&language=eng&limit=10`)
             .then((res) => res.json())
             .then((data) => {
                 setNewBooks(data.data.bookInfo);
-                console.log(data.data);
                 setNumPages(data.data.numFound);
+                navigate("/search")
             })
             .catch((err) => {
                 console.log(err);
@@ -41,7 +52,7 @@ const NewBookSearch = () => {
     // If pagination number changed, fetch 10 results based on new offset
     useEffect(() => {
         fetch(
-            `/search/${searchTerms}&language=eng&limit=10&offset=${
+            `/search/${searchQuery}&language=eng&limit=10&offset=${
                 page * 10 - 10
             }`
         )
@@ -55,15 +66,27 @@ const NewBookSearch = () => {
             });
     }, [page]);
 
+    console.log(searchTerms);
+
     return (
         <StyledForm onSubmit={handleSubmit}>
             <label for="author">
                 Author:
-                <input type="text" id="author" name="author" />
+                <input
+                    type="text"
+                    id="author"
+                    name="author"
+                    defaultValue={searchTerms.author}
+                />
             </label>
             <label for="title">
                 Title:
-                <input type="text" id="title" name="title" />
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    defaultValue={searchTerms.title}
+                />
             </label>
             <button type="submit">Search</button>
         </StyledForm>
