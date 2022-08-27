@@ -9,7 +9,6 @@ const bookSearch = async (req, res) => {
     try {
         const result = await request(`${openLibrary}${searchTerms}`);
         const parsedResult = await JSON.parse(result);
-
         // The book objects returned have a lot of keys, just return some of these
         const bookInfo = parsedResult.docs.map((item) => {
             const {
@@ -37,7 +36,11 @@ const bookSearch = async (req, res) => {
             };
         });
 
-        res.status(200).json({ status: 200, data: bookInfo });
+        const bookObject = {bookInfo: bookInfo, numFound: parsedResult.num_found, start: parsedResult.start}
+        console.log(bookObject)
+        const test = parsedResult.num_found
+        console.log(test)
+        res.status(200).json({ status: 200, data: bookObject});
     } catch (err) {
         res.status(404).json({ status: 404, data: err.message });
     }
