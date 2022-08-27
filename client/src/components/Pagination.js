@@ -33,7 +33,7 @@ const AppPagination = ({ newBooks, numPages, setPage }) => {
 
     return (
         <Pagination
-            count={Math.floor(numPages / 100) + 1}
+            count={Math.floor(numPages / 10) + 1}
             onChange={(e) => handleChange(e.target.textContent)}
         />
     );

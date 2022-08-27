@@ -23,7 +23,7 @@ const NewBookSearch = ({ setNewBooks, page, setPage, setNumPages }) => {
 
         setSearchTerms(search_terms);
 
-        fetch(`/search/${search_terms}&language=eng&page=${page}`)
+        fetch(`/search/${search_terms}&language=eng&limit=10`)
             .then((res) => res.json())
             .then((data) => {
                 setNewBooks(data.data.bookInfo);
@@ -36,10 +36,15 @@ const NewBookSearch = ({ setNewBooks, page, setPage, setNumPages }) => {
     };
 
     useEffect(() => {
-        fetch(`/search/${searchTerms}&language=eng&page=${page}`)
+        fetch(
+            `/search/${searchTerms}&language=eng&limit=10&offset=${
+                page * 10 - 10
+            }`
+        )
             .then((res) => res.json())
             .then((data) => {
                 setNewBooks(data.data.bookInfo);
+                console.log(page);
             })
             .catch((err) => {
                 console.log(err);
