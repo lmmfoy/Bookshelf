@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Homepage from "./components/pages/Homepage";
 import LoggedOutWelcome from "./components/pages/LoggedOutWelcome";
 import { useAuth0 } from "@auth0/auth0-react";
+import SearchPage from "./components/pages/SearchPage";
 
 const App = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -28,7 +29,18 @@ const App = () => {
                 />
                 <Route path="/shelf" />
                 <Route path="/friends" />
-                <Route path="/search" />
+                <Route
+                    path="/search"
+                    element={
+                        // !isLoading &&
+                        // (isAuthenticated ? (
+                        //     <SearchPage />
+                        // ) : (
+                        //     <Navigate replace to="/welcome" />
+                        // ))
+                        <SearchPage/>
+                    }
+                />
                 <Route path="/welcome" element={<LoggedOutWelcome />} />
             </Routes>
         </BrowserRouter>

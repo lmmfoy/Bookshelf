@@ -23,6 +23,7 @@ const NewBookSearch = ({ setNewBooks, page, setPage, setNumPages }) => {
 
         setSearchTerms(search_terms);
 
+        // Fetch first 10 books that satisfy search criteria
         fetch(`/search/${search_terms}&language=eng&limit=10`)
             .then((res) => res.json())
             .then((data) => {
@@ -35,6 +36,7 @@ const NewBookSearch = ({ setNewBooks, page, setPage, setNumPages }) => {
             });
     };
 
+    // If pagination number changed, fetch 10 results based on new offset
     useEffect(() => {
         fetch(
             `/search/${searchTerms}&language=eng&limit=10&offset=${
