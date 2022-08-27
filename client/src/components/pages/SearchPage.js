@@ -1,16 +1,15 @@
 import NewBookSearch from "../NewBookSearch";
 import NewBook from "../NewBook";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 import AppPagination from "../Pagination";
+import { BookSearchContext } from "../CurrentBookSearch";
 
 const SearchPage = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    const [newBooks, setNewBooks] = useState([]);
-    const [page, setPage] = useState(1);
-    const [numPages, setNumPages] = useState(0);
+    const {newBooks, setNewBooks, page, setPage, numPages, setNumPages} = useContext(BookSearchContext)
 
     console.log(newBooks)
 

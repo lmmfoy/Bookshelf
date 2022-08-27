@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
+import { BookSearchContext } from "./CurrentBookSearch";
 
-const NewBookSearch = ({ setNewBooks, page, setPage, setNumPages }) => {
+const NewBookSearch = () => {
     const [searchTerms, setSearchTerms] = useState({});
+    const {setNewBooks, page, setPage, setNumPages} = useContext(BookSearchContext)
 
     // When form submitted, make fetch request to get back search data
     const handleSubmit = (e) => {
