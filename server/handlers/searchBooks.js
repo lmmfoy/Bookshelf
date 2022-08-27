@@ -4,6 +4,7 @@ const openLibrary = "https://openlibrary.org/search.json?";
 // Returns array of books which meet search criteria (title/author/both)
 const bookSearch = async (req, res) => {
     const searchTerms = req.params.search_terms;
+    console.log(searchTerms)
 
     try {
         const result = await request(`${openLibrary}${searchTerms}`);

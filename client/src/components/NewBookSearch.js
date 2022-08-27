@@ -1,26 +1,28 @@
 import styled from "styled-components";
 
-const NewBookSearch = () => {
-
+const NewBookSearch = ({ setNewBooks }) => {
     // When form submitted, make fetch request to get back search data
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Get the user values and replace spaces with "+"
         const params = {
-            author: e.target[0].value,
-            title: e.target[1].value,
+            author: e.target[0].value.replace(/ /g, "+"),
+            title: e.target[1].value.replace(/ /g, "+"),
         };
 
         // Filter out the items in the params with empty values, then join the search parameters together
         const search_terms = Object.keys(params)
             .filter((param) => params[param])
-            .map((param) => `${param}=${params[param]}`)
+            .map((param) => {
+                return `${param}=${params[param]}`
+            })
             .join("&");
-        
+
         fetch(`/search/${search_terms}&language=eng`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                setNewBooks(data.data);
             })
             .catch((err) => {
                 console.log(err);
