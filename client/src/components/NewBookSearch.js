@@ -66,8 +66,6 @@ const NewBookSearch = () => {
             });
     }, [page]);
 
-    console.log(searchTerms);
-
     return (
         <StyledForm onSubmit={handleSubmit}>
             <label for="author">

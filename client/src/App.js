@@ -9,6 +9,7 @@ import { BookSearchContextProvider } from "./components/CurrentBookSearch";
 
 const App = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
+    const test = useAuth0();
 
     return (
         <BrowserRouter>
