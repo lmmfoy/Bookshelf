@@ -16,7 +16,7 @@ const App = () => {
         <BrowserRouter>
             <GlobalStyles />
             {/* Only show header if user signed in */}
-            {isAuthenticated && <Header />}
+            <Header/>
             <Routes>
                 <Route
                     path="/"
