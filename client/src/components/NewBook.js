@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const NewBook = ({ book }) => {
     return (
-        <StyledNewBook>
+        <StyledNewBook >
             {
                 // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
                 book.cover_i ? (
@@ -15,9 +15,9 @@ const NewBook = ({ book }) => {
                     <img src="images/book-cover.png" alt="book cover" />
                 )
             }
-            title: {book.title}
-            author: {book.author_name}
-            year: {book.first_publish_year}
+            <p>{book.title}</p>
+            <p>{book.author_name}</p>
+            <p>{book.first_publish_year}</p>
             {/* publisher: {book.publisher} */}
         </StyledNewBook>
     );
@@ -26,8 +26,11 @@ const NewBook = ({ book }) => {
 const StyledNewBook = styled.div`
     padding: 10px;
     border: 1px solid black;
-    /* max-width: 200px; */
-    min-width: 100px;
+    width: 200px;
+    flex: 1 1 auto;
+    text-align: center;
+    min-height: 250px;
+    padding: 20px;
 
     img {
         max-width: 80px;
