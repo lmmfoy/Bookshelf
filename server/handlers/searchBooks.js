@@ -21,6 +21,7 @@ const bookSearch = async (req, res) => {
                 subject,
                 isbn,
                 cover_i,
+                edition_count,
             } = item;
 
             return {
@@ -34,12 +35,12 @@ const bookSearch = async (req, res) => {
                 subject,
                 isbn,
                 cover_i,
+                edition_count,
             };
         });
         console.log(parsedResult)
 
         const bookObject = {bookInfo: bookInfo, numFound: parsedResult.num_found, start: parsedResult.start}
-        console.log(bookObject)
         res.status(200).json({ status: 200, data: bookObject});
     } catch (err) {
         res.status(404).json({ status: 404, data: err.message });
