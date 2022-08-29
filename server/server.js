@@ -1,16 +1,17 @@
-const {bookSearch} = require("./handlers/searchBooks") 
+const {bookSearch, singleBookSearch} = require("./handlers/searchBooks") 
+const {addUser} = require("./handlers/addUser")
 
 const express = require("express");
 const app = express();
 
-const {addUser} = require("./handlers/addUser")
 
 app.use(express.json());
 
-app.get("/search/:search_terms", bookSearch);
+app.get("/search/:search_terms", bookSearch); // Find all books that relate to search terms (author and/or title) 
+app.get("search/isbn/:isbn", singleBookSearch); // Find specific book based on ISBN
 
 
-app.post("/user", addUser);
+app.post("/user", addUser); // Add new user to MongoDB database
 
 
 // app.get("*", (req, res) => {
