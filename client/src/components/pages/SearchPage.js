@@ -16,15 +16,22 @@ const SearchPage = () => {
     return (
         <div>
             <NewBookSearch />
-            <div>
+            <StyledResults>
                 {newBooks &&
                     newBooks.map((book) => {
                         return <NewBook book={book} />;
                     })}
-                <AppPagination />
-            </div>
+            </StyledResults>
+            <AppPagination />
         </div>
     );
 };
+
+const StyledResults = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+
+
+`;
 
 export default SearchPage;

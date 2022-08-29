@@ -20,6 +20,7 @@ const bookSearch = async (req, res) => {
                 author_key,
                 subject,
                 isbn,
+                cover_i,
             } = item;
 
             return {
@@ -32,8 +33,10 @@ const bookSearch = async (req, res) => {
                 author_key,
                 subject,
                 isbn,
+                cover_i,
             };
         });
+        console.log(parsedResult)
 
         const bookObject = {bookInfo: bookInfo, numFound: parsedResult.num_found, start: parsedResult.start}
         console.log(bookObject)
