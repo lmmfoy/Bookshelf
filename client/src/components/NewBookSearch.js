@@ -24,6 +24,7 @@ const NewBookSearch = () => {
         const params = {
             author: e.target[0].value.replace(/ /g, "+"),
             title: e.target[1].value.replace(/ /g, "+"),
+            isbn: e.target[2].value
         };
 
         // Save the search terms so that when user searches on homepage and is redirected to Search page, their search terms remain
@@ -88,6 +89,15 @@ const NewBookSearch = () => {
                     id="title"
                     name="title"
                     defaultValue={searchTerms.title}
+                />
+            </label>
+            <label for="isbn">
+                ISBN:
+                <input
+                    type="text"
+                    id="isbn"
+                    name="isbn"
+                    defaultValue={searchTerms.isbn}
                 />
             </label>
             <button type="submit">Search</button>
