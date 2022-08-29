@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const NewBookSearch = () => {
     const navigate = useNavigate();
-    const [searchQuery, setSearchQuery] = useState({});
+    // const [searchQuery, setSearchQuery] = useState({});
     const {
         setNewBooks,
         page,
@@ -13,6 +13,8 @@ const NewBookSearch = () => {
         setNumPages,
         searchTerms,
         setSearchTerms,
+        searchQuery,
+        setSearchQuery,
     } = useContext(BookSearchContext);
 
     // When form submitted, make fetch request to get back search data
@@ -24,6 +26,7 @@ const NewBookSearch = () => {
             title: e.target[1].value.replace(/ /g, "+"),
         };
 
+        // Save the search terms so that when user searches on homepage and is redirected to Search page, their search terms remain
         setSearchTerms(params);
 
         // Filter out the items in the params with empty values, then join the search parameters together
@@ -34,23 +37,25 @@ const NewBookSearch = () => {
             })
             .join("&");
 
+        // Used in fetch below, and fetch in useEffect below
         setSearchQuery(search_query);
 
         // Fetch first 10 books that satisfy search criteria
         fetch(`/search/${search_query}&language=eng&limit=10`)
             .then((res) => res.json())
             .then((data) => {
-                setNewBooks(data.data.bookInfo);
-                setNumPages(data.data.numFound);
-                navigate("/search")
+                setNewBooks(data.data.bookInfo); // Set all books that meet search criteria in state (in context)
+                setNumPages(data.data.numFound); // Set number of pages of books
+                navigate("/search"); // Navigate to Search page
             })
             .catch((err) => {
                 console.log(err);
             });
     };
 
-    // If pagination number changed, fetch 10 results based on new offset
+    // If pagination number changes, fetch 10 results based on new offset
     useEffect(() => {
+        console.log("HERE");
         fetch(
             `/search/${searchQuery}&language=eng&limit=10&offset=${
                 page * 10 - 10
@@ -59,7 +64,6 @@ const NewBookSearch = () => {
             .then((res) => res.json())
             .then((data) => {
                 setNewBooks(data.data.bookInfo);
-                console.log(page);
             })
             .catch((err) => {
                 console.log(err);
