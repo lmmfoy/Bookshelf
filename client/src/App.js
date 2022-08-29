@@ -6,10 +6,11 @@ import LoggedOutWelcome from "./components/pages/LoggedOutWelcome";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchPage from "./components/pages/SearchPage";
 import { BookSearchContextProvider } from "./components/CurrentBookSearch";
+import BookPage from "./components/pages/BookPage";
 
 const App = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    console.log(user)
+    console.log(user);
 
     return (
         <BrowserRouter>
@@ -42,6 +43,7 @@ const App = () => {
                     }
                 />
                 <Route path="/shelf" />
+                <Route path="/book" element={<BookPage />} />
                 <Route path="/friends" />
                 <Route path="/user" />
                 <Route path="/welcome" element={<LoggedOutWelcome />} />

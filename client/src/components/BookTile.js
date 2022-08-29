@@ -1,9 +1,16 @@
 import { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const NewBook = ({ book }) => {
+const BookTile = ({ book }) => {
+    const navigate = useNavigate();
+    
+    const onBookClick = () => {
+        navigate("/book", { state: { book: book } });
+    };
+
     return (
-        <StyledNewBook >
+        <StyledNewBook onClick={onBookClick}>
             {
                 // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
                 book.cover_i ? (
@@ -35,6 +42,15 @@ const StyledNewBook = styled.div`
     img {
         max-width: 80px;
     }
+
+    .link {
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+            color: purple;
+        }
+    }
 `;
 
-export default NewBook;
+export default BookTile;

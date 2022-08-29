@@ -1,5 +1,5 @@
 import NewBookSearch from "../NewBookSearch";
-import NewBook from "../NewBook";
+import NewBook from "../BookTile";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
