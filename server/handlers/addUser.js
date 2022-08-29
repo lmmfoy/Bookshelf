@@ -21,11 +21,17 @@ const addUser = async (req, res) => {
         await client.connect();
         const db = client.db("Users");
 
-        const inserted = await db.collection("users").insertOne({ _id: _id, email: email })
-
-        res.status(200).json({ status: 200, data: inserted });
+        // Check to see whether user is new
+        const priorUser = await (await db.collection("users").findOne({_id}))
+        
+        if (priorUser) {
+            res.status(200).json({ status: 200, data: "User already in database" });
+        } else {
+            const inserted = await db.collection("users").insertOne({ _id: _id, email: email })
+            res.status(200).json({ status: 200, data: inserted });
+        }
     } catch (err) {
-        res.status(404).json({ status: 404, data: err });
+        res.status(400).json({ status: 400, data: err.message });
     }
 };
 

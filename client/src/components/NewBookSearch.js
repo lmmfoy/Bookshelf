@@ -64,7 +64,7 @@ const NewBookSearch = () => {
             .catch((err) => {
                 console.log(err);
             });
-    }, [page]);
+    }, [page, setNewBooks, searchQuery]);
 
     return (
         <StyledForm onSubmit={handleSubmit}>
