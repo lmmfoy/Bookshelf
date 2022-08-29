@@ -3,11 +3,14 @@ const {bookSearch} = require("./handlers/searchBooks")
 const express = require("express");
 const app = express();
 
+const {addUser} = require("./handlers/addUser")
+
 app.use(express.json());
 
 app.get("/search/:search_terms", bookSearch);
 
 
+app.post("/user", addUser);
 
 
 // app.get("*", (req, res) => {

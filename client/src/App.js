@@ -9,6 +9,7 @@ import { BookSearchContextProvider } from "./components/CurrentBookSearch";
 
 const App = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
+    console.log(user)
 
     return (
         <BrowserRouter>
@@ -42,6 +43,7 @@ const App = () => {
                 />
                 <Route path="/shelf" />
                 <Route path="/friends" />
+                <Route path="/user" />
                 <Route path="/welcome" element={<LoggedOutWelcome />} />
             </Routes>
         </BrowserRouter>

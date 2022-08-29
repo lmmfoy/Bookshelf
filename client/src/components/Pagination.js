@@ -6,7 +6,6 @@ const pageSize = 3;
 
 const AppPagination = () => {
     const { numPages, setPage } = useContext(BookSearchContext);
-    console.log(numPages);
     // const bookData = (from, to) => {
     //     return new Promise((resolve, reject) => {
     //         const data = newBooks.slice(from, to)
