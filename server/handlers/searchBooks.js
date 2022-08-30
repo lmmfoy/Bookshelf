@@ -49,16 +49,11 @@ const bookSearch = async (req, res) => {
 
 const singleBookSearch = async(req, res) => {
     const isbn = req.params.isbn
-    console.log(isbn)
 
     try {
         const result = await request(`${openLibrary}/isbn/${isbn}.json`);
         const parsedResult = await JSON.parse(result);
-        
-        console.log(parsedResult)
 
-        // const bookObject = {bookInfo: bookInfo, numFound: parsedResult.num_found, start: parsedResult.start}
-        // console.log(bookObject)
         res.status(200).json({ status: 200, data: parsedResult});
     } catch (err) {
         res.status(404).json({ status: 404, data: err.message });

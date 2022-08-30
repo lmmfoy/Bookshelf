@@ -1,13 +1,30 @@
+import { useState } from "react";
+
 // This shows the details of a book found using the ISBN search
 // It will show only one specific edition of a book
 
+import { useEffect } from "react";
+
 const SpecificBookDetails = ({ book }) => {
+    const [authors, setAuthors] = useState([])
 
-    if (book.authors) {
-        book.author_name = ["test"]
-    }
 
-    console.log(book);
+    useEffect(() => {
+        book.authors.forEach((author) => {
+            // author.key takes the form "/authors/author_id"
+            fetch(`/search${author.key}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setAuthors(prev => [prev, data.data]);
+                });
+            
+        });
+        console.log(authors);
+
+    }, []);
+
+
+
     return (
         <>
             {
@@ -23,7 +40,9 @@ const SpecificBookDetails = ({ book }) => {
             }
             <div class="book-details">
                 <p>{book.title}</p>
-                <p>{book.author_name.join(", ")}</p>
+                <p>{authors.map((author) => {
+                    return <p>{author.name}</p>
+                })}</p>
                 <p>First published: {book.first_publish_year}</p>
                 <p>Number of editions: {book.edition_count}</p>
                 {/* publisher: {book.publisher} */}
