@@ -10,7 +10,6 @@ import BookPage from "./components/pages/BookPage";
 
 const App = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    console.log(user);
 
     return (
         <BrowserRouter>
@@ -42,6 +41,8 @@ const App = () => {
                         <SearchPage />
                     }
                 />
+                <Route path="/search/isbn/:isbn" />
+                <Route path="/search/:search_terms" />
                 <Route path="/shelf" />
                 <Route path="/book" element={<BookPage />} />
                 <Route path="/friends" />

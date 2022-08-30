@@ -15,7 +15,7 @@ const SearchPage = () => {
     
         // If pagination number changes, fetch 10 results based on new offset
         useEffect(() => {
-            console.log("HERE");
+            console.log(searchQuery)
             fetch(
                 `/search/${searchQuery}&language=eng&limit=10&offset=${
                     page * 10 - 10

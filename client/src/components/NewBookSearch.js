@@ -24,7 +24,6 @@ const NewBookSearch = () => {
         const params = {
             author: e.target[0].value.replace(/ /g, "+"),
             title: e.target[1].value.replace(/ /g, "+"),
-            isbn: e.target[2].value
         };
 
         // Save the search terms so that when user searches on homepage and is redirected to Search page, their search terms remain
@@ -38,7 +37,7 @@ const NewBookSearch = () => {
             })
             .join("&");
 
-        // Used in fetch below, and fetch in useEffect below
+        // Used in fetch below, and fetch in useEffect on Search page
         setSearchQuery(search_query);
 
         // Fetch first 10 books that satisfy search criteria
@@ -54,54 +53,69 @@ const NewBookSearch = () => {
             });
     };
 
-    // If pagination number changes, fetch 10 results based on new offset
-    useEffect(() => {
-        console.log("HERE");
-        fetch(
-            `/search/${searchQuery}&language=eng&limit=10&offset=${
-                page * 10 - 10
-            }`
-        )
+    const handleISBNSubmit = (e) => {
+        e.preventDefault();
+
+        setSearchTerms({ ISBN: e.target[0].value });
+
+        fetch(`/search/isbn/${e.target[0].value}`)
             .then((res) => res.json())
-            .then((data) => {
-                setNewBooks(data.data.bookInfo);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, [page, setNewBooks, searchQuery]);
+            .then((data) => console.log(data))
+        
+    };
+
+    // // If pagination number changes, fetch 10 results based on new offset
+    // useEffect(() => {
+    //     fetch(
+    //         `/search/${searchQuery}&language=eng&limit=10&offset=${
+    //             page * 10 - 10
+    //         }`
+    //     )
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setNewBooks(data.data.bookInfo);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, [page, setNewBooks, searchQuery]);
 
     return (
-        <StyledForm onSubmit={handleSubmit}>
-            <label for="author">
-                Author:
-                <input
-                    type="text"
-                    id="author"
-                    name="author"
-                    defaultValue={searchTerms.author}
-                />
-            </label>
-            <label for="title">
-                Title:
-                <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    defaultValue={searchTerms.title}
-                />
-            </label>
-            <label for="isbn">
-                ISBN:
-                <input
-                    type="text"
-                    id="isbn"
-                    name="isbn"
-                    defaultValue={searchTerms.isbn}
-                />
-            </label>
-            <button type="submit">Search</button>
-        </StyledForm>
+        <>
+            <StyledForm onSubmit={handleSubmit}>
+                <label for="author">
+                    Author:
+                    <input
+                        type="text"
+                        id="author"
+                        name="author"
+                        defaultValue={searchTerms.author}
+                    />
+                </label>
+                <label for="title">
+                    Title:
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        defaultValue={searchTerms.title}
+                    />
+                </label>
+                <button type="submit">Search</button>
+            </StyledForm>
+            <StyledForm onSubmit={handleISBNSubmit}>
+                <label for="isbn">
+                    ISBN:
+                    <input
+                        type="text"
+                        id="isbn"
+                        name="isbn"
+                        defaultValue={searchTerms.isbn}
+                    />
+                </label>
+                <button type="submit">Search</button>
+            </StyledForm>
+        </>
     );
 };
 
