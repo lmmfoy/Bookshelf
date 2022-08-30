@@ -15,7 +15,7 @@ const BookPage = () => {
             <div>
                 <div class="book-info">
                     {isbn ? (
-                        <SpecificBookDetails book={book} />
+                        <SpecificBookDetails book={book} isbn={isbn} />
                     ) : (
                         <GeneralBookDetails book={book} />
                     )}
@@ -38,6 +38,11 @@ const StyledBookWrapper = styled.div`
 
     .book-info {
         display: flex;
+    }
+
+    img {
+        width: 300px;
+        height: 450px;
     }
 `;
 

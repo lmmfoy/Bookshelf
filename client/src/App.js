@@ -29,6 +29,9 @@ const App = () => {
                         ))
                     }
                 />
+                <Route path="/search/isbn/:isbn" />
+                <Route path="/search/authors/:author_id" />
+                <Route path="/search/:search_terms" />
                 <Route
                     path="/search"
                     element={
@@ -41,8 +44,6 @@ const App = () => {
                         <SearchPage />
                     }
                 />
-                <Route path="/search/isbn/:isbn" />
-                <Route path="/search/:search_terms" />
                 <Route path="/shelf" />
                 <Route path="/book" element={<BookPage />} />
                 <Route path="/friends" />

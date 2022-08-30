@@ -8,7 +8,6 @@ export const BookSearchContextProvider = ({ children }) => {
     const [numPages, setNumPages] = useState(0);
     const [searchTerms, setSearchTerms] = useState({});
     const [searchQuery, setSearchQuery] = useState("");
-    console.log(newBooks, page, numPages, searchTerms);
 
     return (
         <BookSearchContext.Provider

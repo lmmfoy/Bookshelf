@@ -17,7 +17,7 @@ const NewBookSearch = () => {
         setSearchQuery,
     } = useContext(BookSearchContext);
 
-    // When form submitted, make fetch request to get back search data
+    // This function fetches a list of books based on the search criteria (author and/or title), sets the information in Context, and navigates the user to the Search page to see the list of results
     const handleSubmit = (e) => {
         e.preventDefault();
         // Get the user values and replace spaces with "+"
@@ -53,6 +53,8 @@ const NewBookSearch = () => {
             });
     };
 
+    // If user searches by ISBN, they will be taken directly to the page of that book, rather than to a list of results
+    // This function fetches the result of the ISBN search, sets the information in Context, and navigates directly to the book page
     const handleISBNSubmit = (e) => {
         e.preventDefault();
 
@@ -61,30 +63,16 @@ const NewBookSearch = () => {
         fetch(`/search/isbn/${e.target[0].value}`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.data);
+                console.log(e.target[0].value);
                 setNewBooks(data.data);
-                navigate("/book", { state: { isbn: e.target[0].value, book: data.data } });
+                navigate("/book", {
+                    state: { isbn: e.target[0].value, book: data.data },
+                });
             })
             .catch((err) => {
                 console.log(err);
             });
     };
-
-    // // If pagination number changes, fetch 10 results based on new offset
-    // useEffect(() => {
-    //     fetch(
-    //         `/search/${searchQuery}&language=eng&limit=10&offset=${
-    //             page * 10 - 10
-    //         }`
-    //     )
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             setNewBooks(data.data.bookInfo);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, [page, setNewBooks, searchQuery]);
 
     return (
         <>
