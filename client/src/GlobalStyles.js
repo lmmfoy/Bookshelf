@@ -60,16 +60,17 @@ export default createGlobalStyle`
   h1 {
     font-size: 3em;
   }
-h2,
-h3,
-label,
-button {
+  
+  button {
     padding: 10px;
     max-width: 70px;
     border: none;
     border-radius: 30px;
-
 }
+
+h2,
+h3,
+label,
 p,
 a,
 li,
