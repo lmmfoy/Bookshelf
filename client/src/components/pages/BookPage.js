@@ -39,6 +39,11 @@ const StyledBookWrapper = styled.div`
     .book-info {
         display: flex;
     }
+
+    img {
+        width: 300px;
+        height: 450px;
+    }
 `;
 
 export default BookPage;

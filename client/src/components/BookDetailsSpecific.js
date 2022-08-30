@@ -28,7 +28,7 @@ const SpecificBookDetails = ({ book, isbn }) => {
         <>
             {
                 // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
-                book.covers[0] ? (
+                book.covers ? (
                     <img
                         src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg?`}
                         alt={`${book.title} book cover`}

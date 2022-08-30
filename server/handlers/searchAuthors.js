@@ -1,5 +1,6 @@
 const request = require("request-promise");
 
+// This returns information about an author based on their Open library author ID
 const authorSearch = async(req, res) => {
     const author_id = req.params.author_id;
 
