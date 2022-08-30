@@ -1,5 +1,6 @@
 import NewBookSearch from "../NewBookSearch";
 import NewBook from "../BookTile";
+import CondensedShelf from "../CondensedShelf";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
@@ -13,7 +14,6 @@ const Homepage = () => {
     console.log(currentSearchData);
 
     const { user, isLoading, isAuthenticated } = useAuth0();
-
 
     useEffect(() => {
         isAuthenticated &&
@@ -35,10 +35,19 @@ const Homepage = () => {
     }, []);
 
     return (
-        <div>
-            <NewBookSearch />
-        </div>
+        <StyledHome>
+            <div>
+                <CondensedShelf />
+            </div>
+            <div>
+                <NewBookSearch />
+            </div>
+        </StyledHome>
     );
 };
+
+const StyledHome = styled.div`
+    display: flex;
+`;
 
 export default Homepage;
