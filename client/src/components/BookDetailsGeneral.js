@@ -2,6 +2,7 @@
 // It may show multiple editions of the same book
 
 const GeneralBookDetails = ({ book }) => {
+    console.log(book)
     return (
         <>
             {
