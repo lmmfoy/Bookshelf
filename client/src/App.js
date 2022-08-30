@@ -8,7 +8,7 @@ import SearchPage from "./components/pages/SearchPage";
 import { BookSearchContext } from "./components/CurrentBookSearch";
 import BookPage from "./components/pages/BookPage";
 import { useEffect, useState, useContext } from "react";
-import { UserContext } from "./components/UserContext";
+// import { UserContext } from "./components/UserContext";
 
 const App = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
