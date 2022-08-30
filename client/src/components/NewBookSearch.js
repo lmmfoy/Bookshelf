@@ -61,7 +61,7 @@ const NewBookSearch = () => {
         fetch(`/search/isbn/${e.target[0].value}`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.data);
+                console.log(e.target[0].value);
                 setNewBooks(data.data);
                 navigate("/book", { state: { isbn: e.target[0].value, book: data.data } });
             })

@@ -5,10 +5,10 @@ import { useState } from "react";
 
 import { useEffect } from "react";
 
-const SpecificBookDetails = ({ book }) => {
+const SpecificBookDetails = ({ book, isbn }) => {
     const [authors, setAuthors] = useState([])
 
-
+    console.log(book)
     useEffect(() => {
         book.authors.forEach((author) => {
             // author.key takes the form "/authors/author_id"
@@ -19,7 +19,6 @@ const SpecificBookDetails = ({ book }) => {
                 });
             
         });
-        console.log(authors);
 
     }, []);
 
@@ -42,10 +41,13 @@ const SpecificBookDetails = ({ book }) => {
                 <p>{book.title}</p>
                 <p>{authors.map((author) => {
                     return <p>{author.name}</p>
+                    {/* author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia */}
                 })}</p>
-                <p>First published: {book.first_publish_year}</p>
-                <p>Number of editions: {book.edition_count}</p>
-                {/* publisher: {book.publisher} */}
+                <p>Published: {book.publish_date}, {book.publish_places && <span>{book.publish_places.join(", ")}, </span>} {book.publishers.join(", ")}</p>
+                <p>ISBN: {isbn}</p>
+                <p>{book.pagination && <span>Pages: {book.pagination}</span>} </p>
+                <p>{book.notes}</p>
+                {/* identifiers for different places: {book.identifiers} */}
             </div>
         </>
     );

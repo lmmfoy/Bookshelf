@@ -15,7 +15,7 @@ const BookPage = () => {
             <div>
                 <div class="book-info">
                     {isbn ? (
-                        <SpecificBookDetails book={book} />
+                        <SpecificBookDetails book={book} isbn={isbn} />
                     ) : (
                         <GeneralBookDetails book={book} />
                     )}
