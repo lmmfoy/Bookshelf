@@ -12,6 +12,9 @@ app.get("/search/isbn/:isbn", singleBookSearch); // Find specific book based on 
 app.get("/search/authors/:author_id", authorSearch); // Find author information based on author id
 
 app.post("/user", addUser); // Add new user to MongoDB database
+app.patch("/user", updateShelf); // Update shelves, friends, etc.
+app.get("/user", getUserInformation); // Get user information including bookshelves, friends
+
 
 // app.get("*", (req, res) => {
 //     res.status(404).json({

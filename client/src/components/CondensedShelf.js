@@ -3,6 +3,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 // This component goes on the homepage and displays the user's shelves
 const CondensedShelf = () => {
+    
+
     return (
         <StyledShelf>
             <h2 class="shelves">My Shelves</h2> 
