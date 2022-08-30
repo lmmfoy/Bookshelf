@@ -5,7 +5,7 @@ import styled from "styled-components";
 const BookTile = ({ book }) => {
     const navigate = useNavigate();
 
-    const onBookClick = () => {
+    const onBookClick = () => {        
         navigate("/book", { state: { book: book } });
     };
 
