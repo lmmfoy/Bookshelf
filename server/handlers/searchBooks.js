@@ -48,8 +48,8 @@ const bookSearch = async (req, res) => {
 };
 
 const singleBookSearch = async(req, res) => {
-    const isbn = req.params
-    
+    const isbn = req.params.isbn
+    console.log(isbn)
 
     try {
         const result = await request(`${openLibrary}/isbn/${isbn}.json`);

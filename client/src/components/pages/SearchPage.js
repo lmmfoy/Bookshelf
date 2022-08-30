@@ -9,13 +9,16 @@ import { BookSearchContext } from "../CurrentBookSearch";
 
 const SearchPage = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    const { newBooks, searchTerms, searchQuery, page, setNewBooks } = useContext(BookSearchContext);
+    const { newBooks, searchTerms, searchQuery, page, setNewBooks } =
+        useContext(BookSearchContext);
 
     console.log(newBooks, searchTerms);
-    
-        // If pagination number changes, fetch 10 results based on new offset
-        useEffect(() => {
-            console.log(searchQuery)
+
+    // If pagination number changes, fetch 10 results based on new offset
+    useEffect(() => {
+        if (searchTerms.isbn) {
+            console.log(searchTerms.isbn);
+        } else {
             fetch(
                 `/search/${searchQuery}&language=eng&limit=10&offset=${
                     page * 10 - 10
@@ -28,7 +31,8 @@ const SearchPage = () => {
                 .catch((err) => {
                     console.log(err);
                 });
-        }, [page, setNewBooks, searchQuery]);
+        }
+    }, [page, setNewBooks, searchQuery]);
 
     return (
         <div>
@@ -48,7 +52,6 @@ const StyledResults = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-
 `;
 
 export default SearchPage;

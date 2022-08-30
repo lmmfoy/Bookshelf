@@ -56,12 +56,18 @@ const NewBookSearch = () => {
     const handleISBNSubmit = (e) => {
         e.preventDefault();
 
-        setSearchTerms({ ISBN: e.target[0].value });
+        setSearchTerms({ isbn: e.target[0].value });
 
         fetch(`/search/isbn/${e.target[0].value}`)
             .then((res) => res.json())
-            .then((data) => console.log(data))
-        
+            .then((data) => {
+                console.log(data.data);
+                setNewBooks(data.data);
+                navigate("/book", { state: { isbn: e.target[0].value, book: data.data } });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     // // If pagination number changes, fetch 10 results based on new offset
