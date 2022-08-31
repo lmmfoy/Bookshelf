@@ -19,11 +19,11 @@ const updateShelf = async (req, res) => {
         await client.connect();
         const db = client.db("Users");
 
-        const test = await await db
+        const added = await db
             .collection("users")
             .update({ email: email }, { $push: {shelves: [shelf]}});
-        console.log(test);
-        res.status(200).json({ status: 200, data: test });
+        console.log(added);
+        res.status(200).json({ status: 200, data: added });
     } catch (err) {
         res.status(400).json({ status: 400, data: err.message });
     }

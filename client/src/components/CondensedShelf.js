@@ -30,11 +30,10 @@ const CondensedShelf = () => {
         const shelfName = e.target[0].value;
         const shelfDescription = e.target[1].value;
 
-        setShelves((prev) => ({
+        setShelves((prev) => [
             ...prev,
-            name: shelfName,
-            description: shelfDescription,
-        }));
+            { name: shelfName, description: shelfDescription },
+        ]);
 
         fetch("/user", {
             method: "PATCH",
@@ -54,10 +53,11 @@ const CondensedShelf = () => {
             .then((json) => {
                 console.log(json.data);
             });
+
+        closeModal();
     };
 
     console.log(shelves);
-    
 
     return (
         <StyledShelf>
@@ -126,6 +126,7 @@ const CondensedShelf = () => {
                                     id="shelf-name"
                                     class="shelf-name"
                                     name="shelf-name"
+                                    required
                                 />
 
                                 <label for="description">Description:</label>
