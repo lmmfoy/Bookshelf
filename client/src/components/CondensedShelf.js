@@ -63,10 +63,6 @@ const CondensedShelf = () => {
 
     console.log(shelves);
 
-    shelves.map((shelf) => {
-        console.log(shelf[0].name);
-    });
-
     return (
         <StyledShelf>
             <h2 class="shelves">My Shelves</h2>
@@ -76,15 +72,18 @@ const CondensedShelf = () => {
                         <TabList className="tab-list">
                             {shelves.map((shelf) => {
                                 return (
-                                    <Tab className="tab">{shelf[0].name}</Tab>
+                                    <Tab className="tab">{shelf.name}</Tab>
                                 );
                             })}
+                            <Tab className="tab" onClick={addShelf}>
+                                + Add shelf
+                            </Tab>
                         </TabList>
                         {shelves.map((shelf) => {
                             return (
                                 <>
                                     <TabPanel className="tab-panel">
-                                        <h2>{shelf[0].description}</h2>
+                                        <h2>{shelf.description}</h2>
                                     </TabPanel>
                                 </>
                             );
@@ -97,10 +96,6 @@ const CondensedShelf = () => {
                                 + Add shelf
                             </Tab>
                         </TabList>
-
-                        <TabPanel className="tab-panel">
-                            <h2>content</h2>
-                        </TabPanel>
                     </>
                 )}
             </Tabs>
