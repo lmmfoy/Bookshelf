@@ -17,8 +17,8 @@ const CondensedShelf = () => {
     };
 
     // const afterOpenModal = () => {
-    //     subtitle.style.color = '#f00';
-    // }
+    //     subtitle.style.color = "#f00";
+    // };
 
     const closeModal = () => {
         setModalOpen(false);
@@ -26,8 +26,7 @@ const CondensedShelf = () => {
 
     const handleNewShelfSubmit = (e) => {
         e.preventDefault();
-        
-    }
+    };
 
     return (
         <StyledShelf>
@@ -66,37 +65,49 @@ const CondensedShelf = () => {
                 // onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 contentLabel="Add shelf"
+                // Adding style to the modal
+                className="_"
+                overlayClassName="_"
+                contentElement={(props, children) => (
+                    <ModalStyle {...props}>{children}</ModalStyle>
+                )}
+                overlayElement={(props, contentElement) => (
+                    <OverlayStyle {...props}>{contentElement}</OverlayStyle>
+                )}
             >
-                <div className="add-modal">
+                <div>
                     <button className="close-btn" onClick={closeModal}>
                         x
                     </button>
-                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
-                        Add a new bookshelf
-                    </h2>
-                    <div>
-                        Add a shelf name (for example, "To Read" or "Favourite
-                        Mysteries") and a description.
+                    <div className="modal-body">
+                        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
+                            Add a new bookshelf
+                        </h2>
+                        <p>
+                            Add a shelf name (for example, "To Read" or
+                            "Favourite Mysteries") and a description.
+                        </p>
+                        <form onSubmit={handleNewShelfSubmit}>
+                            <div>
+                                <label for="shelf-name">Shelf name:</label>
+                                <input
+                                    type="text"
+                                    id="shelf-name"
+                                    class="shelf-name"
+                                    name="shelf-name"
+                                />
+
+                                <label for="description">Description:</label>
+                                <textarea
+                                    id="description"
+                                    class="description"
+                                    name="description"
+                                    rows="4"
+                                />
+                            </div>
+                            <button type="submit">Add shelf</button>
+                        </form>
                     </div>
-                    <form onSubmit={handleNewShelfSubmit}>
-                        <label for="shelf-name">
-                            Shelf name:
-                            <input
-                                type="text"
-                                id="shelf-name"
-                                name="shelf-name"
-                            />
-                        </label>
-                        <label for="description">
-                            Description:
-                            <input
-                                type="text"
-                                id="description"
-                                name="description"
-                            />
-                        </label>
-                        <button type="submit">Add shelf</button>
-                    </form>
                 </div>
             </Modal>
         </StyledShelf>
@@ -144,16 +155,86 @@ const StyledShelf = styled.div`
             }
         }
     }
+`;
 
-    .add-modal {
-        .close-btn{
-            background-color: blue;
-        } 
+const ModalStyle = styled.div`
+    min-height: 18rem;
+    margin: 2rem;
+    padding: 20px;
+    background-color: white;
+    border-radius: 0.25rem;
+    /* display: flex;
+    flex-direction: column;
+    gap: 20px; */
+
+    .close-btn {
+        border-radius: 100%;
+        height: 25px;
+        width: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-bottom: -20px;
+        background-color: light-grey;
+    }
+
+    .modal-body {
+        margin: 40px;
+
+        h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 25px;
+        }
+
         form {
             display: flex;
-            flex-direction: column;
+            gap: 50px;
+            align-items: flex-end;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+
+                label {
+                    margin-bottom: -5px;
+                }
+
+                .shelf-name, .description {
+                    width: 100%;
+                }
+
+                .shelf-name {
+                    margin-bottom: 10px;
+                }
+            }
+
+            button {
+                width: 100%;
+                height: 60px;
+                font-weight: 600;
+            }
         }
     }
+`;
+
+const OverlayStyle = styled.div`
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: #212b3277;
 `;
 
 export default CondensedShelf;
