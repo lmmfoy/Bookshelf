@@ -21,7 +21,7 @@ const updateShelf = async (req, res) => {
 
         const added = await db
             .collection("users")
-            .update({ email: email }, { $push: {shelves: [shelf]}});
+            .update({ email: email }, { $push: {shelves: shelf}});
         console.log(added);
         res.status(200).json({ status: 200, data: added });
     } catch (err) {
