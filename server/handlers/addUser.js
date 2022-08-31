@@ -25,7 +25,7 @@ const addUser = async (req, res) => {
         const priorUser = await (await db.collection("users").findOne({_id}))
         
         if (priorUser) {
-            res.status(200).json({ status: 200, data: "User already in database" });
+            res.status(200).json({ status: 200, data: priorUser });
         } else {
             const inserted = await db.collection("users").insertOne({ _id: _id, email: email })
             res.status(200).json({ status: 200, data: inserted });

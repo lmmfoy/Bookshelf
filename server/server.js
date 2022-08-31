@@ -1,6 +1,7 @@
 const { bookSearch, singleBookSearch } = require("./handlers/searchBooks");
 const { addUser } = require("./handlers/addUser");
 const { authorSearch } = require("./handlers/searchAuthors");
+const { updateShelf } = require("./handlers/updateUser")
 
 const express = require("express");
 const app = express();
@@ -13,7 +14,7 @@ app.get("/search/authors/:author_id", authorSearch); // Find author information 
 
 app.post("/user", addUser); // Add new user to MongoDB database
 app.patch("/user", updateShelf); // Update shelves, friends, etc.
-app.get("/user", getUserInformation); // Get user information including bookshelves, friends
+// app.get("/user", getUserInformation); // Get user information including bookshelves, friends
 
 
 // app.get("*", (req, res) => {

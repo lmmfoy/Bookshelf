@@ -28,3 +28,7 @@ const updateShelf = async (req, res) => {
         res.status(400).json({ status: 400, data: err.message });
     }
 };
+
+module.exports = {
+    updateShelf,
+};
