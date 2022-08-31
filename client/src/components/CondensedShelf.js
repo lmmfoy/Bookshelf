@@ -27,24 +27,37 @@ const CondensedShelf = () => {
     const handleNewShelfSubmit = (e) => {
         e.preventDefault();
 
-        setShelves(prev => ({...prev, name: e.target.value[0], description: e.target.value[1]}))
+        const shelfName = e.target[0].value;
+        const shelfDescription = e.target[1].value;
+
+        setShelves((prev) => ({
+            ...prev,
+            name: shelfName,
+            description: shelfDescription,
+        }));
 
         fetch("/user", {
             method: "PATCH",
             body: JSON.stringify({
                 email: siteUser.email,
-                shelves: shelves,
+                shelf: {
+                    name: shelfName,
+                    description: shelfDescription,
+                },
             }),
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
         })
-        .then((res) => res.json())
-        .then((json) => {
-            console.log(json.data)
-        })
+            .then((res) => res.json())
+            .then((json) => {
+                console.log(json.data);
+            });
     };
+
+    console.log(shelves);
+    
 
     return (
         <StyledShelf>
@@ -224,7 +237,8 @@ const ModalStyle = styled.div`
                     margin-bottom: -5px;
                 }
 
-                .shelf-name, .description {
+                .shelf-name,
+                .description {
                     width: 100%;
                 }
 
