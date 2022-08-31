@@ -10,10 +10,10 @@ import { useState, useContext, useEffect } from "react";
 import { BookSearchContext } from "../CurrentBookSearch";
 import { UserContext } from "../UserContext";
 
-
 const Homepage = () => {
     const currentSearchData = useContext(BookSearchContext);
-    const { shelves, setShelves } = useContext(UserContext);
+    const { shelves, setShelves, siteUser, setSiteUser } =
+        useContext(UserContext);
 
     const { user, isLoading, isAuthenticated } = useAuth0();
 
@@ -33,9 +33,10 @@ const Homepage = () => {
                 .then((res) => res.json())
                 // Add the user's shelves to context if they exist
                 .then((json) => {
-                    if (json.shelves) {
-                        setShelves(json.shelves)
+                    if (json.data.shelves) {
+                        setShelves(json.data.shelves);
                     }
+                    setSiteUser(user);
                 });
     }, []);
 
