@@ -7,12 +7,17 @@ import { useContext } from "react";
 const CondensedShelf = () => {
     const { shelves, setShelves } = useContext(UserContext);
 
-
-    
+    const addShelf = () => {
+        return (
+            
+        )
+    }
     return (
         <StyledShelf>
             <h2 class="shelves">My Shelves</h2>
             <Tabs className="tabs-outer">
+            {shelves.length > 0 ? (
+                <>
                 <TabList className="tab-list">
                     <Tab className="tab">Title 1</Tab>
                     <Tab className="tab">Title 2</Tab>
@@ -24,6 +29,18 @@ const CondensedShelf = () => {
                 <TabPanel className="tab-panel">
                     <h2>content2</h2>
                 </TabPanel>
+                </>
+            ):(
+                <>
+                <TabList className="tab-list">
+                    <Tab className="tab" onClick={addShelf}>+ Add shelf</Tab>
+                </TabList>
+
+                <TabPanel className="tab-panel">
+                    <h2>content</h2>
+                </TabPanel>
+                </>
+            )}
             </Tabs>
         </StyledShelf>
     );
