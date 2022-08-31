@@ -33,8 +33,8 @@ const Homepage = () => {
                 .then((res) => res.json())
                 // Add the user's shelves to context if they exist
                 .then((json) => {
-                    if (json.shelves) {
-                        setShelves(json.shelves);
+                    if (json.data.shelves) {
+                        setShelves(json.data.shelves);
                     }
                     setSiteUser(user);
                 });
