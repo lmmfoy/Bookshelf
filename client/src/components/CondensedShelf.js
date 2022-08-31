@@ -7,7 +7,7 @@ Modal.setAppElement(document.getElementById("root"));
 
 // This component goes on the homepage and displays the user's shelves
 const CondensedShelf = () => {
-    const { shelves, setShelves } = useContext(UserContext);
+    const { shelves, setShelves, siteUser } = useContext(UserContext);
     const [modalOpen, setModalOpen] = useState(false);
 
     let subtitle;
@@ -26,6 +26,24 @@ const CondensedShelf = () => {
 
     const handleNewShelfSubmit = (e) => {
         e.preventDefault();
+
+        setShelves(prev => ({...prev, name: e.target.value[0], description: e.target.value[1]}))
+
+        fetch("/user", {
+            method: "PATCH",
+            body: JSON.stringify({
+                email: siteUser.email,
+                shelves: shelves,
+            }),
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => res.json())
+        .then((json) => {
+            console.log(json.data)
+        })
     };
 
     return (
@@ -219,6 +237,10 @@ const ModalStyle = styled.div`
                 width: 100%;
                 height: 60px;
                 font-weight: 600;
+
+                &:hover {
+                    background-color: pink;
+                }
             }
         }
     }
