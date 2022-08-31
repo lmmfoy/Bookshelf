@@ -12,6 +12,7 @@ const CondensedShelf = () => {
 
     let subtitle;
 
+    // Causes 'Add Shelf' modal to appear
     const addShelf = () => {
         setModalOpen(true);
     };
@@ -20,10 +21,12 @@ const CondensedShelf = () => {
     //     subtitle.style.color = "#f00";
     // };
 
+    // Causes 'Add Shelf' modal close
     const closeModal = () => {
         setModalOpen(false);
     };
 
+    // When form on modal submitted, add the new shelf to the shelves state, then update database
     const handleNewShelfSubmit = (e) => {
         e.preventDefault();
 
@@ -35,6 +38,7 @@ const CondensedShelf = () => {
             { name: shelfName, description: shelfDescription },
         ]);
 
+        // Add new shelf to database
         fetch("/user", {
             method: "PATCH",
             body: JSON.stringify({
@@ -59,6 +63,10 @@ const CondensedShelf = () => {
 
     console.log(shelves);
 
+    shelves.map((shelf) => {
+        console.log(shelf[0].name);
+    });
+
     return (
         <StyledShelf>
             <h2 class="shelves">My Shelves</h2>
@@ -66,16 +74,21 @@ const CondensedShelf = () => {
                 {shelves.length > 0 ? (
                     <>
                         <TabList className="tab-list">
-                            <Tab className="tab">Title 1</Tab>
-                            <Tab className="tab">Title 2</Tab>
+                            {shelves.map((shelf) => {
+                                return (
+                                    <Tab className="tab">{shelf[0].name}</Tab>
+                                );
+                            })}
                         </TabList>
-
-                        <TabPanel className="tab-panel">
-                            <h2>content</h2>
-                        </TabPanel>
-                        <TabPanel className="tab-panel">
-                            <h2>content2</h2>
-                        </TabPanel>
+                        {shelves.map((shelf) => {
+                            return (
+                                <>
+                                    <TabPanel className="tab-panel">
+                                        <h2>{shelf[0].description}</h2>
+                                    </TabPanel>
+                                </>
+                            );
+                        })}
                     </>
                 ) : (
                     <>
@@ -163,6 +176,7 @@ const StyledShelf = styled.div`
 
     .tab-list {
         padding: 10px;
+        max-width: 150px;
     }
 
     .tab {
