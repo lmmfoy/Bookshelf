@@ -39,7 +39,7 @@ const CondensedShelf = () => {
         ]);
 
         // Add new shelf to database
-        fetch("/user", {
+        fetch("/user/shelves", {
             method: "PATCH",
             body: JSON.stringify({
                 email: siteUser.email,
