@@ -33,8 +33,6 @@ const CondensedShelf = () => {
         const shelfName = e.target[0].value;
         const shelfDescription = e.target[1].value;
 
-
-
         // Add new shelf to database
         fetch("/user/shelves", {
             method: "PATCH",
@@ -52,15 +50,16 @@ const CondensedShelf = () => {
         })
             .then((res) => res.json())
             .then((json) => {
-                console.log(json.data);
+                if (json.data.modifiedCount === 1) {
+                    setShelves((prev) => [
+                        ...prev,
+                        { name: shelfName, description: shelfDescription },
+                        closeModal(),
+                    ]);
+                } else {
+                    alert("You already have a shelf with this name!")
+                }
             });
-
-            setShelves((prev) => [
-                ...prev,
-                { name: shelfName, description: shelfDescription },
-            ]);
-
-        closeModal();
     };
 
     console.log(shelves);
@@ -73,9 +72,7 @@ const CondensedShelf = () => {
                     <>
                         <TabList className="tab-list">
                             {shelves.map((shelf) => {
-                                return (
-                                    <Tab className="tab">{shelf.name}</Tab>
-                                );
+                                return <Tab className="tab">{shelf.name}</Tab>;
                             })}
                             <Tab className="tab" onClick={addShelf}>
                                 + Add shelf
