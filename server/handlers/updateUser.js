@@ -38,7 +38,17 @@ const addBook = async (db, email, shelf, res) => {
     res.status(200).json({ status: 200, data: added });
 };
 
-const addShelf = async (req, res) => {
+const addShelf = async (db, email, shelf, res) => {
+    const added = await db
+        .collection("users")
+        .updateOne({ email: email }, { $push: { shelves: shelf } });
+
+    res.status(200).json({ status: 200, data: added });
+};
+
+
+
+const updateShelf = async (req, res) => {
     const { email, shelf } = req.body;
 
     try {
@@ -47,17 +57,8 @@ const addShelf = async (req, res) => {
 
         if (shelf.books) {
             addBook(db, email, shelf, res);
-            // const added = await db
-            //     .collection("users")
-            //     .updateOne({ email: email }, { $set: { shelves: test2 } });
-            // console.log(added);
-            // res.status(200).json({ status: 200, data: added });
         } else {
-            const added = await db
-                .collection("users")
-                .updateOne({ email: email }, { $push: { shelves: shelf } });
-            console.log(added);
-            res.status(200).json({ status: 200, data: added });
+            addShelf(db, email, shelf, res);
         }
     } catch (err) {
         res.status(400).json({ status: 400, data: err.message });
@@ -65,5 +66,5 @@ const addShelf = async (req, res) => {
 };
 
 module.exports = {
-    addShelf,
+    updateShelf,
 };
