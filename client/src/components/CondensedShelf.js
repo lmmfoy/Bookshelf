@@ -83,6 +83,7 @@ const CondensedShelf = () => {
                                 <>
                                     <TabPanel className="tab-panel">
                                         <h2>{shelf.description}</h2>
+                                        
                                     </TabPanel>
                                 </>
                             );
