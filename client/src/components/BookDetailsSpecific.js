@@ -9,8 +9,12 @@ import { UserContext } from "./UserContext";
 const SpecificBookDetails = ({ book, isbn }) => {
     const [authors, setAuthors] = useState([]);
     const { shelves, setShelves, siteUser } = useContext(UserContext);
+    // Initialize state with array of falses
+    const [checkboxState, setCheckboxState] = useState(
+        new Array(shelves.length).fill(false)
+    );
 
-    console.log(book);
+    console.log(shelves);
     useEffect(() => {
         book.authors.forEach((author) => {
             // author.key takes the form "/authors/author_id"
@@ -25,24 +29,42 @@ const SpecificBookDetails = ({ book, isbn }) => {
     const handleAddBookSubmit = (e) => {
         e.preventDefault();
 
-        fetch("/user", {
-            method: "PATCH",
-            body: JSON.stringify({
-                email: siteUser.email,
-                shelf: {
-                    // name: shelfName,
-                    // description: shelfDescription,
+        console.log(checkboxState);
+
+        const chosenShelves = shelves.filter((shelf, index) => {
+            return checkboxState[index] === true;
+        });
+
+        console.log(chosenShelves);
+
+        chosenShelves.forEach((shelf) => {
+            fetch("/user/shelves", {
+                method: "PATCH",
+                body: JSON.stringify({
+                    email: siteUser.email,
+                    shelf: {
+                        name: shelf,
+                        books: book,
+                    },
+                }),
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
                 },
-            }),
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        })
-            .then((res) => res.json())
-            .then((json) => {
-                console.log(json.data);
-            });
+            })
+                .then((res) => res.json())
+                .then((json) => {
+                    console.log(json.data);
+                });
+        });
+    };
+
+    // When a shelf button is clicked, this finds the item in state (using its index) and toggles it true/false, then updates the state
+    const handleOnChange = (position) => {
+        const updatedState = checkboxState.map((item, index) => {
+            return index === position ? !item : item;
+        });
+        setCheckboxState(updatedState);
     };
 
     return (
@@ -63,9 +85,7 @@ const SpecificBookDetails = ({ book, isbn }) => {
                 <p>
                     {authors.map((author) => {
                         return <p>{author.name}</p>;
-                        {
-                            /* author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia */
-                        }
+                        /* author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia */
                     })}
                 </p>
                 <p>
@@ -83,7 +103,7 @@ const SpecificBookDetails = ({ book, isbn }) => {
                 <form onSubmit={handleAddBookSubmit}>
                     <fieldset>
                         <legend>Add to shelf</legend>
-                        {shelves.map((shelf) => {
+                        {shelves.map((shelf, index) => {
                             return (
                                 <div>
                                     <div class="shelf-button">
@@ -92,6 +112,10 @@ const SpecificBookDetails = ({ book, isbn }) => {
                                             id={`shelf-{shelf.name}`}
                                             name={`shelf-{shelf.name}`}
                                             value={shelf.name}
+                                            checked={checkboxState[index]}
+                                            onChange={() =>
+                                                handleOnChange(index)
+                                            }
                                         />
                                         <div>
                                             <span> {shelf.name}</span>
@@ -100,25 +124,7 @@ const SpecificBookDetails = ({ book, isbn }) => {
                                 </div>
                             );
                         })}
-                        {/* {shelves.map((shelf) => {
-                            return (
-                                <>
-                                    <label class="container">
-                                        <input type="checkbox" value="1">
-                                            <span class="checkmark">{shelf.name}</span>
-                                        </input>
-                                    </label>
-                                </>
-                            );
-                        })} */}
-                        {/* <select name="shelf" id="shelf" multiple>
-                            {shelves.map(shelf => {
-
-                                return <option>{shelf.name}</option>
-                            })}
-                            </select> */}
-
-                        <button>Add to shelf</button>
+                        <input type="submit" value="Add to shelf" />
                     </fieldset>
                 </form>
                 {/* identifiers for different places: {book.identifiers} */}
@@ -154,12 +160,13 @@ const StyledBookPage = styled.div`
                     transition: 0.5s ease;
                 }
 
+                /* Make the actual checkboxes invisible in order to have checkbox buttons */
                 input {
                     position: absolute;
                     top: 0;
                     left: 0;
-                    width: 140px;
-                    height: 100px;
+                    width: 120px;
+                    height: 45px;
                     opacity: 0;
                     cursor: pointer;
                 }
@@ -167,6 +174,9 @@ const StyledBookPage = styled.div`
                 input[type="checkbox"]:checked ~ div {
                     background-color: pink;
                 }
+            }
+            input[type="submit"] {
+                margin: 20px;
             }
         }
     }
