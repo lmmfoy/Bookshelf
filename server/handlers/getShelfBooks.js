@@ -13,7 +13,17 @@ const options = {
 const client = new MongoClient(MONGO_URI, options);
 
 const getShelf = async(req, res) => {
-    
+    console.log(req)
+
+    try {
+        await client.connect();
+        const db = client.db("Users");
+
+        const user = await db.collection("users").findOne({ email: email });
+
+    } catch (err) {
+        res.status(400).json({ status: 400, data: err.message });
+    }
 }
 
 module.exports = {

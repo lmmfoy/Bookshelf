@@ -17,7 +17,7 @@ app.get("/search/authors/:author_id", searchAuthors); // Find author information
 
 app.post("/user", addUser); // Add new user to MongoDB database
 app.patch("/user/shelves", updateShelf); // Add, update shelves
-app.get("/user/shelves", getShelf); // Get list of books on a shelf
+app.get("/user/shelves/:params", getShelf); // Get list of books on a shelf
 
 // app.get("*", (req, res) => {
 //     res.status(404).json({

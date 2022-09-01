@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { UserContext } from "./UserContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 Modal.setAppElement(document.getElementById("root"));
 
@@ -64,6 +64,8 @@ const CondensedShelf = () => {
 
     console.log(shelves);
 
+
+
     return (
         <StyledShelf>
             <h2 class="shelves">My Shelves</h2>
@@ -83,7 +85,7 @@ const CondensedShelf = () => {
                                 <>
                                     <TabPanel className="tab-panel">
                                         <h2>{shelf.description}</h2>
-                                        
+
                                     </TabPanel>
                                 </>
                             );
