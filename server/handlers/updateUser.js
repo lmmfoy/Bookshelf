@@ -41,12 +41,10 @@ const addBook = async (db, email, shelf, res) => {
 const addShelf = async (db, email, shelf, res) => {
     const added = await db
         .collection("users")
-        .updateOne({ email: email }, { $push: { shelves: shelf } });
+        .updateOne({ email: email, "shelves.name": {$ne: shelf.name} }, {$addToSet: {  shelves: shelf } });
 
     res.status(200).json({ status: 200, data: added });
 };
-
-
 
 const updateShelf = async (req, res) => {
     const { email, shelf } = req.body;

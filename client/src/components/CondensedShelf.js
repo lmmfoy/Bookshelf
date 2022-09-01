@@ -33,10 +33,7 @@ const CondensedShelf = () => {
         const shelfName = e.target[0].value;
         const shelfDescription = e.target[1].value;
 
-        setShelves((prev) => [
-            ...prev,
-            { name: shelfName, description: shelfDescription },
-        ]);
+
 
         // Add new shelf to database
         fetch("/user/shelves", {
@@ -57,6 +54,11 @@ const CondensedShelf = () => {
             .then((json) => {
                 console.log(json.data);
             });
+
+            setShelves((prev) => [
+                ...prev,
+                { name: shelfName, description: shelfDescription },
+            ]);
 
         closeModal();
     };
