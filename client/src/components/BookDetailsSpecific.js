@@ -29,8 +29,6 @@ const SpecificBookDetails = ({ book, isbn }) => {
     const handleAddBookSubmit = (e) => {
         e.preventDefault();
 
-        console.log(checkboxState);
-
         const chosenShelves = shelves.filter((shelf, index) => {
             return checkboxState[index] === true;
         });
@@ -38,12 +36,13 @@ const SpecificBookDetails = ({ book, isbn }) => {
         console.log(chosenShelves);
 
         chosenShelves.forEach((shelf) => {
+            console.log(shelf)
             fetch("/user/shelves", {
                 method: "PATCH",
                 body: JSON.stringify({
                     email: siteUser.email,
                     shelf: {
-                        name: shelf,
+                        name: shelf.name,
                         books: book,
                     },
                 }),
@@ -97,7 +96,7 @@ const SpecificBookDetails = ({ book, isbn }) => {
                 </p>
                 <p>ISBN: {isbn}</p>
                 <p>
-                    {book.pagination && <span>Pages: {book.pagination}</span>}{" "}
+                    {(book.pagination || book.number_of_pages) && <span>Pages: {book.pagination || book.number_of_pages}</span>}
                 </p>
                 <p>{book.notes}</p>
                 <form onSubmit={handleAddBookSubmit}>
