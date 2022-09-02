@@ -32,7 +32,7 @@ const SearchPage = () => {
                     console.log(err);
                 });
         }
-    }, [page, setNewBooks, searchQuery]);
+    }, [page]);
 
     return (
         <div>
