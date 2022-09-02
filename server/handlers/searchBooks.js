@@ -10,35 +10,46 @@ const bookSearch = async (req, res) => {
         const parsedResult = await JSON.parse(result);
         // The book objects returned have a lot of keys, just return some of these
         const bookInfo = parsedResult.docs.map((item) => {
+            item.edition_key.map(key => {
+                console.log(key)
+            })
             const {
                 key,
                 title,
                 first_publish_year,
+                publish_year,
+                publish_date,
                 first_sentence,
                 publisher,
+                language,
                 author_name,
                 author_key,
                 subject,
                 isbn,
                 cover_i,
                 edition_count,
+                edition_key,
             } = item;
 
             return {
                 key,
                 title,
                 first_publish_year,
+                publish_year,
+                publish_date,
                 first_sentence,
                 publisher,
+                language,
                 author_name,
                 author_key,
                 subject,
                 isbn,
                 cover_i,
                 edition_count,
+                edition_key,
             };
         });
-        console.log(parsedResult)
+        // console.log(parsedResult)
 
         const bookObject = {bookInfo: bookInfo, numFound: parsedResult.num_found, start: parsedResult.start}
         res.status(200).json({ status: 200, data: bookObject});
@@ -47,7 +58,7 @@ const bookSearch = async (req, res) => {
     }
 };
 
-const singleBookSearch = async(req, res) => {
+const singleBookSearchISBN = async(req, res) => {
     const isbn = req.params.isbn
 
     try {
@@ -60,6 +71,19 @@ const singleBookSearch = async(req, res) => {
     }
 }
 
+const singleBookSearchOL = async(req, res) => {
+    const ol_id = req.params.ol_id
+
+    try {
+        const result = await request(`${openLibrary}/books/${ol_id}.json`);
+        const parsedResult = await JSON.parse(result);
+
+        res.status(200).json({ status: 200, data: parsedResult});
+    } catch (err) {
+        res.status(404).json({ status: 404, data: err.message });
+    }
+}
+
 module.exports = {
-    bookSearch, singleBookSearch,
+    bookSearch, singleBookSearchISBN, singleBookSearchOL
 };

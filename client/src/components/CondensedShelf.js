@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { UserContext } from "./UserContext";
 import { useContext, useEffect, useState } from "react";
+import BookTile from "./BookTile";
 import Modal from "react-modal";
+
 Modal.setAppElement(document.getElementById("root"));
 
 // This component goes on the homepage and displays the user's shelves
@@ -57,14 +59,12 @@ const CondensedShelf = () => {
                         closeModal(),
                     ]);
                 } else {
-                    alert("You already have a shelf with this name!")
+                    alert("You already have a shelf with this name!");
                 }
             });
     };
 
     console.log(shelves);
-
-
 
     return (
         <StyledShelf>
@@ -85,7 +85,11 @@ const CondensedShelf = () => {
                                 <>
                                     <TabPanel className="tab-panel">
                                         <h2>{shelf.description}</h2>
-
+                                        {shelf.books &&
+                                            shelf.books.map((book) => {
+                                                
+                                                return <BookTile book={book} />;
+                                            })}
                                     </TabPanel>
                                 </>
                             );

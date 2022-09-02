@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
-import { BookSearchContext } from "./CurrentBookSearch";
+import { BookSearchContext } from "./CurrentBookSearchContext";
 import { useNavigate } from "react-router-dom";
 
 const NewBookSearch = () => {
@@ -44,6 +44,7 @@ const NewBookSearch = () => {
         fetch(`/search/${search_query}&language=eng&limit=10`)
             .then((res) => res.json())
             .then((data) => {
+                console.log(data.data)
                 setNewBooks(data.data.bookInfo); // Set all books that meet search criteria in state (in context)
                 setNumPages(data.data.numFound); // Set number of pages of books
                 navigate("/search"); // Navigate to Search page
