@@ -92,7 +92,7 @@ const SpecificBookDetails = ({ book, isbn }) => {
                     {book.publish_places && (
                         <span>{book.publish_places.join(", ")}, </span>
                     )}{" "}
-                    {book.publishers.join(", ")}
+                    {book.publishers && book.publishers.join(", ")}
                 </p>
                 <p>ISBN: {isbn}</p>
                 <p>

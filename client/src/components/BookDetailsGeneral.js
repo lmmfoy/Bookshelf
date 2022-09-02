@@ -1,11 +1,11 @@
 import { useEffect, useState, useContext } from "react";
 import Select from "react-select";
-import { BookSearchContext } from "./CurrentBookSearchContext";
+import { useNavigate } from "react-router-dom";
 
 // This shows the book details of books found using the general search (with author/title)
 // It may show multiple editions of the same book
 const GeneralBookDetails = ({ book }) => {
-    const { setNewBooks } = useContext(BookSearchContext);
+    const navigate = useNavigate();
 
     const [editions, setEditions] = useState([]);
     const [options, setOptions] = useState([]);
@@ -27,7 +27,8 @@ const GeneralBookDetails = ({ book }) => {
             return false;
         });
 
-        setOptions(unique);
+        return unique;
+        // setOptions(unique);
     };
 
     useEffect(() => {
@@ -46,7 +47,9 @@ const GeneralBookDetails = ({ book }) => {
                             data.data.physical_format.toLowerCase() ===
                                 "ebook") &&
                         (data.data.publish_year || data.data.publish_date) &&
-                        data.data.publishers
+                        data.data.publishers &&
+                        data.data.authors &&
+                        (data.data.isbn_13 || data.data.isbn_10)
                     ) {
                         setEditions((prev) => [...prev, data.data]);
 
@@ -75,15 +78,6 @@ const GeneralBookDetails = ({ book }) => {
             // })
         });
 
-        // //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/ ----> not working
-        // .then(
-        //     setOptions([
-        //         ...new Map(
-        //             options.map((option) => [option.label, option])
-        //         ).values(),
-        //     ])
-        // );
-
         // setSortedOptions(
         //     options.sort((a, b) =>
         //         a.label > b.label ? 1 : b.label > a.label ? -1 : 0
@@ -96,18 +90,27 @@ const GeneralBookDetails = ({ book }) => {
         //   }
 
         // filter:
-        // options.filter((option, index) => {
+        // console.log(options.filter((option, index) => {
         //     return options.indexOf(option.label) === index;
-        // })
+        // }))
+
+        // //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/ ----> not working
+        // .then(
+        //     setOptions([
+        //         ...new Map(
+        //             options.map((option) => [option.label, option])
+        //         ).values(),
+        //     ])
+        // );
     }, []);
 
-    useEffect(() => {
-        console.log(selectedOption.book);
-        //     setNewBooks(data.data);
-        //     navigate("/book", {
-        //         state: { isbn: e.target[0].value, book: data.data },
-        //     });
-    }, [selectedOption]);
+    // When an edition is selected, the reader is navigated to that edition's page
+    const onChange = (e) => {
+        console.log(e.book);
+        navigate("/book", {
+            state: { isbn: e.book.isbn_10 || e.book.isbn_13, book: e.book },
+        });
+    };
 
     return (
         <>
@@ -129,9 +132,10 @@ const GeneralBookDetails = ({ book }) => {
                 <p>First published: {book.first_publish_year}</p>
                 <div>
                     {/* https://github.com/JedWatson/react-select */}
+                    <h3>Select edition:</h3>
                     <Select
                         defaultValue={selectedOption}
-                        onChange={setSelectedOption}
+                        onChange={onChange}
                         options={options}
                         isSearchable={true}
                         autoFocus={true}
