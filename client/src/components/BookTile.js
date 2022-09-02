@@ -5,14 +5,13 @@ import styled from "styled-components";
 const BookTile = ({ book }) => {
     const navigate = useNavigate();
 
-    const onBookClick = () => {        
+    const onBookClick = () => {
         navigate("/book", { state: { book: book } });
     };
 
     if (book.edition_count > 1) {
-        console.log(book.edition_count, book.title)
+        console.log(book.edition_count, book.title);
     }
-
 
     return (
         <StyledNewBook onClick={onBookClick}>
@@ -27,10 +26,14 @@ const BookTile = ({ book }) => {
                     <img src="images/book-cover.png" alt="book cover" />
                 )
             }
-            <p>{book.title}</p>
-            <p>{book.author_name.join(", ")}</p>
-            <p>First published: {book.first_publish_year}</p>
-            <p>Number of editions: {book.edition_count}</p>
+            <p>{book.title && book.title}</p>
+            <p>{book.author && book.author_name.join(", ")}</p>
+            {book.first_publish_year && (
+                <p>First published: {book.first_publish_year}</p>
+            )}
+            {book.edition_count && (
+                <p>Number of editions: {book.edition_count}</p>
+            )}
             {/* publisher: {book.publisher} */}
         </StyledNewBook>
     );
