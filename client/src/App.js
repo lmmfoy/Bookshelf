@@ -5,7 +5,6 @@ import Homepage from "./components/pages/Homepage";
 import LoggedOutWelcome from "./components/pages/LoggedOutWelcome";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchPage from "./components/pages/SearchPage";
-import { BookSearchContext } from "./components/CurrentBookSearch";
 import BookPage from "./components/pages/BookPage";
 import { useEffect, useState, useContext } from "react";
 // import { UserContext } from "./components/UserContext";

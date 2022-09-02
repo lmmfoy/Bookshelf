@@ -5,7 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 import AppPagination from "../Pagination";
-import { BookSearchContext } from "../CurrentBookSearch";
+import { BookSearchContext } from "../CurrentBookSearchContext";
 
 const SearchPage = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();

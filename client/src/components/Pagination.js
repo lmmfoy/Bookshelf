@@ -1,6 +1,6 @@
 import { Pagination } from "@mui/material";
 import { useEffect, useState, useContext } from "react";
-import { BookSearchContext } from "./CurrentBookSearch";
+import { BookSearchContext } from "./CurrentBookSearchContext";
 
 const pageSize = 3;
 
