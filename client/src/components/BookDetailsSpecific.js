@@ -2,7 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useEffect, useContext } from "react";
 import { UserContext } from "./UserContext";
-
+import Notes from "./Notes";
+import AddToShelf from "./AddToShelf";
 // This shows the details of a book found using the ISBN search
 // It will show only one specific edition of a book
 
@@ -42,78 +43,6 @@ const SpecificBookDetails = ({ isbn }) => {
             });
     }, []);
 
-    //
-    // useEffect(() => {
-    //     book.authors.forEach((author) => {
-    //         // author.key takes the form "/authors/author_id"
-    //         fetch(`/search${author.key}`)
-    //             .then((res) => res.json())
-    //             .then((data) => {
-    //                 setAuthors((prev) => [prev, data.data]);
-    //             });
-    //     });
-    // }, [book]);
-
-    const handleAddBookSubmit = (e) => {
-        e.preventDefault();
-
-        const chosenShelves = shelves.filter((shelf, index) => {
-            return checkboxState[index] === true;
-        });
-
-        console.log(chosenShelves);
-
-        chosenShelves.forEach((shelf) => {
-            console.log(shelf);
-            fetch("/user/shelves", {
-                method: "PATCH",
-                body: JSON.stringify({
-                    email: siteUser.email,
-                    shelf: {
-                        name: shelf.name,
-                        books: book,
-                    },
-                }),
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            })
-                .then((res) => res.json())
-                .then((json) => {
-                    console.log(json.data);
-                    json.data.modifiedCount === 0 &&
-                        alert(
-                            `This edition has already been added to "${shelf.name}", cannot add again.`
-                        );
-                    json.data.modifiedCount === 1 &&
-                        alert(
-                            `This edition has successfully been added to "${shelf.name}"`
-                        );
-                });
-        });
-
-        // Uncheck the buttons
-        setCheckboxState(
-            checkboxState.map((item) => {
-                return false;
-            })
-        );
-    };
-
-    // When a shelf button is clicked, this finds the item in state (using its index), toggles it true/false,
-    // changes the checked state of the other buttons to false (only one can be selected at a time), then updates the state
-    const handleOnChange = (position) => {
-        const updatedState = checkboxState.map((item, index) => {
-            if (index === position) {
-                return !item;
-            } else {
-                return false;
-            }
-        });
-        setCheckboxState(updatedState);
-    };
-
     return (
         <StyledBookPage>
             {
@@ -151,35 +80,13 @@ const SpecificBookDetails = ({ isbn }) => {
                     )}
                 </p>
                 <p>{book.notes && book.notes}</p>
-                <form onSubmit={handleAddBookSubmit}>
-                    <fieldset>
-                        <legend>Add to shelf</legend>
-                        <div>
-                            {shelves.map((shelf, index) => {
-                                return (
-                                    <div>
-                                        <div className="shelf-button">
-                                            <input
-                                                type="checkbox"
-                                                id={`shelf-{shelf.name}`}
-                                                name={`shelf-{shelf.name}`}
-                                                value={shelf.name}
-                                                checked={checkboxState[index]}
-                                                onChange={() =>
-                                                    handleOnChange(index)
-                                                }
-                                            />
-                                            <div>
-                                                <span> {shelf.name}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                        <input type="submit" value="Add to shelf" />
-                    </fieldset>
-                </form>
+                <AddToShelf
+                    shelves={shelves}
+                    checkboxState={checkboxState}
+                    setCheckboxState={setCheckboxState}
+                    siteUser={siteUser}
+                    book={book}
+                />
                 {/* identifiers for different places: {book.identifiers} */}
             </div>
         </StyledBookPage>
