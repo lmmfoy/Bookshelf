@@ -30,15 +30,12 @@ const App = () => {
                     <Header />
                     <Routes>
                         <Route path="/" element={<Homepage />} />
-                        <Route path="/search/isbn/:isbn" />
-                        <Route path="/search/authors/:author_id" />
-                        <Route path="/search/:search_terms" />
                         <Route path="/search" element={<SearchPage />} />
-                        <Route path="/shelf" />
                         <Route path="/book" element={<BookPage />} />
-                        <Route path="/friends" />
-                        <Route path="/user" />
                         <Route path="/welcome" element={<LoggedOutWelcome />} />
+                        {/* <Route path="/shelf" /> */}
+                        {/* <Route path="/friends" />
+                        <Route path="/user" /> */}
                     </Routes>
                 </>
             ) : (
@@ -47,7 +44,7 @@ const App = () => {
                         <Route
                             path="/"
                             element={
-                                // Redirect to Welcome page if not signed in 
+                                // Redirect to Welcome page if not signed in
                                 // Checks against Auth0 rather than siteUser as siteUser is set after the user is redirected to the homepage
                                 !isLoading &&
                                 (isAuthenticated ? (
@@ -57,15 +54,7 @@ const App = () => {
                                 ))
                             }
                         />
-                        <Route
-                            path="/search"
-                            element={<Navigate replace to="/welcome" />}
-                        />
-                        <Route
-                            path="/book"
-                            element={<Navigate replace to="/welcome" />}
-                        />
-                        <Route path="/welcome" element={<LoggedOutWelcome />} />
+                        <Route path="*" element={<LoggedOutWelcome />} />
                     </Routes>
                 </>
             )}
