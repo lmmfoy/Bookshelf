@@ -40,7 +40,8 @@ const SearchPage = () => {
             <StyledResults>
                 {newBooks &&
                     newBooks.map((book) => {
-                        return <BookTileGeneral key={book.key} book={book} />;
+                        {/* Only show works with ISBN numbers */}
+                        return book.isbn && <BookTileGeneral key={book.key} book={book} />;
                     })}
             </StyledResults>
             <AppPagination />

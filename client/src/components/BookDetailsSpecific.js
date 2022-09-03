@@ -15,6 +15,7 @@ const SpecificBookDetails = ({ isbn }) => {
     );
     const [book, setBook] = useState({});
 
+    console.log(shelves);
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
         fetch(`/search/isbn/${isbn}`)
@@ -26,14 +27,15 @@ const SpecificBookDetails = ({ isbn }) => {
 
             // Authors are listed in an array of ids and must be fetched separately
             .then(() => {
-                book.authors.forEach((author) => {
-                    // author.key takes the form "/authors/author_id"
-                    fetch(`/search${author.key}`)
-                        .then((res) => res.json())
-                        .then((data) => {
-                            setAuthors((prev) => [prev, data.data]);
-                        });
-                });
+                book.authors &&
+                    book.authors.forEach((author) => {
+                        // author.key takes the form "/authors/author_id"
+                        fetch(`/search${author.key}`)
+                            .then((res) => res.json())
+                            .then((data) => {
+                                setAuthors((prev) => [prev, data.data]);
+                            });
+                    });
             })
             .catch((err) => {
                 console.log(err);
@@ -148,31 +150,33 @@ const SpecificBookDetails = ({ isbn }) => {
                         </span>
                     )}
                 </p>
-                <p>{book.notes}</p>
+                <p>{book.notes && book.notes}</p>
                 <form onSubmit={handleAddBookSubmit}>
                     <fieldset>
                         <legend>Add to shelf</legend>
-                        {shelves.map((shelf, index) => {
-                            return (
-                                <div>
-                                    <div className="shelf-button">
-                                        <input
-                                            type="checkbox"
-                                            id={`shelf-{shelf.name}`}
-                                            name={`shelf-{shelf.name}`}
-                                            value={shelf.name}
-                                            checked={checkboxState[index]}
-                                            onChange={() =>
-                                                handleOnChange(index)
-                                            }
-                                        />
-                                        <div>
-                                            <span> {shelf.name}</span>
+                        <div>
+                            {shelves.map((shelf, index) => {
+                                return (
+                                    <div>
+                                        <div className="shelf-button">
+                                            <input
+                                                type="checkbox"
+                                                id={`shelf-{shelf.name}`}
+                                                name={`shelf-{shelf.name}`}
+                                                value={shelf.name}
+                                                checked={checkboxState[index]}
+                                                onChange={() =>
+                                                    handleOnChange(index)
+                                                }
+                                            />
+                                            <div>
+                                                <span> {shelf.name}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
                         <input type="submit" value="Add to shelf" />
                     </fieldset>
                 </form>

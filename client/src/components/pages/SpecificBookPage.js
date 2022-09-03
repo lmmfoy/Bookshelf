@@ -3,14 +3,14 @@ import styled from "styled-components";
 import SpecificBookDetails from "../BookDetailsSpecific";
 
 const SpecificBookPage = () => {
-    const isbn = useParams().isbn
+    const isbn = useParams().isbn;
     console.log(isbn)
 
     return (
         <StyledBookWrapper>
             <div>
                 <div className="book-info">
-                        <SpecificBookDetails isbn={isbn} />
+                    <SpecificBookDetails isbn={isbn} />
                 </div>
                 <div className="bookshelf">
                     <h2></h2>
