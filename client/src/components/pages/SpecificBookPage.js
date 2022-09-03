@@ -1,24 +1,20 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
-import GeneralBookDetails from "../BookDetailsGeneral";
 import SpecificBookDetails from "../BookDetailsSpecific";
 
-const BookPage = () => {
+const SpecificBookPage = () => {
     const location = useLocation();
+    const isbn = useParams()
+    console.log(isbn)
 
     const book = location.state.book;
-    const isbn = location.state.isbn;
 
     return (
         <StyledBookWrapper>
             <h1>{book.title}</h1>
             <div>
                 <div className="book-info">
-                    {isbn ? (
-                        <SpecificBookDetails book={book} isbn={isbn} />
-                    ) : (
-                        <GeneralBookDetails book={book} />
-                    )}
+                        <SpecificBookDetails isbn={isbn} />
                 </div>
                 <div className="bookshelf">
                     <h2></h2>
@@ -46,4 +42,4 @@ const StyledBookWrapper = styled.div`
     }
 `;
 
-export default BookPage;
+export default SpecificBookPage;

@@ -6,25 +6,49 @@ import { UserContext } from "./UserContext";
 // This shows the details of a book found using the ISBN search
 // It will show only one specific edition of a book
 
-const SpecificBookDetails = ({ book, isbn }) => {
+const SpecificBookDetails = ({ isbn }) => {
     const [authors, setAuthors] = useState([]);
     const { shelves, setShelves, siteUser } = useContext(UserContext);
     // Initialize state with array of falses
     const [checkboxState, setCheckboxState] = useState(
         new Array(shelves.length).fill(false)
     );
+    const [book, setBook] = useState({});
 
-    console.log(shelves);
+    // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
-        book.authors.forEach((author) => {
-            // author.key takes the form "/authors/author_id"
-            fetch(`/search${author.key}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setAuthors((prev) => [prev, data.data]);
+        fetch(`/book/${isbn}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setBook(data.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            // Authors are listed in an array of ids and must be fetched separately
+            .then(() => {
+                book.authors.forEach((author) => {
+                    // author.key takes the form "/authors/author_id"
+                    fetch(`/search${author.key}`)
+                        .then((res) => res.json())
+                        .then((data) => {
+                            setAuthors((prev) => [prev, data.data]);
+                        });
                 });
-        });
+            });
     }, []);
+
+    //
+    // useEffect(() => {
+    //     book.authors.forEach((author) => {
+    //         // author.key takes the form "/authors/author_id"
+    //         fetch(`/search${author.key}`)
+    //             .then((res) => res.json())
+    //             .then((data) => {
+    //                 setAuthors((prev) => [prev, data.data]);
+    //             });
+    //     });
+    // }, [book]);
 
     const handleAddBookSubmit = (e) => {
         e.preventDefault();

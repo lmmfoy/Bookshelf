@@ -106,6 +106,7 @@ const CondensedShelf = () => {
                                                         <BookTileSpecific
                                                             key={book.key}
                                                             book={book}
+                                                            isbn={book.isbn || book.isbn_10 || book.isbn_13}
                                                         />
                                                     );
                                                 })}

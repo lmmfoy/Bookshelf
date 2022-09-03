@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const BookTileSpecific = ({ book }) => {
     const navigate = useNavigate();
-
+    // const [isbn, setISBN] = useState("")
+    // book.isbn_10[0] ? setISBN(book.isbn_10[0]) : setISBN(book.isbn_13[0])
+    // console.log(isbn)
     const onBookClick = () => {
-        navigate("/book", { state: { book: book } });
+        navigate('/book/${book.isbn_10 || book.isbn_13}', { state: { book: book } });
     };
 
     console.log(book)
