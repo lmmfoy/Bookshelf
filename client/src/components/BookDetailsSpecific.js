@@ -6,25 +6,53 @@ import { UserContext } from "./UserContext";
 // This shows the details of a book found using the ISBN search
 // It will show only one specific edition of a book
 
-const SpecificBookDetails = ({ book, isbn }) => {
+const SpecificBookDetails = ({ isbn }) => {
     const [authors, setAuthors] = useState([]);
     const { shelves, setShelves, siteUser } = useContext(UserContext);
     // Initialize state with array of falses
     const [checkboxState, setCheckboxState] = useState(
         new Array(shelves.length).fill(false)
     );
+    const [book, setBook] = useState({});
 
     console.log(shelves);
+    // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
-        book.authors.forEach((author) => {
-            // author.key takes the form "/authors/author_id"
-            fetch(`/search${author.key}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setAuthors((prev) => [prev, data.data]);
-                });
-        });
+        fetch(`/search/isbn/${isbn}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setBook(data.data);
+                console.log(data.data);
+            })
+
+            // Authors are listed in an array of ids and must be fetched separately
+            .then(() => {
+                book.authors &&
+                    book.authors.forEach((author) => {
+                        // author.key takes the form "/authors/author_id"
+                        fetch(`/search${author.key}`)
+                            .then((res) => res.json())
+                            .then((data) => {
+                                setAuthors((prev) => [prev, data.data]);
+                            });
+                    });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
+
+    //
+    // useEffect(() => {
+    //     book.authors.forEach((author) => {
+    //         // author.key takes the form "/authors/author_id"
+    //         fetch(`/search${author.key}`)
+    //             .then((res) => res.json())
+    //             .then((data) => {
+    //                 setAuthors((prev) => [prev, data.data]);
+    //             });
+    //     });
+    // }, [book]);
 
     const handleAddBookSubmit = (e) => {
         e.preventDefault();
@@ -96,15 +124,15 @@ const SpecificBookDetails = ({ book, isbn }) => {
                         alt={`${book.title} book cover`}
                     />
                 ) : (
-                    <img src="images/book-cover.png" alt="book cover" />
+                    <img src="/images/book-cover.png" alt="book cover" />
                 )
             }
             <div className="book-details">
-                <p>{book.title}</p>
+                <h2>{book.title}</h2>
                 <div>
                     {authors.map((author) => {
                         return <p>{author.name}</p>;
-                        /* author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia */
+                        //author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia
                     })}
                 </div>
                 <p>
@@ -122,31 +150,33 @@ const SpecificBookDetails = ({ book, isbn }) => {
                         </span>
                     )}
                 </p>
-                <p>{book.notes}</p>
+                <p>{book.notes && book.notes}</p>
                 <form onSubmit={handleAddBookSubmit}>
                     <fieldset>
                         <legend>Add to shelf</legend>
-                        {shelves.map((shelf, index) => {
-                            return (
-                                <div>
-                                    <div className="shelf-button">
-                                        <input
-                                            type="checkbox"
-                                            id={`shelf-{shelf.name}`}
-                                            name={`shelf-{shelf.name}`}
-                                            value={shelf.name}
-                                            checked={checkboxState[index]}
-                                            onChange={() =>
-                                                handleOnChange(index)
-                                            }
-                                        />
-                                        <div>
-                                            <span> {shelf.name}</span>
+                        <div>
+                            {shelves.map((shelf, index) => {
+                                return (
+                                    <div>
+                                        <div className="shelf-button">
+                                            <input
+                                                type="checkbox"
+                                                id={`shelf-{shelf.name}`}
+                                                name={`shelf-{shelf.name}`}
+                                                value={shelf.name}
+                                                checked={checkboxState[index]}
+                                                onChange={() =>
+                                                    handleOnChange(index)
+                                                }
+                                            />
+                                            <div>
+                                                <span> {shelf.name}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
                         <input type="submit" value="Add to shelf" />
                     </fieldset>
                 </form>

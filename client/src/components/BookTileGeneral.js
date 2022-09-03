@@ -7,6 +7,8 @@ const BookTileGeneral = ({ book }) => {
 
     const onBookClick = () => {
         navigate("/book", { state: { book: book } });
+        // navigate(`/book/title${book.key}`, { state: { type: "general", book: book } });
+
     };
 
     if (book.edition_count > 1) {

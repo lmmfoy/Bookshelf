@@ -5,7 +5,8 @@ import Homepage from "./components/pages/Homepage";
 import LoggedOutWelcome from "./components/pages/LoggedOutWelcome";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchPage from "./components/pages/SearchPage";
-import BookPage from "./components/pages/BookPage";
+import GeneralBookPage from "./components/pages/GeneralBookPage";
+import SpecificBookPage from "./components/pages/SpecificBookPage";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "./components/UserContext";
 
@@ -31,7 +32,8 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Homepage />} />
                         <Route path="/search" element={<SearchPage />} />
-                        <Route path="/book" element={<BookPage />} />
+                        <Route path="/book/:isbn" element={<SpecificBookPage />} />
+                        <Route path="/book" element={<GeneralBookPage />} />
                         <Route path="/welcome" element={<LoggedOutWelcome />} />
                         {/* <Route path="/shelf" /> */}
                         {/* <Route path="/friends" />

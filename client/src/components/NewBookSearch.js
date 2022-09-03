@@ -44,7 +44,7 @@ const NewBookSearch = () => {
         fetch(`/search/${search_query}&language=eng&limit=10`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.data)
+                console.log(data.data);
                 setNewBooks(data.data.bookInfo); // Set all books that meet search criteria in state (in context)
                 setNumPages(data.data.numFound); // Set number of pages of books
                 navigate("/search"); // Navigate to Search page
@@ -61,18 +61,7 @@ const NewBookSearch = () => {
 
         setSearchTerms({ isbn: e.target[0].value });
 
-        fetch(`/search/isbn/${e.target[0].value}`)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(e.target[0].value);
-                setNewBooks(data.data);
-                navigate("/book", {
-                    state: { isbn: e.target[0].value, book: data.data },
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        navigate(`/book/${e.target[0].value}`);
     };
 
     return (
