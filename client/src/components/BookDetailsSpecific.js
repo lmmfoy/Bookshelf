@@ -81,12 +81,12 @@ const SpecificBookDetails = ({ book, isbn }) => {
             }
             <div className="book-details">
                 <p>{book.title}</p>
-                <p>
+                <div>
                     {authors.map((author) => {
                         return <p>{author.name}</p>;
                         /* author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia */
                     })}
-                </p>
+                </div>
                 <p>
                     Published: {book.publish_date},{" "}
                     {book.publish_places && (

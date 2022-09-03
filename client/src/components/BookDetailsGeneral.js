@@ -12,25 +12,6 @@ const GeneralBookDetails = ({ book }) => {
     const [sortedOptions, setSortedOptions] = useState([]);
     const [selectedOption, setSelectedOption] = useState(null);
 
-    const x = () => {
-        const unique = [];
-
-        const x = options.filter((option) => {
-            const dupe = unique.includes(option.label);
-
-            if (!dupe) {
-                unique.push(option);
-
-                return true;
-            }
-
-            return false;
-        });
-
-        return unique;
-        // setOptions(unique);
-    };
-
     useEffect(() => {
         book.edition_key.forEach((key) => {
             fetch(`/search/ol/${key}`)
@@ -52,7 +33,6 @@ const GeneralBookDetails = ({ book }) => {
                         (data.data.isbn_13 || data.data.isbn_10)
                     ) {
                         setEditions((prev) => [...prev, data.data]);
-
                         setOptions((prev) => [
                             ...prev,
                             {
@@ -69,39 +49,7 @@ const GeneralBookDetails = ({ book }) => {
                 .catch((err) => {
                     console.log(err);
                 });
-
-            // options.filter((value, index) => {
-            //     const _value = JSON.stringify(value);
-            //     return index === options.findIndex(obj => {
-            //         return JSON.stringify(obj) === _value;
-            //     })
-            // })
         });
-
-        // setSortedOptions(
-        //     options.sort((a, b) =>
-        //         a.label > b.label ? 1 : b.label > a.label ? -1 : 0
-        //     )
-        // );
-
-        //or:
-        // const compare = (a, b) => {
-        //     return a.label > b.label ? 1 : b.label > a.label ? -1 : 0;
-        //   }
-
-        // filter:
-        // console.log(options.filter((option, index) => {
-        //     return options.indexOf(option.label) === index;
-        // }))
-
-        // //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/ ----> not working
-        // .then(
-        //     setOptions([
-        //         ...new Map(
-        //             options.map((option) => [option.label, option])
-        //         ).values(),
-        //     ])
-        // );
     }, []);
 
     // When an edition is selected, the reader is navigated to that edition's page
