@@ -125,7 +125,7 @@ const GeneralBookDetails = ({ book }) => {
                     <img src="images/book-cover.png" alt="book cover" />
                 )
             }
-            <div class="book-details">
+            <div className="book-details">
                 <p>{book.title}</p>
                 <p>{book.author_name && book.author_name.join(", ")}</p>
                 {/* <p>{book.contributions && book.contributions.join(", ")}</p> */}

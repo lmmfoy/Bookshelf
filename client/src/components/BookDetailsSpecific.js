@@ -79,7 +79,7 @@ const SpecificBookDetails = ({ book, isbn }) => {
                     <img src="images/book-cover.png" alt="book cover" />
                 )
             }
-            <div class="book-details">
+            <div className="book-details">
                 <p>{book.title}</p>
                 <p>
                     {authors.map((author) => {
@@ -105,7 +105,7 @@ const SpecificBookDetails = ({ book, isbn }) => {
                         {shelves.map((shelf, index) => {
                             return (
                                 <div>
-                                    <div class="shelf-button">
+                                    <div className="shelf-button">
                                         <input
                                             type="checkbox"
                                             id={`shelf-{shelf.name}`}
