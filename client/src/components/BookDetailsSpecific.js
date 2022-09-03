@@ -114,8 +114,6 @@ const SpecificBookDetails = ({ isbn }) => {
 
     return (
         <StyledBookPage>
-            <h1>{book.title}</h1>
-
             {
                 // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
                 book.covers ? (
@@ -128,7 +126,7 @@ const SpecificBookDetails = ({ isbn }) => {
                 )
             }
             <div className="book-details">
-                <p>{book.title}</p>
+                <h2>{book.title}</h2>
                 <div>
                     {authors.map((author) => {
                         return <p>{author.name}</p>;

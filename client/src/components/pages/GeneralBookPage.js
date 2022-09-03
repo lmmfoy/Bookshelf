@@ -7,18 +7,12 @@ const GeneralBookPage = () => {
     const location = useLocation();
 
     const book = location.state.book;
-    const isbn = location.state.isbn;
 
     return (
         <StyledBookWrapper>
-            <h1>{book.title}</h1>
             <div>
                 <div className="book-info">
-                    {isbn ? (
-                        <SpecificBookDetails book={book} isbn={isbn} />
-                    ) : (
                         <GeneralBookDetails book={book} />
-                    )}
                 </div>
                 <div className="bookshelf">
                     <h2></h2>

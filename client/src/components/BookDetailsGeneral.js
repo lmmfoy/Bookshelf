@@ -74,7 +74,7 @@ const GeneralBookDetails = ({ book }) => {
                 )
             }
             <div className="book-details">
-                <p>{book.title}</p>
+                <h2>{book.title}</h2>
                 <p>{book.author_name && book.author_name.join(", ")}</p>
                 {/* <p>{book.contributions && book.contributions.join(", ")}</p> */}
                 <p>First published: {book.first_publish_year}</p>
