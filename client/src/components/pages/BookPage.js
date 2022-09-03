@@ -13,14 +13,14 @@ const BookPage = () => {
         <StyledBookWrapper>
             <h1>{book.title}</h1>
             <div>
-                <div class="book-info">
+                <div className="book-info">
                     {isbn ? (
                         <SpecificBookDetails book={book} isbn={isbn} />
                     ) : (
                         <GeneralBookDetails book={book} />
                     )}
                 </div>
-                <div class="bookshelf">
+                <div className="bookshelf">
                     <h2></h2>
                 </div>
             </div>

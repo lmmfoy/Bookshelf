@@ -40,7 +40,7 @@ const SearchPage = () => {
             <StyledResults>
                 {newBooks &&
                     newBooks.map((book) => {
-                        return <BookTile book={book} />;
+                        return <BookTile key={book.key} book={book} />;
                     })}
             </StyledResults>
             <AppPagination />

@@ -68,32 +68,54 @@ const CondensedShelf = () => {
 
     return (
         <StyledShelf>
-            <h2 class="shelves">My Shelves</h2>
+            <h2 className="shelves">My Shelves</h2>
             <Tabs className="tabs-outer">
                 {shelves.length > 0 ? (
                     <>
                         <TabList className="tab-list">
                             {shelves.map((shelf) => {
-                                return <Tab className="tab">{shelf.name}</Tab>;
+                                return (
+                                    <Tab
+                                        key={Math.floor(
+                                            Math.random() * 14000000000
+                                        )}
+                                        className="tab"
+                                    >
+                                        {shelf.name}
+                                    </Tab>
+                                );
                             })}
                             <Tab className="tab" onClick={addShelf}>
                                 + Add shelf
                             </Tab>
                         </TabList>
-                        {shelves.map((shelf) => {
-                            return (
-                                <>
-                                    <TabPanel className="tab-panel">
-                                        <h2>{shelf.description}</h2>
-                                        {shelf.books &&
-                                            shelf.books.map((book) => {
-                                                
-                                                return <BookTile book={book} />;
-                                            })}
-                                    </TabPanel>
-                                </>
-                            );
-                        })}
+                        <>
+                            {shelves.map((shelf) => {
+                                return (
+                                    <>
+                                        <TabPanel
+                                            className="tab-panel"
+                                            key={Math.floor(
+                                                Math.random() * 14000000000
+                                            )}
+                                        >
+                                            <h2>{shelf.description}</h2>
+                                            {shelf.books &&
+                                                shelf.books.map((book) => {
+                                                    return (
+                                                        <BookTile
+                                                            key={book.key}
+                                                            book={book}
+                                                        />
+                                                    );
+                                                })}
+                                        </TabPanel>
+                                    </>
+                                );
+                            })}
+                            {/* Empty tab panel because react-tabs doesn't like having tabs without tab panels, and there is an extra tab due to the "Add shelf" button */}
+                            <TabPanel />
+                        </>
                     </>
                 ) : (
                     <>
@@ -102,6 +124,7 @@ const CondensedShelf = () => {
                                 + Add shelf
                             </Tab>
                         </TabList>
+                        <TabPanel />
                     </>
                 )}
             </Tabs>
@@ -138,7 +161,7 @@ const CondensedShelf = () => {
                                 <input
                                     type="text"
                                     id="shelf-name"
-                                    class="shelf-name"
+                                    className="shelf-name"
                                     name="shelf-name"
                                     required
                                 />
@@ -146,7 +169,7 @@ const CondensedShelf = () => {
                                 <label for="description">Description:</label>
                                 <textarea
                                     id="description"
-                                    class="description"
+                                    className="description"
                                     name="description"
                                     rows="4"
                                 />
