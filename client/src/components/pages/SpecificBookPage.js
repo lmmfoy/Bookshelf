@@ -4,7 +4,7 @@ import SpecificBookDetails from "../BookDetailsSpecific";
 
 const SpecificBookPage = () => {
     const location = useLocation();
-    const isbn = useParams()
+    const isbn = useParams().isbn
     console.log(isbn)
 
     const book = location.state.book;

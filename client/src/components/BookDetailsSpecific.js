@@ -17,14 +17,13 @@ const SpecificBookDetails = ({ isbn }) => {
 
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
-        fetch(`/book/${isbn}`)
+        fetch(`/search/isbn/${isbn}`)
             .then((res) => res.json())
             .then((data) => {
                 setBook(data.data);
+                console.log(data.data);
             })
-            .catch((err) => {
-                console.log(err);
-            })
+
             // Authors are listed in an array of ids and must be fetched separately
             .then(() => {
                 book.authors.forEach((author) => {
@@ -35,6 +34,9 @@ const SpecificBookDetails = ({ isbn }) => {
                             setAuthors((prev) => [prev, data.data]);
                         });
                 });
+            })
+            .catch((err) => {
+                console.log(err);
             });
     }, []);
 
@@ -120,7 +122,7 @@ const SpecificBookDetails = ({ isbn }) => {
                         alt={`${book.title} book cover`}
                     />
                 ) : (
-                    <img src="images/book-cover.png" alt="book cover" />
+                    <img src="/images/book-cover.png" alt="book cover" />
                 )
             }
             <div className="book-details">
@@ -128,7 +130,7 @@ const SpecificBookDetails = ({ isbn }) => {
                 <div>
                     {authors.map((author) => {
                         return <p>{author.name}</p>;
-                        /* author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia */
+                        //author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia
                     })}
                 </div>
                 <p>
