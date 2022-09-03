@@ -36,7 +36,7 @@ const SpecificBookDetails = ({ book, isbn }) => {
         console.log(chosenShelves);
 
         chosenShelves.forEach((shelf) => {
-            console.log(shelf)
+            console.log(shelf);
             fetch("/user/shelves", {
                 method: "PATCH",
                 body: JSON.stringify({
@@ -54,14 +54,34 @@ const SpecificBookDetails = ({ book, isbn }) => {
                 .then((res) => res.json())
                 .then((json) => {
                     console.log(json.data);
+                    json.data.modifiedCount === 0 &&
+                        alert(
+                            `This edition has already been added to "${shelf.name}", cannot add again.`
+                        );
+                    json.data.modifiedCount === 1 &&
+                        alert(
+                            `This edition has successfully been added to "${shelf.name}"`
+                        );
                 });
         });
+
+        // Uncheck the buttons
+        setCheckboxState(
+            checkboxState.map((item) => {
+                return false;
+            })
+        );
     };
 
-    // When a shelf button is clicked, this finds the item in state (using its index) and toggles it true/false, then updates the state
+    // When a shelf button is clicked, this finds the item in state (using its index), toggles it true/false,
+    // changes the checked state of the other buttons to false (only one can be selected at a time), then updates the state
     const handleOnChange = (position) => {
         const updatedState = checkboxState.map((item, index) => {
-            return index === position ? !item : item;
+            if (index === position) {
+                return !item;
+            } else {
+                return false;
+            }
         });
         setCheckboxState(updatedState);
     };
@@ -96,7 +116,11 @@ const SpecificBookDetails = ({ book, isbn }) => {
                 </p>
                 <p>ISBN: {isbn}</p>
                 <p>
-                    {(book.pagination || book.number_of_pages) && <span>Pages: {book.pagination || book.number_of_pages}</span>}
+                    {(book.pagination || book.number_of_pages) && (
+                        <span>
+                            Pages: {book.pagination || book.number_of_pages}
+                        </span>
+                    )}
                 </p>
                 <p>{book.notes}</p>
                 <form onSubmit={handleAddBookSubmit}>
