@@ -7,6 +7,8 @@ import "react-edit-text/dist/index.css";
 
 const Notes = ({ book }) => {
     const { shelves } = useContext(UserContext);
+    console.log(shelves);
+    const isbn = book.isbn_10[0] || book.isbn_13[0];
 
     const [note, setNote] = useState({
         date: "",
@@ -17,15 +19,31 @@ const Notes = ({ book }) => {
     const date = new Date();
     const readableDate = date.toDateString();
 
-    const handleChange = ((e) => {
-        const value = e.target.value
-        console.log(value)
-        setNote({...note, [e.target.name]: value})
-    })
+    const handleChange = (e) => {
+        const value = e.target.value;
+        console.log(value);
+        setNote({ ...note, [e.target.name]: value });
+    };
 
-    const handleSubmit = (() => {
-        console.log(note)
-    })
+    const handleSubmit = () => {
+        console.log(note);
+
+        fetch("/user/books", {
+            method: "PATCH",
+            body: JSON.stringify({
+                isbn: isbn,
+                note: note,
+            }),
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                console.log(json);
+            });
+    };
 
     return (
         <StyledNotes>
@@ -90,7 +108,6 @@ const Notes = ({ book }) => {
                         placeholder="Enter a title"
                         value={note.title}
                         onChange={handleChange}
-
                     />
                 </div>
 
@@ -102,7 +119,6 @@ const Notes = ({ book }) => {
                         placeholder="Enter notes"
                         value={note.noteText}
                         onChange={handleChange}
-
                     />
                 </div>
 
