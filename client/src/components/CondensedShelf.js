@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { UserContext } from "./UserContext";
 import { useContext, useEffect, useState } from "react";
-import BookTile from "./BookTile";
+import BookTileSpecific from "./BookTileSpecific";
 import Modal from "react-modal";
 
 Modal.setAppElement(document.getElementById("root"));
@@ -103,7 +103,7 @@ const CondensedShelf = () => {
                                             {shelf.books &&
                                                 shelf.books.map((book) => {
                                                     return (
-                                                        <BookTile
+                                                        <BookTileSpecific
                                                             key={book.key}
                                                             book={book}
                                                         />

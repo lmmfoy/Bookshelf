@@ -1,5 +1,5 @@
 import NewBookSearch from "../NewBookSearch";
-import BookTile from "../BookTile";
+import BookTileGeneral from "../BookTileGeneral";
 
 import { useContext, useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -40,7 +40,7 @@ const SearchPage = () => {
             <StyledResults>
                 {newBooks &&
                     newBooks.map((book) => {
-                        return <BookTile key={book.key} book={book} />;
+                        return <BookTileGeneral key={book.key} book={book} />;
                     })}
             </StyledResults>
             <AppPagination />
