@@ -2,24 +2,21 @@ import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const BookTile = ({ book }) => {
+const BookTileSpecific = ({ book }) => {
     const navigate = useNavigate();
 
     const onBookClick = () => {
         navigate("/book", { state: { book: book } });
     };
 
-    if (book.edition_count > 1) {
-        console.log(book.edition_count, book.title);
-    }
-
+    console.log(book)
     return (
         <StyledNewBook onClick={onBookClick}>
             {
                 // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
-                book.cover_i ? (
+                book.covers ? (
                     <img
-                        src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?`}
+                        src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg?`}
                         alt={`${book.title} book cover`}
                     />
                 ) : (
@@ -28,13 +25,9 @@ const BookTile = ({ book }) => {
             }
             <p>{book.title && book.title}</p>
             <p>{book.author && book.author_name.join(", ")}</p>
-            {book.first_publish_year && (
-                <p>First published: {book.first_publish_year}</p>
+            {book.publish_date && (
+                <p>{book.publish_date}</p>
             )}
-            {book.edition_count && (
-                <p>Number of editions: {book.edition_count}</p>
-            )}
-            {/* publisher: {book.publisher} */}
         </StyledNewBook>
     );
 };
@@ -62,4 +55,4 @@ const StyledNewBook = styled.div`
     }
 `;
 
-export default BookTile;
+export default BookTileSpecific;

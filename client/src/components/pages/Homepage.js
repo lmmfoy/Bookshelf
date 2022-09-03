@@ -1,5 +1,4 @@
 import NewBookSearch from "../NewBookSearch";
-import NewBook from "../BookTile";
 import CondensedShelf from "../CondensedShelf";
 
 import { useAuth0 } from "@auth0/auth0-react";
