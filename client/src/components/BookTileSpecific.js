@@ -6,7 +6,7 @@ const BookTileSpecific = ({ book }) => {
     const navigate = useNavigate();
 
     const onBookClick = () => {
-        navigate(`/book/${book.isbn || book.isbn_10 || book.isbn_13}`, { state: { book: book } });
+        navigate(`/book/${book.isbn || book.isbn_10 || book.isbn_13}`);
     };
 
     console.log(book)

@@ -114,6 +114,8 @@ const SpecificBookDetails = ({ isbn }) => {
 
     return (
         <StyledBookPage>
+            <h1>{book.title}</h1>
+
             {
                 // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
                 book.covers ? (
