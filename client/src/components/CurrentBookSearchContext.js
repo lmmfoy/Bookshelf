@@ -6,7 +6,7 @@ export const BookSearchContextProvider = ({ children }) => {
     const [newBooks, setNewBooks] = useState([]);
     const [page, setPage] = useState(1);
     const [numPages, setNumPages] = useState(0);
-    const [searchTerms, setSearchTerms] = useState({});
+    const [searchTerms, setSearchTerms] = useState({ author: "", title: "" });
     const [searchQuery, setSearchQuery] = useState("");
 
     return (

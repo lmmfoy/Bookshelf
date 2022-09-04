@@ -8,7 +8,7 @@ import "react-edit-text/dist/index.css";
 const Notes = ({ book }) => {
     const { shelves } = useContext(UserContext);
     console.log(shelves);
-    const isbn = book.isbn_10[0] || book.isbn_13[0];
+    const isbn = (book.isbn_10[0] || book.isbn_13[0]);
 
     const [note, setNote] = useState({
         date: "",
