@@ -20,25 +20,27 @@ const addNote = async (req, res) => {
         await client.connect();
         const db = client.db("Users");
 
-        const final = await db.collection("users").findOne({ email: email });
+        const user = await db.collection("users").findOne({ email: email });
 
-        const onShelf = final.shelves.map((shelf) => {
+        const updatedShelf = user.shelves.map((shelf) => {
             if (!shelf.books) {
                 return shelf;
             }
             return shelf.books.map((entry) => {
                 if (entry.key === key) {
                     if (!entry.notes) {
-                        entry.userNotes = note;
+                        entry.userNotes = [note];
                     } else {
                         entry.userNotes.push(note);
-                    }
+                     }
                 }
                 return entry;
             });
         });
 
-        console.log(onShelf);
+        const added = await db
+            .collection("users")
+            .updateOne({ email: email }, { $set: { shelves: updatedShelf } });
 
         //"shelves.$.books.$.isbn_13[0]":
 
@@ -76,8 +78,7 @@ const addNote = async (req, res) => {
         //         }
         //     }).toArray();
 
-        console.log(final);
-        res.status(200).json({ status: 200, data: final });
+        res.status(200).json({ status: 200, data: added });
     } catch (err) {
         res.status(400).json({ status: 400, data: err.message });
     }
