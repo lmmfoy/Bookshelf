@@ -5,13 +5,10 @@ import { UserContext } from "./UserContext";
 import { EditText, EditTextarea } from "react-edit-text";
 import "react-edit-text/dist/index.css";
 
-const Notes = ({ book, isbn }) => {
-    const { shelves, siteUser } = useContext(UserContext);
+const NewNote = ({ book, isbn }) => {
+    const { shelves, setShelves, siteUser } = useContext(UserContext);
     console.log(shelves);
 
-
-    // const isbn =  book.isbn_13 ? book.isbn_13[0] : book.isbn_10[0]
-    // const isbn = (book.isbn_10[0] || book.isbn_13[0]);
     const date = new Date();
     const readableDate = date.toDateString();
 
@@ -21,37 +18,51 @@ const Notes = ({ book, isbn }) => {
         noteText: "",
     });
 
-
-
     const handleChange = (e) => {
         const value = e.target.value;
         console.log(value);
         setNote({ ...note, [e.target.name]: value });
     };
 
-    const onShelf = shelves.filter((shelf) => {
-        if (!shelf.books) {
-            return false;
-        }
-        return (
-            shelf.books.filter((entry) => {
-                return entry.key === book.key;
-            }).length > 0
-        );
-    });
-
-    console.log(onShelf);
+    // const onShelf = shelves.filter((shelf) => {
+    //     if (!shelf.books) {
+    //         return false;
+    //     }
+    //     return (
+    //         shelf.books.filter((entry) => {
+    //             return entry.key === book.key;
+    //         }).length > 0
+    //     );
+    // });
 
     const handleSubmit = () => {
-        console.log(note);
+        const newShelves = [];
 
+        // Check each shelf to see if it has books, then check those to see if the current book is among them
+        // If so, add the note (create the notes array if none yet added, else push the new note)
+        // Save in newShelves
+        // shelves.forEach((shelf) => {
+        //     shelf.books &&
+        //         shelf.books.map((entry) => {
+        //             if (entry.key === book.key) {
+        //                 if (!entry.userNotes) {
+        //                     entry.userNotes = [note];
+        //                 } else {
+        //                     entry.userNotes.push(note);
+        //                 }
+        //             }
+        //             return entry;
+        //         });
+        //     newShelves.push(shelf);
+        // });
+
+        // Send request to backend to update the shelves
         fetch("/user/books", {
             method: "PATCH",
             body: JSON.stringify({
                 email: siteUser.email,
                 isbn: isbn,
                 note: note,
-                onShelf: onShelf,
                 key: book.key,
             }),
             headers: {
@@ -62,8 +73,14 @@ const Notes = ({ book, isbn }) => {
             .then((res) => res.json())
             .then((json) => {
                 console.log(json);
+                // Update shelves
+                setShelves(json.data);
+                // Empty new note values
+                setNote({ date: readableDate, title: "", noteText: "" });
             });
     };
+
+    console.log(shelves);
 
     return (
         <StyledNotes>
@@ -166,4 +183,4 @@ const StyledNotes = styled.div`
     width: 400px;
 `;
 
-export default Notes;
+export default NewNote;

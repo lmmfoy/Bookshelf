@@ -13,33 +13,20 @@ const options = {
 const client = new MongoClient(MONGO_URI, options);
 
 const addNote = async (req, res) => {
-    const { isbn, note, email, onShelf, key } = req.body;
-    console.log(isbn, note, email, onShelf, key);
+    const { isbn, note, email, key } = req.body;
+    console.log(isbn, note, email, key);
 
     try {
         await client.connect();
         const db = client.db("Users");
 
         const user = await db.collection("users").findOne({ email: email });
-        // const updatedShelf = user.shelves.map((shelf) => {
-
-        // if (!shelf.books) {
-        //     return shelf;
-        // }
-        // return shelf.books.map((entry) => {
-        //     if (entry.key === key) {
-        //         if (!entry.notes) {
-        //             entry.userNotes = [note];
-        //         } else {
-        //             entry.userNotes.push(note);
-        //          }
-        //     }
-        //     return entry;
-        // });
-        // });
 
         const newShelves = [];
 
+        // Check each shelf to see if it has books, then check those to see if the current book is among them
+        // If so, add the note (create the notes array if none yet added, else push the new note)
+        // Save in newShelves
         user.shelves.forEach((shelf) => {
             shelf.books &&
                 shelf.books.map((entry) => {
@@ -60,7 +47,7 @@ const addNote = async (req, res) => {
             .collection("users")
             .updateOne({ email: email }, { $set: { shelves: newShelves } });
 
-        res.status(200).json({ status: 200, data: added });
+        res.status(200).json({ status: 200, data: newShelves });
     } catch (err) {
         res.status(400).json({ status: 400, data: err.message });
     }

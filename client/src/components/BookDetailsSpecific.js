@@ -2,7 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useEffect, useContext } from "react";
 import { UserContext } from "./UserContext";
-import Notes from "./Notes";
+import NewNote from "./NoteNew";
+import OldNotes from "./NotesOld";
 import AddToShelf from "./AddToShelf";
 // This shows the details of a book found using the ISBN search
 // It will show only one specific edition of a book
@@ -10,6 +11,7 @@ import AddToShelf from "./AddToShelf";
 const SpecificBookDetails = ({ isbn }) => {
     const [authors, setAuthors] = useState([]);
     const { shelves, setShelves, siteUser } = useContext(UserContext);
+    const [isLoaded, setIsLoaded] = useState(false);
     // Initialize state with array of falses
     const [checkboxState, setCheckboxState] = useState(
         new Array(shelves.length).fill(false)
@@ -17,7 +19,7 @@ const SpecificBookDetails = ({ isbn }) => {
     const [book, setBook] = useState({});
 
     console.log(shelves);
-    console.log(book)
+    console.log(book);
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
         fetch(`/search/isbn/${isbn}`)
@@ -38,6 +40,9 @@ const SpecificBookDetails = ({ isbn }) => {
                                 setAuthors((prev) => [prev, data.data]);
                             });
                     });
+            })
+            .then(() => {
+                setIsLoaded(true);
             })
             .catch((err) => {
                 console.log(err);
@@ -90,7 +95,8 @@ const SpecificBookDetails = ({ isbn }) => {
                 />
                 {/* identifiers for different places: {book.identifiers} */}
             </div>
-            <Notes book={book} isbn={isbn}/>
+            {isLoaded && <OldNotes book={book} />}
+            <NewNote book={book} isbn={isbn} />
         </StyledBookPage>
     );
 };
