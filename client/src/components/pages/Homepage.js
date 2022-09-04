@@ -70,7 +70,9 @@ const StyledHome = styled.div`
     border: 1px solid;
 
     .shelf {
-        /* max-width: 70vw; */
+        width: 80%;
+        height: 100vh;
+        border: 1px solid;
         /* background-color: var(--color-american-bronze); */
     }
 

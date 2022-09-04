@@ -76,82 +76,100 @@ const NewBookSearch = () => {
     return (
         <StyledFormPage>
             <h2>Add to your books</h2>
-            <form onSubmit={handleSubmit}>
-                <h3>General Search</h3>
-                <label for="author">
-                    Author:
-                    <input
-                        type="text"
-                        id="author"
-                        name="author"
-                        defaultValue={searchTerms.author}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label for="title">
-                    Title:
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        defaultValue={searchTerms.title}
-                        onChange={handleChange}
-                    />
-                </label>
-                <button type="submit">Search</button>
-            </form>
-            <form onSubmit={handleISBNSubmit}>
-                <h3>Search by ISBN</h3>
-                <label for="isbn">
-                    ISBN:
-                    <input
-                        type="text"
-                        id="isbn"
-                        name="isbn"
-                        defaultValue={searchTerms.isbn}
-                    />
-                </label>
-                <button type="submit">Search</button>
-            </form>
+            <div className="forms">
+                <StyledForm onSubmit={handleSubmit}>
+                    <h3>General Search</h3>
+                    <label for="author">
+                        <span>Author:</span>
+                        <input
+                            type="text"
+                            id="author"
+                            name="author"
+                            defaultValue={searchTerms.author}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label for="title">
+                        <span>Title:</span>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            defaultValue={searchTerms.title}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <button type="submit">Search</button>
+                </StyledForm>
+                <StyledForm onSubmit={handleISBNSubmit}>
+                    <h3>Search by ISBN</h3>
+                    <label for="isbn">
+                        <span>ISBN:</span>
+                        <input
+                            type="text"
+                            id="isbn"
+                            name="isbn"
+                            defaultValue={searchTerms.isbn}
+                        />
+                    </label>
+                    <button type="submit">Search</button>
+                </StyledForm>
+            </div>
         </StyledFormPage>
     );
 };
 
-const StyledFormPage = styled.form`
-    border: 1px solid;
-    padding: 25px;
+const StyledFormPage = styled.div`
+    margin: 25px;
+    /* max-width: 700px; */
+    min-width: 400px;
+
     h2 {
-        margin-left: 25px;
+        margin: 10px 25px;
     }
-    form {
+
+    .forms {
         display: flex;
-        flex-direction: column;
-        border: 1px solid;
-        margin: 25px;
-        padding: 20px;
+        flex-wrap: wrap;
+    }
+`;
 
-        h3 {
-            margin: 8px 8px 20px 8px;
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    margin: 25px;
+    padding: 20px;
+    width: 400px;
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    h3 {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 8px 0;
+        font-size: 1.1em;
+
+        span {
+            width: 100px;
         }
 
-        label {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            padding: 8px;
-            font-size: 1.1em;
-
-            input {
-                line-height: 1.8em;
-                font-size: 1em;
-            }
+        input {
+            line-height: 1.8em;
+            font-size: 1em;
+            width: 100%;
         }
+    }
 
-        button {
-            align-self: flex-end;
-            margin: 12px 8px 5px;
-        }
+    button {
+        align-self: flex-end;
+        margin: 12px 8px 5px;
     }
 `;
 

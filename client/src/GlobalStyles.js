@@ -22,9 +22,10 @@ export default createGlobalStyle`
     --color-dark-red: #590909;
     --color-brick-red: #7b2018;
     --color-burnt-orange-brown: #8c4611;
+    --color-burnt-orange: #9c461e;
     --color-maroon: #451b1b;
     --color-maroon-red: #680822;
-
+    --color-beige: #FBF6EE;
 
 
     --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
@@ -33,6 +34,7 @@ export default createGlobalStyle`
 
     font-family: 'Frank Ruhl Libre', serif;
     font-size: 1.2em;
+    color: var(--color-american-bronze);
   }
 
   /* http://meyerweb.com/eric/tools/css/reset/
