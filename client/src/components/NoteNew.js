@@ -73,7 +73,10 @@ const NewNote = ({ book, isbn }) => {
             .then((res) => res.json())
             .then((json) => {
                 console.log(json);
+                // Update shelves
                 setShelves(json.data);
+                // Empty new note values
+                setNote({ date: readableDate, title: "", noteText: "" });
             });
     };
 

@@ -9,17 +9,19 @@ const OldNotes = ({ book }) => {
         // const existingBooks = shelves.find((shelf) => shelf.books).books;
         // console.log(existingBooks);
 
-        // let b;
+        
         // if (existingBooks) {
-        //    b = existingBooks.find((entry) => entry.key === book.key)
+        //    const b = existingBooks.find((entry) => entry.key === book.key)
+        //    console.log(b.userNotes)
         // }
-        // console.log(b.userNotes)
-        // const test = shelves
-        //     .find((shelf) => shelf.books)
-        //     .books.find((entry) => entry.key === book.key).userNotes;
-        // if (test) {
-        //     setNotes(test);
-        // }
+        if (shelves) {
+            const test = shelves
+                .find((shelf) => shelf.books)
+                .books.find((entry) => entry.key === book.key).userNotes;
+            if (test) {
+                setNotes(test);
+            }
+        }
     }, []);
 
     console.log(notes);
