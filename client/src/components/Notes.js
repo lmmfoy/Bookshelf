@@ -9,6 +9,7 @@ const Notes = ({ book, isbn }) => {
     const { shelves, siteUser } = useContext(UserContext);
     console.log(shelves);
 
+
     // const isbn =  book.isbn_13 ? book.isbn_13[0] : book.isbn_10[0]
     // const isbn = (book.isbn_10[0] || book.isbn_13[0]);
     const date = new Date();

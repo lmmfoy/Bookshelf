@@ -21,62 +21,44 @@ const addNote = async (req, res) => {
         const db = client.db("Users");
 
         const user = await db.collection("users").findOne({ email: email });
+        // const updatedShelf = user.shelves.map((shelf) => {
 
-        const updatedShelf = user.shelves.map((shelf) => {
-            if (!shelf.books) {
-                return shelf;
-            }
-            return shelf.books.map((entry) => {
-                if (entry.key === key) {
-                    if (!entry.notes) {
-                        entry.userNotes = [note];
-                    } else {
-                        entry.userNotes.push(note);
-                     }
-                }
-                return entry;
-            });
+        // if (!shelf.books) {
+        //     return shelf;
+        // }
+        // return shelf.books.map((entry) => {
+        //     if (entry.key === key) {
+        //         if (!entry.notes) {
+        //             entry.userNotes = [note];
+        //         } else {
+        //             entry.userNotes.push(note);
+        //          }
+        //     }
+        //     return entry;
+        // });
+        // });
+
+        const newShelves = [];
+
+        user.shelves.forEach((shelf) => {
+            shelf.books &&
+                shelf.books.map((entry) => {
+                    if (entry.key === key) {
+                        if (!entry.userNotes) {
+                            entry.userNotes = [note];
+                        } else {
+                            entry.userNotes.push(note);
+                        }
+                    }
+                    return entry;
+                });
+            newShelves.push(shelf);
         });
+        console.log(newShelves);
 
         const added = await db
             .collection("users")
-            .updateOne({ email: email }, { $set: { shelves: updatedShelf } });
-
-        //"shelves.$.books.$.isbn_13[0]":
-
-        // const y = await db.collection("users").dropIndexes(res.status(400), true)
-
-        //         const y = await db.collection("users").indexInformation()
-        // console.log(y)
-
-        // const x = await db.collection("users").createIndex({"isbn_10": "text"})
-        // console.log(x)
-
-        // const test = await db
-        //     .collection("users")
-        //     .find({
-        //         $text:
-        //         {
-        //           $search: isbn,
-        //         }
-        //     });
-
-        // await db.collection("users").dropIndexes();
-        // const indexResult = await db.collection("users").createIndex({ isbn_10: 'text' });
-        // console.log(indexResult)
-
-        // const test = await db.collection("users").find().toArray()
-        // await db.collection("users").deleteMany()
-        // const result = await db.collection("users").insertMany(test)
-
-        // const final = await db
-        //     .collection("users")
-        //     .find({
-        //         $text:
-        //         {
-        //           $search: isbn,
-        //         }
-        //     }).toArray();
+            .updateOne({ email: email }, { $set: { shelves: newShelves } });
 
         res.status(200).json({ status: 200, data: added });
     } catch (err) {
