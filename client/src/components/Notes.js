@@ -5,19 +5,22 @@ import { UserContext } from "./UserContext";
 import { EditText, EditTextarea } from "react-edit-text";
 import "react-edit-text/dist/index.css";
 
-const Notes = ({ book }) => {
-    const { shelves } = useContext(UserContext);
+const Notes = ({ book, isbn }) => {
+    const { shelves, siteUser } = useContext(UserContext);
     console.log(shelves);
-    const isbn = (book.isbn_10[0] || book.isbn_13[0]);
+
+    // const isbn =  book.isbn_13 ? book.isbn_13[0] : book.isbn_10[0]
+    // const isbn = (book.isbn_10[0] || book.isbn_13[0]);
+    const date = new Date();
+    const readableDate = date.toDateString();
 
     const [note, setNote] = useState({
-        date: "",
+        date: readableDate,
         title: "",
         noteText: "",
     });
 
-    const date = new Date();
-    const readableDate = date.toDateString();
+
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -25,14 +28,30 @@ const Notes = ({ book }) => {
         setNote({ ...note, [e.target.name]: value });
     };
 
+    const onShelf = shelves.filter((shelf) => {
+        if (!shelf.books) {
+            return false;
+        }
+        return (
+            shelf.books.filter((entry) => {
+                return entry.key === book.key;
+            }).length > 0
+        );
+    });
+
+    console.log(onShelf);
+
     const handleSubmit = () => {
         console.log(note);
 
         fetch("/user/books", {
             method: "PATCH",
             body: JSON.stringify({
+                email: siteUser.email,
                 isbn: isbn,
                 note: note,
+                onShelf: onShelf,
+                key: book.key,
             }),
             headers: {
                 Accept: "application/json",

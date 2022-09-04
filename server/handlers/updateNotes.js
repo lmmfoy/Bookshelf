@@ -13,14 +13,34 @@ const options = {
 const client = new MongoClient(MONGO_URI, options);
 
 const addNote = async (req, res) => {
-    const { isbn, note } = req.body;
-    console.log(isbn, note);
+    const { isbn, note, email, onShelf, key } = req.body;
+    console.log(isbn, note, email, onShelf, key);
 
     try {
         await client.connect();
         const db = client.db("Users");
-        //"shelves.$.books.$.isbn_13[0]":
 
+        const final = await db.collection("users").findOne({ email: email });
+
+        const onShelf = final.shelves.map((shelf) => {
+            if (!shelf.books) {
+                return shelf;
+            }
+            return shelf.books.map((entry) => {
+                if (entry.key === key) {
+                    if (!entry.notes) {
+                        entry.userNotes = note;
+                    } else {
+                        entry.userNotes.push(note);
+                    }
+                }
+                return entry;
+            });
+        });
+
+        console.log(onShelf);
+
+        //"shelves.$.books.$.isbn_13[0]":
 
         // const y = await db.collection("users").dropIndexes(res.status(400), true)
 
@@ -38,7 +58,7 @@ const addNote = async (req, res) => {
         //           $search: isbn,
         //         }
         //     });
-        
+
         // await db.collection("users").dropIndexes();
         // const indexResult = await db.collection("users").createIndex({ isbn_10: 'text' });
         // console.log(indexResult)
@@ -56,7 +76,7 @@ const addNote = async (req, res) => {
         //         }
         //     }).toArray();
 
-            console.log(final)
+        console.log(final);
         res.status(200).json({ status: 200, data: final });
     } catch (err) {
         res.status(400).json({ status: 400, data: err.message });
