@@ -17,6 +17,7 @@ const SpecificBookDetails = ({ isbn }) => {
     const [book, setBook] = useState({});
 
     console.log(shelves);
+    console.log(book)
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
         fetch(`/search/isbn/${isbn}`)
@@ -89,7 +90,7 @@ const SpecificBookDetails = ({ isbn }) => {
                 />
                 {/* identifiers for different places: {book.identifiers} */}
             </div>
-            {/* <Notes book={book}/> */}
+            <Notes book={book} isbn={isbn}/>
         </StyledBookPage>
     );
 };

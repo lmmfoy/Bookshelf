@@ -13,8 +13,6 @@ const CondensedShelf = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [newShelf, setNewShelf] = useState({ name: "", description: "" });
 
-    console.log(shelves);
-
     let subtitle;
 
     // Causes 'Add Shelf' modal to appear
@@ -75,7 +73,6 @@ const CondensedShelf = () => {
         setNewShelf({ ...newShelf, [e.target.name]: value });
     };
 
-    console.log(shelves);
 
     return (
         <StyledShelf>

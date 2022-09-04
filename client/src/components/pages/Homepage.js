@@ -33,12 +33,14 @@ const Homepage = () => {
                 // Add the user's shelves to context if they exist
                 .then((json) => {
                     if (json.data.shelves) {
+                        console.log(json.data)
                         setShelves(json.data.shelves);
                     }
                     setSiteUser(user);
                 });
     }, []);
 
+    console.log(shelves)
     return (
         <StyledHome>
             <div>
