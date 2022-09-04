@@ -7,7 +7,6 @@ import "react-edit-text/dist/index.css";
 
 const NewNote = ({ book, isbn }) => {
     const { shelves, setShelves, siteUser } = useContext(UserContext);
-    console.log(shelves);
 
     const date = new Date();
     const readableDate = date.toDateString();

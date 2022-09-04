@@ -6,20 +6,20 @@ const OldNotes = ({ book }) => {
     const [notes, setNotes] = useState([]);
 
     console.log(book);
+
     useEffect(() => {
         // Check each shelf for the current book. If found, return an array with the book object (filter out any 'undefined' results)
-        const onShelf = shelves
-            .map((shelf) => shelf.books.find((entry) => entry.key === book.key))
-            .filter((book) => book);
+        let oldNotes = [];
+        shelves.forEach((shelf) => {
+            shelf.books &&
+                shelf.books.forEach((entry) => {
+                    if (entry.key === book.key) {
+                        oldNotes = entry.userNotes;
+                    }
+                });
+        });
 
-        console.log(onShelf);
-
-        // If the book exists (array is more than 0), set the notes state with the saved old userNotes
-        if (onShelf.length > 0) {
-            const oldNotes = onShelf[0].userNotes;
-            console.log(oldNotes);
-            oldNotes && setNotes(oldNotes);
-        }
+        setNotes(oldNotes);
     }, [shelves]);
 
     console.log(notes);
