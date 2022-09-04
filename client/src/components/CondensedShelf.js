@@ -33,9 +33,6 @@ const CondensedShelf = () => {
     const handleNewShelfSubmit = (e) => {
         e.preventDefault();
 
-        // const shelfName = e.target[0].value;
-        // const shelfDescription = e.target[1].value;
-
         // Add new shelf to database
         fetch("/user/shelves", {
             method: "PATCH",
@@ -73,11 +70,14 @@ const CondensedShelf = () => {
         setNewShelf({ ...newShelf, [e.target.name]: value });
     };
 
-
     return (
         <StyledShelf>
-            <h2 className="shelves">My Shelves</h2>
-            <Tabs className="tabs-outer">
+            <h2>My Shelves</h2>
+            <Tabs
+                className="tabs-outer"
+                defaultFocus={true}
+                selectedTabClassName="selected-tab"
+            >
                 {shelves.length > 0 ? (
                     <>
                         <TabList className="tab-list">
@@ -107,16 +107,19 @@ const CondensedShelf = () => {
                                                 Math.random() * 14000000000
                                             )}
                                         >
-                                            <h2>{shelf.description}</h2>
-                                            {shelf.books &&
-                                                shelf.books.map((book) => {
-                                                    return (
-                                                        <BookTileSpecific
-                                                            key={book.key}
-                                                            book={book}
-                                                        />
-                                                    );
-                                                })}
+                                            <h3>{shelf.name}</h3>
+                                            <h4>{shelf.description}</h4>
+                                            <div className="book-tiles">
+                                                {shelf.books &&
+                                                    shelf.books.map((book) => {
+                                                        return (
+                                                            <BookTileSpecific
+                                                                key={book.key}
+                                                                book={book}
+                                                            />
+                                                        );
+                                                    })}
+                                            </div>
                                         </TabPanel>
                                     </>
                                 );
@@ -196,36 +199,60 @@ const CondensedShelf = () => {
 };
 
 const StyledShelf = styled.div`
-    width: 500px;
-    height: 500px;
     border: 1px solid black;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 30px;
 
-    .shelves {
+    h2 {
         font-size: 2em;
         padding: 10px;
         margin-bottom: 20px;
     }
 
+    h3,
+    h4 {
+        margin: 0 50px;
+    }
+
+    h3 {
+        padding-top: 15px;
+    }
+
+    h4 {
+        padding-top: 10px;
+    }
+
     .tabs-outer {
         display: flex;
+        border: 1px solid #aaa;
+        border-right: 1px solid #aaa;
+        border-radius: 5px;
     }
 
     .tab-list {
-        padding: 10px;
-        max-width: 150px;
+        /* border-bottom: 1px solid #aaa; */
+        margin: 0;
+        padding: 0;
     }
 
     .tab {
         cursor: pointer;
-        padding: 10px;
-        border-bottom: 1px solid black;
+        padding: 20px 10px;
+        /* box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.09); */
+        /* border-radius: 5px; */
+        /* background-color: var(--color-brick-red); */
+        border: 1px solid transparent;
+        border-right: 1px solid #aaa;
+        background-color: var(--color-beige);
 
         &:hover {
-            color: purple;
+            color: var(--color-burnt-orange);
         }
 
         &:focus {
-            color: green;
+            color: var(--color-maroon-red);
+            outline: none;
         }
 
         /* not sure if the below necessary */
@@ -236,6 +263,22 @@ const StyledShelf = styled.div`
                 display: block;
             }
         }
+    }
+
+    .selected-tab {
+        background-color: #fff;
+        border-color: #aaa;
+        border-right: none;
+        color: black;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .book-tiles {
+        border: 1px solid;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 30px 50px;
+        gap: 1px;
     }
 `;
 

@@ -2,14 +2,39 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    ${'' /* --color-cadmium-red: #D80026;
-    --color-alabama-crimson: #4CACBC; // https://colorhunt.co/palette/f6e3c5a0d9956cc4a14cacbc
-    --color-orange: #6CC4A1; //
-    --color-selective-yellow: #A0D995;//
-    --color-desert-sand: #E3C4A6;
+    --color-coffee-brown: #36220b;
+    --color-fawn-brown: #5e3e17;
+    --color-middle-brown: #986931;
+    --color-dark-beige: #b8884e;
+    --color-light-beige: #d6b575;
+
+    --color-ruddy-brown: #bb6b24;
+
+    --color-brown-pink: #d1a279;
+    --color-dark-grey: #4d4237;
+    --color-darker-grey: #352525;
+    --color-canvas: #c6ad75;
+
+    --color-american-bronze: #3e1404;
+    --color-philippine-bronze: #6a2b05;
+    --color-saddle-brown: #964315;
+    --color-brown-brown: #5e320f;
+    --color-dark-red: #590909;
+    --color-brick-red: #7b2018;
+    --color-burnt-orange-brown: #8c4611;
+    --color-burnt-orange: #9c461e;
+    --color-maroon: #451b1b;
+    --color-maroon-red: #680822;
+    --color-beige: #FBF6EE;
+
+
     --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
     --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
-    --padding-page: 24px; */}
+    --padding-page: 24px;
+
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.2em;
+    color: var(--color-american-bronze);
   }
 
   /* http://meyerweb.com/eric/tools/css/reset/
@@ -44,6 +69,7 @@ export default createGlobalStyle`
   }
   body {
       line-height: 1;
+      padding: 10px;
   }
   ol, ul {
       list-style: none;
@@ -60,25 +86,21 @@ export default createGlobalStyle`
   h1 {
     font-size: 3em;
   }
+  h2 {
+    font-size: 1.8em;
+  }
+  h3 {
+    font-size: 1.3em;
+  }
   
   button {
-    padding: 10px;
-    max-width: 70px;
+    padding: 8px;
+    max-width: 90px;
     border: none;
-    border-radius: 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.1em;
 }
 
-h2,
-h3,
-label,
-p,
-a,
-li,
-blockquote,
-input {
-}
-
-  input {
-
-  }
 `;
