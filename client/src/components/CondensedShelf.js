@@ -33,9 +33,6 @@ const CondensedShelf = () => {
     const handleNewShelfSubmit = (e) => {
         e.preventDefault();
 
-        // const shelfName = e.target[0].value;
-        // const shelfDescription = e.target[1].value;
-
         // Add new shelf to database
         fetch("/user/shelves", {
             method: "PATCH",
@@ -196,7 +193,7 @@ const CondensedShelf = () => {
 };
 
 const StyledShelf = styled.div`
-    width: 500px;
+    max-width: 70vw;
     height: 500px;
     border: 1px solid black;
 

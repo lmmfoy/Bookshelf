@@ -65,8 +65,12 @@ const Homepage = () => {
 
 const StyledHome = styled.div`
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid;
 
     .shelf {
+        /* max-width: 70vw; */
         /* background-color: var(--color-american-bronze); */
     }
 

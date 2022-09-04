@@ -36,9 +36,10 @@ const Header = () => {
 };
 
 const StyledHeader = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 0 50px 0 40px;
     align-items: center;
     height: 150px;
     background-color: var(--color-philippine-bronze);
@@ -52,6 +53,7 @@ const StyledHeader = styled.div`
     }
     .logo {
         color: white;
+        margin-top: 5px;
     }
 
     .header-right {

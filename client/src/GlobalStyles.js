@@ -88,7 +88,7 @@ export default createGlobalStyle`
     font-size: 1.8em;
   }
   h3 {
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
   
   button {
