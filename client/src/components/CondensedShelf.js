@@ -11,6 +11,9 @@ Modal.setAppElement(document.getElementById("root"));
 const CondensedShelf = () => {
     const { shelves, setShelves, siteUser } = useContext(UserContext);
     const [modalOpen, setModalOpen] = useState(false);
+    const [newShelf, setNewShelf] = useState({ name: "", description: "" });
+
+    console.log(shelves);
 
     let subtitle;
 
@@ -32,8 +35,8 @@ const CondensedShelf = () => {
     const handleNewShelfSubmit = (e) => {
         e.preventDefault();
 
-        const shelfName = e.target[0].value;
-        const shelfDescription = e.target[1].value;
+        // const shelfName = e.target[0].value;
+        // const shelfDescription = e.target[1].value;
 
         // Add new shelf to database
         fetch("/user/shelves", {
@@ -41,8 +44,8 @@ const CondensedShelf = () => {
             body: JSON.stringify({
                 email: siteUser.email,
                 shelf: {
-                    name: shelfName,
-                    description: shelfDescription,
+                    name: newShelf.name,
+                    description: newShelf.description,
                 },
             }),
             headers: {
@@ -55,13 +58,21 @@ const CondensedShelf = () => {
                 if (json.data.modifiedCount === 1) {
                     setShelves((prev) => [
                         ...prev,
-                        { name: shelfName, description: shelfDescription },
-                        closeModal(),
+                        {
+                            name: newShelf.name,
+                            description: newShelf.description,
+                        },
                     ]);
+                    closeModal();
                 } else {
                     alert("You already have a shelf with this name!");
                 }
             });
+    };
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setNewShelf({ ...newShelf, [e.target.name]: value });
     };
 
     console.log(shelves);
@@ -162,7 +173,9 @@ const CondensedShelf = () => {
                                     type="text"
                                     id="shelf-name"
                                     className="shelf-name"
-                                    name="shelf-name"
+                                    name="name"
+                                    value={newShelf.name}
+                                    onChange={handleChange}
                                     required
                                 />
 
@@ -171,7 +184,9 @@ const CondensedShelf = () => {
                                     id="description"
                                     className="description"
                                     name="description"
+                                    value={newShelf.description}
                                     rows="4"
+                                    onChange={handleChange}
                                 />
                             </div>
                             <button type="submit">Add shelf</button>

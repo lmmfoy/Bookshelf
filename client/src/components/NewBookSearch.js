@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const NewBookSearch = () => {
     const navigate = useNavigate();
-    // const [searchQuery, setSearchQuery] = useState({});
     const {
         setNewBooks,
         page,
@@ -21,13 +20,18 @@ const NewBookSearch = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Get the user values and replace spaces with "+"
+        // const params = {
+        //     author: e.target[0].value.replace(/ /g, "+"),
+        //     title: e.target[1].value.replace(/ /g, "+"),
+        // };
+
         const params = {
-            author: e.target[0].value.replace(/ /g, "+"),
-            title: e.target[1].value.replace(/ /g, "+"),
-        };
+            author: searchTerms.author.replace(/ /g, "+"),
+            title: searchTerms.title.replace(/ /g, "+"),
+        }
 
         // Save the search terms so that when user searches on homepage and is redirected to Search page, their search terms remain
-        setSearchTerms(params);
+        // setSearchTerms(params);
 
         // Filter out the items in the params with empty values, then join the search parameters together
         const search_query = Object.keys(params)
@@ -58,10 +62,15 @@ const NewBookSearch = () => {
     // This function fetches the result of the ISBN search, sets the information in Context, and navigates directly to the book page
     const handleISBNSubmit = (e) => {
         e.preventDefault();
-
-        setSearchTerms({ isbn: e.target[0].value });
+        // setSearchTerms({ isbn: e.target[0].value });
 
         navigate(`/book/${e.target[0].value}`);
+    };
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        console.log(value);
+        setSearchTerms({ ...searchTerms, [e.target.name]: value });
     };
 
     return (
@@ -74,6 +83,7 @@ const NewBookSearch = () => {
                         id="author"
                         name="author"
                         defaultValue={searchTerms.author}
+                        onChange={handleChange}
                     />
                 </label>
                 <label for="title">
@@ -83,6 +93,7 @@ const NewBookSearch = () => {
                         id="title"
                         name="title"
                         defaultValue={searchTerms.title}
+                        onChange={handleChange}
                     />
                 </label>
                 <button type="submit">Search</button>

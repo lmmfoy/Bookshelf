@@ -89,7 +89,7 @@ const SpecificBookDetails = ({ isbn }) => {
                 />
                 {/* identifiers for different places: {book.identifiers} */}
             </div>
-            <Notes book={book}/>
+            {/* <Notes book={book}/> */}
         </StyledBookPage>
     );
 };
