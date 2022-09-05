@@ -56,9 +56,8 @@ const GeneralBookDetails = ({ book }) => {
     // When an edition is selected, the reader is navigated to that edition's page
     const onChange = (e) => {
         console.log(e.book);
-        navigate(
-            `/book/${e.book.isbn_10[0] || e.book.isbn_13[0] || e.book.isbn[0]}`
-        );
+        const isbn = e.book.isbn_13[0] || e.book.isbn_10[0] || e.book.isbn[0];
+        navigate(`/book/${isbn}`);
     };
 
     return (

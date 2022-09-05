@@ -230,13 +230,14 @@ const StyledShelf = styled.div`
 
     .tabs-outer {
         display: flex;
-        border: 1px solid #aaa;
+
+
         border-radius: 5px;
     }
 
     .tab-list-container {
         width: 99px;
-        background-color: var(--color-beige);
+        /* background-color: var(--color-beige); */
         border-right: 1px solid #aaa;
     }
 
@@ -246,19 +247,20 @@ const StyledShelf = styled.div`
         padding: 0;
         height: 100%;
     }
-    .tab:first-child {
+    /* .tab:first-child {
         border-top: none;
-    }
+    } */
 
     .tab {
         cursor: pointer;
         padding: 20px 10px;
         /* box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.09); */
-        /* border-radius: 5px; */
+        border-radius: 10px;
         /* background-color: var(--color-brick-red); */
         border: 1px solid transparent;
         /* border-right: 1px solid #aaa; */
-        background-color: var(--color-beige);
+        /* background-color: var(--color-beige); */
+
 
         &:hover {
             color: var(--color-burnt-orange);
@@ -274,6 +276,10 @@ const StyledShelf = styled.div`
         display: none;
         display: flex;
         flex-direction: column;
+        border-top: 1px solid #aaa;
+        border-right: 1px solid #aaa;
+        border-bottom: 1px solid #aaa;
+        border-radius: 0 10px 10px 0;
 
         &:focus {
             display: block;
@@ -285,9 +291,9 @@ const StyledShelf = styled.div`
     .selected-tab {
         background-color: #fff;
         border-color: #aaa;
-        border-right: none;
+        border-right: 1px solid transparent;
         color: black;
-        border-radius: 5px 5px 0 0;
+        border-radius: 10px 0 0 10px;
         width: 100px;
     }
 

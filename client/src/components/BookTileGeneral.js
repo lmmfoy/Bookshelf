@@ -97,8 +97,9 @@ const StyledNewBook = styled.div`
     .book-info {
         padding: 30px 20px;
         background-color: #334b38;
-        height: 280px;
+        height: 250px;
         border-radius: 10px;
+        overflow: hidden;
         /* border: 2px solid black; */
     }
 `;
