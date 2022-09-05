@@ -125,13 +125,13 @@ const StyledBookPage = styled.div`
             max-width: 500px;
             flex: 1 1 auto;
             padding: 50px;
-            border: 3px solid #aaa;
+            border: 2px solid var(--color-burnt-orange-brown);
             border-radius: 10px;
         }
 
         .book-details {
             font-size: 1.1em;
-            border: 3px solid #aaa;
+            border: 2px solid var(--color-burnt-orange-brown);
             padding: 20px;
             border-radius: 10px;
             margin-bottom: auto;
@@ -139,14 +139,16 @@ const StyledBookPage = styled.div`
             flex: 2 1 auto;
 
 
-            h1 {
+            h2 {
                 font-size: 2em;
+                line-height: 1.2em;
                 padding-bottom: 8px;
+
             }
 
             .author {
                 font-size: 1.3em;
-                padding: 10px 0;
+                padding: 10px 0 30px;
             }
         }
     }

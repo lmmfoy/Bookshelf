@@ -44,12 +44,13 @@ const OldNotes = ({ book }) => {
 };
 
 const StyledNotes = styled.div`
+    flex: 2 1 auto;
     display: flex;
     flex-direction: column;
     gap: 40px;
 
     .note {
-        border: 3px solid #aaa;
+        border: 2px solid var(--color-burnt-orange-brown);
         border-radius: 10px;
         padding: 20px;
     }

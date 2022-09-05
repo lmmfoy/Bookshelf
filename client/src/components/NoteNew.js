@@ -82,85 +82,46 @@ const NewNote = ({ book, isbn }) => {
 
     return (
         <StyledNotes>
-            {/* <div >
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <h3>add notes</h3>
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            name="date"
-                            value={readableDate}
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            name="title"
-                            placeholder="title"
-                            value={note.title}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div>
-                        <textarea
-                            id="noteText"
-                            name="noteText"
-                            placeholder="Your note"
-                            // value={note.noteText}
-                            rows="4"
-                            value={note.noteText}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div>
-                        <button>Enter</button>
-                    </div>
-                </form>
-            </div> */}
+            <div className="date">
+                <strong>
+                    <label for="date">Date: </label>
+                </strong>
 
-            <div>
-                <div className="section date">
-                    <strong>
-                        <label for="date">Date: </label>
-                    </strong>
+                <EditText
+                    name="date"
+                    type="date"
+                    className="text"
+                    defaultValue={readableDate}
+                    inline
+                    readonly
+                />
+            </div>
 
-                    <EditText
-                        name="date"
-                        type="date"
-                        className="text"
-                        defaultValue={readableDate}
-                        inline
-                        readonly
-                    />
-                </div>
+            <div className="section">
+                <EditText
+                    name="title"
+                    className="title text"
+                    rows={4}
+                    style={{ paddingTop: 0 }}
+                    placeholder="Enter a title"
+                    value={note.title}
+                    onChange={handleChange}
+                />
+            </div>
 
-                <div className="section">
-                    <EditText
-                        name="title"
-                        className="title text"
-                        rows={4}
-                        style={{ paddingTop: 0 }}
-                        placeholder="Enter a title"
-                        value={note.title}
-                        onChange={handleChange}
-                    />
-                </div>
+            <div className="section">
+                <EditTextarea
+                    name="noteText"
+                    className="noteText text"
+                    rows={4}
+                    style={{ paddingTop: 0 }}
+                    placeholder="Enter notes"
+                    value={note.noteText}
+                    onChange={handleChange}
+                />
+            </div>
 
-                <div className="section">
-                    <EditTextarea
-                        name="noteText"
-                        className="noteText text"
-                        rows={4}
-                        style={{ paddingTop: 0 }}
-                        placeholder="Enter notes"
-                        value={note.noteText}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                {/* <div>
+            {/* <div>
                     <EditText
                         name="notes"
                         rows={4}
@@ -173,61 +134,96 @@ const NewNote = ({ book, isbn }) => {
                         // }}
                     />
                 </div> */}
-                <button onClick={handleSubmit}>Enter</button>
-            </div>
+            <button onClick={handleSubmit}>Enter</button>
         </StyledNotes>
     );
 };
 
 const StyledNotes = styled.div`
-    border: 3px solid #aaa;
+    flex: 1 1 auto;
+
+    border: 2px solid var(--color-burnt-orange-brown);
     border-radius: 10px;
     padding: 20px;
     min-width: 300px;
-    max-width: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 10px;
 
     .date {
         padding: 0 0 10px 5px;
     }
 
-    .title {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        /* transition: background 0.2s ease; */
-        /* min-height: 30px; */
+    .section {
+        border: 1px solid #aaa;
+        border-radius: 10px;
 
-        &:hover {
-            cursor: pointer;
-            background: rgba(220, 220, 220, 0.4);
+        .title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            /* transition: background 0.2s ease; */
+            /* min-height: 30px; */
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(220, 220, 220, 0.4);
+            }
+        }
+
+        textarea {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            resize: none;
+            min-height: 200px;
+            width: 100%;
+        }
+
+        .noteText {
+            overflow-y: auto;
+            min-height: 200px;
+            /* transition: background 0.2s ease; */
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(220, 220, 220, 0.4);
+            }
+
+            &:focus {
+                
+            }
+        }
+
+        .text {
+            width: 100%;
+            padding: 10px;
+            display: block;
+            margin: 3px 0;
+            scrollbar-width: thin;
+            outline: none;
+
+            input {
+                padding: 10px;
+                line-height: 1.5em;
+                font-size: 1.2em;
+                border: none;
+                outline: none;
+                border-style: hidden;
+
+                
+            }
         }
     }
 
     input[type="text"]:focus,
     textarea:focus {
-        width: 100%;
-        font-size: 1em;
-    }
-
-    .noteText {
-        overflow-y: auto;
-        /* transition: background 0.2s ease; */
-
-        &:hover {
-            cursor: pointer;
-            background: rgba(220, 220, 220, 0.4);
-        }
-    }
-
-    .text {
-        width: 100%;
-        padding: 5px;
-        display: block;
-        margin: 3px 0;
-        scrollbar-width: thin;
+        padding: 10px;
+        font-size: 1.2em;
+        border: none;
+        outline: none;
+        border-radius: 10px;
     }
 
     ._TDklp {

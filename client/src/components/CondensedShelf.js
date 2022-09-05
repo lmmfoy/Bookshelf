@@ -232,14 +232,14 @@ const StyledShelf = styled.div`
         display: flex;
         width: 100%;
         border-radius: 5px;
-        border: 1px solid #aaa;
+        border: 2px solid var(--color-burnt-orange-brown);
     }
 
     .tab-list-container {
-        width: 99px;
+        width: 100px;
         background-color: white;
-        border-right: 1px solid #aaa;
-        margin: -1px 0 -1px -1px;
+        border-right: 2px solid var(--color-burnt-orange-brown);
+        margin: -2px 0 -2px -3px;
     }
 
     .tab-list {
@@ -296,8 +296,8 @@ const StyledShelf = styled.div`
 
     .selected-tab {
         background-color: #fff;
-        border-color: #aaa;
-        border-right: 1px solid transparent;
+        border: 2px solid var(--color-burnt-orange-brown);
+        border-right: 2px solid transparent;
         color: black;
         border-radius: 10px 0 0 10px;
         margin-right: -2px;

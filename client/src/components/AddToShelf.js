@@ -69,12 +69,13 @@ const AddToShelf = ({
 
     return (
         <StyledForm onSubmit={handleAddBookSubmit}>
+            <h3>Add to shelf</h3>
             <fieldset>
-                <legend>Add to shelf</legend>
+                {/* <legend>Add to shelf</legend> */}
                 <div>
                     {shelves.map((shelf, index) => {
                         return (
-                            <div>
+                            <div className="button-div">
                                 <div className="shelf-button">
                                     <input
                                         type="checkbox"
@@ -92,25 +93,70 @@ const AddToShelf = ({
                         );
                     })}
                 </div>
-                <input type="submit" value="Add to shelf" />
+                <button type="submit">Add to shelf</button>
             </fieldset>
         </StyledForm>
     );
 };
 
 const StyledForm = styled.form`
+    border: 2px solid var(--color-burnt-orange-brown);
+    border-radius: 10px;
+    padding: 20px;
+    background-color: var(--color-philippine-bronze);
+
+    h3 {
+        font-size: 1.4em;
+        margin: 20px 20px 20px 10px;
+        color: var(--color-beige);
+    }
+
     fieldset {
-        border: 1px solid;
-        padding: 10px;
+        display: flex;
+        gap: 20px;
+        
+
+        legend {
+            font-size: 1.3em;
+            font-weight: 600;
+            background-color: var(--color-saddle-brown);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .button-div {
+            display: flex;
+            flex-direction: column;
+        }
 
         .shelf-button {
             position: relative;
-            width: 120px;
-            height: 50px;
+            width: 180px;
+            height: 70px;
             margin: 5px;
             /* float: left; */
-            border: 2px solid green;
+            border: px solid var(--color-beige);
             box-sizing: border-box;
+            border-radius: 10px;
+            color: var(--color-beige);
+            background-color: var(--color-burnt-orange);
+
+            /*     --color-american-bronze: #3e1404;
+        --color-philippine-bronze: #6a2b05;
+        --color-saddle-brown: #964315;
+        --color-brown-brown: #5e320f;
+        --color-dark-red: #590909;
+        --color-brick-red: #7b2018;
+        --color-burnt-orange-brown: #8c4611;
+        --color-burnt-orange: #9c461e;
+        --color-maroon: #451b1b;
+        --color-maroon-red: #680822;
+        --color-beige: #FBF6EE; */
+
+            &:hover {
+                background-color: var(--color-burnt-orange);
+                box-shadow: 0 0 5px 1px var(--color-beige);
+            }
 
             div {
                 width: 100%;
@@ -127,18 +173,20 @@ const StyledForm = styled.form`
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 120px;
-                height: 45px;
+                width: 180px;
+                height: 60px;
                 opacity: 0;
                 cursor: pointer;
             }
 
             input[type="checkbox"]:checked ~ div {
-                background-color: pink;
+                background-color: var(--color-american-bronze);
+                border-radius: 10px;
             }
         }
-        input[type="submit"] {
-            margin: 20px;
+
+        button {
+            
         }
     }
 `;

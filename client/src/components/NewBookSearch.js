@@ -134,7 +134,8 @@ const StyledFormPage = styled.div`
 const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
-    border: 1px solid;
+    border: 2px solid var(--color-burnt-orange-brown);
+    border-radius: 10px;
     margin: 25px;
     padding: 20px;
     width: 400px;
