@@ -233,12 +233,11 @@ const StyledShelf = styled.div`
         width: 100%;
         border-radius: 5px;
         border: 1px solid #aaa;
-
     }
 
     .tab-list-container {
         width: 99px;
-        background-color: var(--color-beige);
+        background-color: white;
         border-right: 1px solid #aaa;
         margin: -1px 0 -1px -1px;
     }
@@ -256,12 +255,20 @@ const StyledShelf = styled.div`
     .tab {
         cursor: pointer;
         padding: 20px 10px;
-        /* box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.09); */
-        border-radius: 10px;
-        /* background-color: var(--color-brick-red); */
-        border: 1px solid transparent;
-        /* border-right: 1px solid #aaa; */
+        height: 100px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        padding: 0 10px 0 0;
+        box-shadow: -1px 1px 0px 1px rgba(0, 0, 0, 0.09);
+        border-radius: 10px 0 0 10px;
         /* background-color: var(--color-beige); */
+        background-color: #eee4e4;
+        border-top: 1px solid #d6cbcb;
+        border-bottom: 1px solid #d6cbcb;
+        border-left: 1px solid #d6cbcb;
+        font-size: 1.1em;
+        /* border-right: 1px solid #aaa; */
 
         &:hover {
             color: var(--color-burnt-orange);
@@ -273,12 +280,10 @@ const StyledShelf = styled.div`
         }
     }
 
-
     .tab-panel {
         display: none;
         display: flex;
         flex-direction: column;
-
 
         border-radius: 0 10px 10px 0;
 
@@ -295,7 +300,7 @@ const StyledShelf = styled.div`
         border-right: 1px solid transparent;
         color: black;
         border-radius: 10px 0 0 10px;
-        margin-right: -1px;
+        margin-right: -2px;
     }
 
     .book-tiles {
