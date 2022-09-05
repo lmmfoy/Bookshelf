@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
 
 import { EditText, EditTextarea } from "react-edit-text";
-import "react-edit-text/dist/index.css";
 
 const NewNote = ({ book, isbn }) => {
     const { shelves, setShelves, siteUser } = useContext(UserContext);
@@ -122,23 +121,25 @@ const NewNote = ({ book, isbn }) => {
             </div> */}
 
             <div>
-                <div>
+                <div className="section date">
                     <strong>
-                        <label className="mr-2">Date: </label>
+                        <label for="date">Date: </label>
                     </strong>
 
                     <EditText
                         name="date"
                         type="date"
+                        className="text"
                         defaultValue={readableDate}
                         inline
                         readonly
                     />
                 </div>
 
-                <div>
+                <div className="section">
                     <EditText
                         name="title"
+                        className="title text"
                         rows={4}
                         style={{ paddingTop: 0 }}
                         placeholder="Enter a title"
@@ -147,9 +148,10 @@ const NewNote = ({ book, isbn }) => {
                     />
                 </div>
 
-                <div>
+                <div className="section">
                     <EditTextarea
                         name="noteText"
+                        className="noteText text"
                         rows={4}
                         style={{ paddingTop: 0 }}
                         placeholder="Enter notes"
@@ -178,8 +180,88 @@ const NewNote = ({ book, isbn }) => {
 };
 
 const StyledNotes = styled.div`
-    border: 1px solid;
-    width: 400px;
+    border: 3px solid #aaa;
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 300px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .date {
+        padding: 0 0 10px 5px;
+    }
+
+    .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        /* transition: background 0.2s ease; */
+        /* min-height: 30px; */
+
+        &:hover {
+            cursor: pointer;
+            background: rgba(220, 220, 220, 0.4);
+        }
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+        width: 100%;
+        font-size: 1em;
+    }
+
+    .noteText {
+        overflow-y: auto;
+        /* transition: background 0.2s ease; */
+
+        &:hover {
+            cursor: pointer;
+            background: rgba(220, 220, 220, 0.4);
+        }
+    }
+
+    .text {
+        width: 100%;
+        padding: 5px;
+        display: block;
+        margin: 3px 0;
+        scrollbar-width: thin;
+    }
+
+    ._TDklp {
+        color: #999;
+    }
+
+    ._gmkRL {
+        display: inline !important;
+    }
+
+    ._-wzeg {
+        cursor: auto !important;
+    }
+
+    ._-wzeg:hover {
+        cursor: auto !important;
+    }
+
+    /* ._IYz6Z {
+        display: flex;
+    }
+
+    ._NGZSv {
+        background-color: #fff;
+        color: black;
+        border: 0;
+        outline: none;
+        min-width: 28px;
+    }
+
+    ._NGZSv:focus {
+        border: 0;
+        outline: none;
+    } */
 `;
 
 export default NewNote;

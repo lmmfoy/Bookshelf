@@ -24,12 +24,11 @@ const SpecificBookDetails = ({ isbn }) => {
             .then((res) => res.json())
             .then((data) => {
                 setBook(data.data);
-                return data.data.authors
+                return data.data.authors;
             })
 
             // Authors are listed in an array of ids and must be fetched separately
             .then((data) => {
-                console.log(data)
                 data &&
                     data.forEach((author) => {
                         // author.key takes the form "/authors/author_id"
@@ -106,37 +105,39 @@ const SpecificBookDetails = ({ isbn }) => {
                 />
             </div>
             <div className="notes">
-                {isLoaded && <OldNotes book={book} />}
                 <NewNote book={book} isbn={isbn} />
+                {isLoaded && <OldNotes book={book} />}
             </div>
         </StyledBookPage>
     );
 };
 
 const StyledBookPage = styled.div`
+    margin: 0 50px;
+
     .book {
         display: flex;
+        gap: 50px;
         max-width: 1800px;
-        margin: 0 auto;
 
         img {
             min-width: 300px;
             max-width: 500px;
             flex: 1 1 auto;
             padding: 50px;
-
             border: 3px solid #aaa;
             border-radius: 10px;
         }
 
         .book-details {
-            margin: 0 50px;
             font-size: 1.1em;
             border: 3px solid #aaa;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: auto;
             line-height: 1.3em;
+            flex: 2 1 auto;
+
 
             h1 {
                 font-size: 2em;
@@ -150,8 +151,10 @@ const StyledBookPage = styled.div`
         }
     }
 
-    .note {
+    .notes {
         display: flex;
+        margin-top: 70px;
+        gap: 80px;
     }
 `;
 

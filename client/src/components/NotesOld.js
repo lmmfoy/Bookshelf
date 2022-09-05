@@ -1,5 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { UserContext } from "./UserContext";
+import styled from "styled-components";
 
 const OldNotes = ({ book }) => {
     const { shelves, setShelves, siteUser } = useContext(UserContext);
@@ -24,18 +25,34 @@ const OldNotes = ({ book }) => {
 
     console.log(notes);
     return (
-        <div>
+        <StyledNotes>
             {notes &&
                 notes.map((note) => {
                     return (
-                        <div key={Math.floor(Math.random() * 14000000000)}>
+                        <div
+                            className="note"
+                            key={Math.floor(Math.random() * 14000000000)}
+                        >
                             <h3>{note.date}</h3>
                             <h3>{note.title}</h3>
                             <p>{note.noteText}</p>
                         </div>
                     );
                 })}
-        </div>
+        </StyledNotes>
     );
 };
+
+const StyledNotes = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .note {
+        border: 3px solid #aaa;
+        border-radius: 10px;
+        padding: 20px;
+    }
+`;
+
 export default OldNotes;
