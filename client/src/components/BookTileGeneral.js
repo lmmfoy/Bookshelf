@@ -31,7 +31,17 @@ const BookTileGeneral = ({ book }) => {
             </div>
             <div className="book-info">
                 <h4>{book.title && book.title}</h4>
-                <h5>{book.author_name && book.author_name.join(", ")}</h5>
+                <>
+                    {book.author_name &&
+                        (book.author_name.length > 2 ? (
+                            <h5>
+                                {book.author_name[0]}, {book.author_name[1]},
+                                etc.
+                            </h5>
+                        ) : (
+                            <h5>{book.author_name.join(", ")}</h5>
+                        ))}
+                </>
                 {book.first_publish_year && (
                     <p>First published: {book.first_publish_year}</p>
                 )}
@@ -53,10 +63,9 @@ const StyledNewBook = styled.div`
     min-width: 230px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 5px 10px 20px 5px rgba(0,0,0,0.33);
+    box-shadow: 5px 10px 20px 5px rgba(0, 0, 0, 0.33);
     color: var(--color-beige);
     line-height: 1.2em;
-
 
     h4 {
         font-size: 1.3em;
@@ -70,9 +79,8 @@ const StyledNewBook = styled.div`
 
     &:hover {
         transform: scale(1.02);
-        box-shadow: 5px 10px 25px 5px rgba(0,0,0,0.43);
+        box-shadow: 5px 10px 25px 5px rgba(0, 0, 0, 0.43);
         transition: 0.4s ease-in-out;
-
     }
 
     .img-div {
@@ -80,7 +88,7 @@ const StyledNewBook = styled.div`
     }
 
     img {
-        box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.33);
+        box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.33);
         height: 200px;
         margin: -60px 0 0 0;
     }
@@ -92,7 +100,6 @@ const StyledNewBook = styled.div`
         border-radius: 10px;
         /* border: 2px solid black; */
     }
-
 `;
 
 export default BookTileGeneral;

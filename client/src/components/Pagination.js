@@ -6,26 +6,6 @@ const pageSize = 3;
 
 const AppPagination = () => {
     const { numPages, setPage } = useContext(BookSearchContext);
-    // const bookData = (from, to) => {
-    //     return new Promise((resolve, reject) => {
-    //         const data = newBooks.slice(from, to)
-
-    //         resolve({
-    //             count: newBooks.length,
-    //             data: data
-    //         })
-    //     })
-    // }
-
-    // useEffect(() => {
-
-    // })
-
-    // const [pagination, setPagination] = useState({
-    //     count: 0,
-    //     from: 0,
-    //     to: pageSize,
-    // });
 
     const handleChange = (page) => {
         setPage(page);
