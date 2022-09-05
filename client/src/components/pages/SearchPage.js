@@ -35,7 +35,7 @@ const SearchPage = () => {
     }, [page]);
 
     return (
-        <div>
+        <StyledSearchPage>
             <NewBookSearch />
             <StyledResults>
                 {newBooks &&
@@ -45,15 +45,25 @@ const SearchPage = () => {
                         }
                         return (
                             book.isbn && (
-                                <BookTileGeneral className="tile" key={book.key} book={book} />
+                                <BookTileGeneral
+                                    className="tile"
+                                    key={book.key}
+                                    book={book}
+                                />
                             )
                         );
                     })}
             </StyledResults>
-            <AppPagination />
-        </div>
+            <AppPagination className="pagination" />
+        </StyledSearchPage>
     );
 };
+
+const StyledSearchPage = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
 
 const StyledResults = styled.div`
     display: flex;
@@ -61,7 +71,7 @@ const StyledResults = styled.div`
     flex-wrap: wrap;
     margin: 50px;
     gap: 150px 70px;
-    
+
     padding: 25px;
 
     .tile {

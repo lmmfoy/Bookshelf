@@ -216,11 +216,13 @@ const StyledShelf = styled.div`
     }
 
     h3 {
-        padding-top: 15px;
+        padding: 45px 0 10px;
     }
 
     h4 {
         padding-top: 10px;
+        font-weight: 500;
+        
     }
 
     .tabs-outer {
@@ -234,6 +236,8 @@ const StyledShelf = styled.div`
         /* border-bottom: 1px solid #aaa; */
         margin: 0;
         padding: 0;
+        height: 100%;
+        
     }
 
     .tab {
