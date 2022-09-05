@@ -10,6 +10,7 @@ const BookTileGeneral = ({ book }) => {
         // navigate(`/book/title${book.key}`, { state: { type: "general", book: book } });
     };
 
+
     if (book.edition_count > 1) {
         console.log(book.edition_count, book.title);
     }
@@ -96,7 +97,7 @@ const StyledNewBook = styled.div`
     .book-info {
         padding: 30px 20px;
         background-color: #334b38;
-        height: 220px;
+        height: 280px;
         border-radius: 10px;
         /* border: 2px solid black; */
     }

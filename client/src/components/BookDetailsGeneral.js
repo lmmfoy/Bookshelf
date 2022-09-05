@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 // It may show multiple editions of the same book
 const GeneralBookDetails = ({ book }) => {
     const navigate = useNavigate();
-    console.log(book)
 
     const [editions, setEditions] = useState([]);
     const [options, setOptions] = useState([]);
@@ -33,6 +32,7 @@ const GeneralBookDetails = ({ book }) => {
                         data.data.authors &&
                         (data.data.isbn_13 || data.data.isbn_10)
                     ) {
+                        console.log(data.data);
                         setEditions((prev) => [...prev, data.data]);
                         setOptions((prev) => [
                             ...prev,
@@ -56,7 +56,9 @@ const GeneralBookDetails = ({ book }) => {
     // When an edition is selected, the reader is navigated to that edition's page
     const onChange = (e) => {
         console.log(e.book);
-        navigate(`/book/${e.book.isbn_10 || e.book.isbn_13 || e.book.isbn}`);
+        navigate(
+            `/book/${e.book.isbn_10[0] || e.book.isbn_13[0] || e.book.isbn[0]}`
+        );
     };
 
     return (

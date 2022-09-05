@@ -13,6 +13,7 @@ const CondensedShelf = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [newShelf, setNewShelf] = useState({ name: "", description: "" });
 
+    console.log(shelves)
     let subtitle;
 
     // Causes 'Add Shelf' modal to appear
@@ -80,23 +81,25 @@ const CondensedShelf = () => {
             >
                 {shelves.length > 0 ? (
                     <>
-                        <TabList className="tab-list">
-                            {shelves.map((shelf) => {
-                                return (
-                                    <Tab
-                                        key={Math.floor(
-                                            Math.random() * 14000000000
-                                        )}
-                                        className="tab"
-                                    >
-                                        {shelf.name}
-                                    </Tab>
-                                );
-                            })}
-                            <Tab className="tab" onClick={addShelf}>
-                                + Add shelf
-                            </Tab>
-                        </TabList>
+                        <div className="tab-list-container">
+                            <TabList className="tab-list">
+                                {shelves.map((shelf) => {
+                                    return (
+                                        <Tab
+                                            key={Math.floor(
+                                                Math.random() * 14000000000
+                                            )}
+                                            className="tab"
+                                        >
+                                            {shelf.name}
+                                        </Tab>
+                                    );
+                                })}
+                                <Tab className="tab" onClick={addShelf}>
+                                    + Add shelf
+                                </Tab>
+                            </TabList>
+                        </div>
                         <>
                             {shelves.map((shelf) => {
                                 return (
@@ -130,11 +133,13 @@ const CondensedShelf = () => {
                     </>
                 ) : (
                     <>
-                        <TabList className="tab-list">
-                            <Tab className="tab" onClick={addShelf}>
-                                + Add shelf
-                            </Tab>
-                        </TabList>
+                        <div className="tab-list-container">
+                            <TabList className="tab-list">
+                                <Tab className="tab" onClick={addShelf}>
+                                    + Add shelf
+                                </Tab>
+                            </TabList>
+                        </div>
                         <TabPanel />
                     </>
                 )}
@@ -221,13 +226,18 @@ const StyledShelf = styled.div`
     h4 {
         padding-top: 10px;
         font-weight: 500;
-        
     }
 
     .tabs-outer {
         display: flex;
-        /* border: 1px solid #aaa;
-        border-radius: 5px; */
+        border: 1px solid #aaa;
+        border-radius: 5px;
+    }
+
+    .tab-list-container {
+        width: 99px;
+        background-color: var(--color-beige);
+        border-right: 1px solid #aaa;
     }
 
     .tab-list {
@@ -235,7 +245,9 @@ const StyledShelf = styled.div`
         margin: 0;
         padding: 0;
         height: 100%;
-        
+    }
+    .tab:first-child {
+        border-top: none;
     }
 
     .tab {
@@ -245,7 +257,7 @@ const StyledShelf = styled.div`
         /* border-radius: 5px; */
         /* background-color: var(--color-brick-red); */
         border: 1px solid transparent;
-        border-right: 1px solid #aaa;
+        /* border-right: 1px solid #aaa; */
         background-color: var(--color-beige);
 
         &:hover {
@@ -256,14 +268,17 @@ const StyledShelf = styled.div`
             color: var(--color-maroon-red);
             outline: none;
         }
+    }
 
-        /* not sure if the below necessary */
-        .tab-panel {
-            display: none;
+    .tab-panel {
+        display: none;
+        display: flex;
+        flex-direction: column;
 
-            &:focus {
-                display: block;
-            }
+        &:focus {
+            display: block;
+            width: 100%;
+
         }
     }
 
@@ -273,9 +288,11 @@ const StyledShelf = styled.div`
         border-right: none;
         color: black;
         border-radius: 5px 5px 0 0;
+        width: 100px;
     }
 
     .book-tiles {
+        /* width: 100%; */
         border: 1px solid;
         display: flex;
         flex-wrap: wrap;
