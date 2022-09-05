@@ -1,4 +1,12 @@
-const AddToShelf = ({ shelves, checkboxState, setCheckboxState, siteUser, book }) => {
+import styled from "styled-components";
+
+const AddToShelf = ({
+    shelves,
+    checkboxState,
+    setCheckboxState,
+    siteUser,
+    book,
+}) => {
     // When a shelf button is clicked, this finds the item in state (using its index), toggles it true/false,
     // changes the checked state of the other buttons to false (only one can be selected at a time), then updates the state
     const handleOnChange = (position) => {
@@ -60,7 +68,7 @@ const AddToShelf = ({ shelves, checkboxState, setCheckboxState, siteUser, book }
     };
 
     return (
-        <form onSubmit={handleAddBookSubmit}>
+        <StyledForm onSubmit={handleAddBookSubmit}>
             <fieldset>
                 <legend>Add to shelf</legend>
                 <div>
@@ -86,8 +94,53 @@ const AddToShelf = ({ shelves, checkboxState, setCheckboxState, siteUser, book }
                 </div>
                 <input type="submit" value="Add to shelf" />
             </fieldset>
-        </form>
+        </StyledForm>
     );
 };
+
+const StyledForm = styled.form`
+    fieldset {
+        border: 1px solid;
+        padding: 10px;
+
+        .shelf-button {
+            position: relative;
+            width: 120px;
+            height: 50px;
+            margin: 5px;
+            /* float: left; */
+            border: 2px solid green;
+            box-sizing: border-box;
+
+            div {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                line-height: 25px;
+                transition: 0.5s ease;
+            }
+
+            /* Make the actual checkboxes invisible in order to have checkbox buttons */
+            input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 120px;
+                height: 45px;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            input[type="checkbox"]:checked ~ div {
+                background-color: pink;
+            }
+        }
+        input[type="submit"] {
+            margin: 20px;
+        }
+    }
+`;
 
 export default AddToShelf;
