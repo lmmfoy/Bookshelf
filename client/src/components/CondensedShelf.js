@@ -13,7 +13,7 @@ const CondensedShelf = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [newShelf, setNewShelf] = useState({ name: "", description: "" });
 
-    console.log(shelves)
+    console.log(shelves);
     let subtitle;
 
     // Causes 'Add Shelf' modal to appear
@@ -230,15 +230,17 @@ const StyledShelf = styled.div`
 
     .tabs-outer {
         display: flex;
-
-
+        width: 100%;
         border-radius: 5px;
+        border: 1px solid #aaa;
+
     }
 
     .tab-list-container {
         width: 99px;
-        /* background-color: var(--color-beige); */
+        background-color: var(--color-beige);
         border-right: 1px solid #aaa;
+        margin: -1px 0 -1px -1px;
     }
 
     .tab-list {
@@ -261,7 +263,6 @@ const StyledShelf = styled.div`
         /* border-right: 1px solid #aaa; */
         /* background-color: var(--color-beige); */
 
-
         &:hover {
             color: var(--color-burnt-orange);
         }
@@ -272,19 +273,19 @@ const StyledShelf = styled.div`
         }
     }
 
+
     .tab-panel {
         display: none;
         display: flex;
         flex-direction: column;
-        border-top: 1px solid #aaa;
-        border-right: 1px solid #aaa;
-        border-bottom: 1px solid #aaa;
+
+
         border-radius: 0 10px 10px 0;
 
         &:focus {
             display: block;
             width: 100%;
-
+            flex-grow: 1 1 auto;
         }
     }
 
@@ -294,7 +295,7 @@ const StyledShelf = styled.div`
         border-right: 1px solid transparent;
         color: black;
         border-radius: 10px 0 0 10px;
-        width: 102px;
+        margin-right: -1px;
     }
 
     .book-tiles {
