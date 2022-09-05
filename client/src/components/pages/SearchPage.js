@@ -40,8 +40,14 @@ const SearchPage = () => {
             <StyledResults>
                 {newBooks &&
                     newBooks.map((book) => {
-                        {/* Only show works with ISBN numbers */}
-                        return book.isbn && <BookTileGeneral key={book.key} book={book} />;
+                        {
+                            /* Only show works with ISBN numbers */
+                        }
+                        return (
+                            book.isbn && (
+                                <BookTileGeneral className="tile" key={book.key} book={book} />
+                            )
+                        );
                     })}
             </StyledResults>
             <AppPagination />
@@ -51,8 +57,15 @@ const SearchPage = () => {
 
 const StyledResults = styled.div`
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    margin: 50px;
+    gap: 150px 70px;
+    
+    padding: 25px;
+
+    .tile {
+    }
 `;
 
 export default SearchPage;

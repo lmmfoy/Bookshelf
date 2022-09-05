@@ -35,6 +35,7 @@ export default createGlobalStyle`
     font-family: 'Frank Ruhl Libre', serif;
     font-size: 1.2em;
     color: var(--color-american-bronze);
+
   }
 
   /* http://meyerweb.com/eric/tools/css/reset/

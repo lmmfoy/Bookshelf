@@ -31,6 +31,10 @@ const StyledWelcome = styled.div `
         align-items: center;   
         justify-content: space-around;     
         padding: 15px;
+
+        h1 {
+            text-align: center;
+        }
     }
 `
 

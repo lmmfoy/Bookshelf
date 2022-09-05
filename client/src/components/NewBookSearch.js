@@ -19,12 +19,8 @@ const NewBookSearch = () => {
     // This function fetches a list of books based on the search criteria (author and/or title), sets the information in Context, and navigates the user to the Search page to see the list of results
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         // Get the user values and replace spaces with "+"
-        // const params = {
-        //     author: e.target[0].value.replace(/ /g, "+"),
-        //     title: e.target[1].value.replace(/ /g, "+"),
-        // };
-
         const params = {
             author: searchTerms.author.replace(/ /g, "+"),
             title: searchTerms.title.replace(/ /g, "+"),
