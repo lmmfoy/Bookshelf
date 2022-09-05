@@ -9,7 +9,7 @@ const BookTileSpecific = ({ book }) => {
         navigate(`/book/${book.isbn || book.isbn_10 || book.isbn_13}`);
     };
 
-    console.log(book)
+    console.log(book);
     return (
         <StyledNewBook onClick={onBookClick}>
             {
@@ -25,16 +25,13 @@ const BookTileSpecific = ({ book }) => {
             }
             <p>{book.title && book.title}</p>
             <p>{book.author && book.author_name.join(", ")}</p>
-            {book.publish_date && (
-                <p>{book.publish_date}</p>
-            )}
+            {book.publish_date && <p>{book.publish_date}</p>}
         </StyledNewBook>
     );
 };
 
 const StyledNewBook = styled.div`
     padding: 10px;
-    border: 1px solid black;
     width: 200px;
     flex: 1 1 auto;
     text-align: center;
@@ -43,15 +40,6 @@ const StyledNewBook = styled.div`
 
     img {
         max-width: 80px;
-    }
-
-    .link {
-        text-decoration: none;
-        color: black;
-
-        &:hover {
-            color: purple;
-        }
     }
 `;
 

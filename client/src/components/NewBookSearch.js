@@ -116,12 +116,13 @@ const NewBookSearch = () => {
 };
 
 const StyledFormPage = styled.div`
-    margin: 25px;
+    margin: 0 25px 25px 25px;
     /* max-width: 700px; */
     min-width: 400px;
 
     h2 {
-        margin: 10px 25px;
+        margin: 0 25px;
+
     }
 
     .forms {

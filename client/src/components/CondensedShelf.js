@@ -199,14 +199,13 @@ const CondensedShelf = () => {
 };
 
 const StyledShelf = styled.div`
-    border: 1px solid black;
     flex-grow: 1;
     flex-shrink: 1;
-    padding: 30px;
+    padding: 0 30px 30px 30px;
 
     h2 {
         font-size: 2em;
-        padding: 10px;
+        padding: 0 10px;
         margin-bottom: 20px;
     }
 
@@ -216,7 +215,7 @@ const StyledShelf = styled.div`
     }
 
     h3 {
-        padding: 45px 0 10px;
+        padding: 20px 0 10px;
     }
 
     h4 {
@@ -227,9 +226,8 @@ const StyledShelf = styled.div`
 
     .tabs-outer {
         display: flex;
-        border: 1px solid #aaa;
-        border-right: 1px solid #aaa;
-        border-radius: 5px;
+        /* border: 1px solid #aaa;
+        border-radius: 5px; */
     }
 
     .tab-list {
