@@ -18,8 +18,6 @@ const SpecificBookDetails = ({ isbn }) => {
     );
     const [book, setBook] = useState({});
 
-    console.log(shelves);
-    console.log(book);
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
         fetch(`/search/isbn/${isbn}`)
@@ -66,7 +64,11 @@ const SpecificBookDetails = ({ isbn }) => {
                 <h2>{book.title}</h2>
                 <div>
                     {authors.map((author) => {
-                        return <p>{author.name}</p>;
+                        return (
+                            <p key={Math.floor(Math.random() * 14000000000)}>
+                                {author.name}
+                            </p>
+                        );
                         //author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia
                     })}
                 </div>

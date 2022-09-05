@@ -13,6 +13,7 @@ const CondensedShelf = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [newShelf, setNewShelf] = useState({ name: "", description: "" });
 
+    console.log(shelves);
     let subtitle;
 
     // Causes 'Add Shelf' modal to appear
@@ -80,23 +81,25 @@ const CondensedShelf = () => {
             >
                 {shelves.length > 0 ? (
                     <>
-                        <TabList className="tab-list">
-                            {shelves.map((shelf) => {
-                                return (
-                                    <Tab
-                                        key={Math.floor(
-                                            Math.random() * 14000000000
-                                        )}
-                                        className="tab"
-                                    >
-                                        {shelf.name}
-                                    </Tab>
-                                );
-                            })}
-                            <Tab className="tab" onClick={addShelf}>
-                                + Add shelf
-                            </Tab>
-                        </TabList>
+                        <div className="tab-list-container">
+                            <TabList className="tab-list">
+                                {shelves.map((shelf) => {
+                                    return (
+                                        <Tab
+                                            key={Math.floor(
+                                                Math.random() * 14000000000
+                                            )}
+                                            className="tab"
+                                        >
+                                            {shelf.name}
+                                        </Tab>
+                                    );
+                                })}
+                                <Tab className="tab" onClick={addShelf}>
+                                    + Add shelf
+                                </Tab>
+                            </TabList>
+                        </div>
                         <>
                             {shelves.map((shelf) => {
                                 return (
@@ -130,11 +133,13 @@ const CondensedShelf = () => {
                     </>
                 ) : (
                     <>
-                        <TabList className="tab-list">
-                            <Tab className="tab" onClick={addShelf}>
-                                + Add shelf
-                            </Tab>
-                        </TabList>
+                        <div className="tab-list-container">
+                            <TabList className="tab-list">
+                                <Tab className="tab" onClick={addShelf}>
+                                    + Add shelf
+                                </Tab>
+                            </TabList>
+                        </div>
                         <TabPanel />
                     </>
                 )}
@@ -199,14 +204,13 @@ const CondensedShelf = () => {
 };
 
 const StyledShelf = styled.div`
-    border: 1px solid black;
     flex-grow: 1;
     flex-shrink: 1;
-    padding: 30px;
+    padding: 0 30px 30px 30px;
 
     h2 {
         font-size: 2em;
-        padding: 10px;
+        padding: 0 10px;
         margin-bottom: 20px;
     }
 
@@ -216,20 +220,27 @@ const StyledShelf = styled.div`
     }
 
     h3 {
-        padding: 45px 0 10px;
+        padding: 20px 0 10px;
     }
 
     h4 {
         padding-top: 10px;
         font-weight: 500;
-        
     }
 
     .tabs-outer {
         display: flex;
-        border: 1px solid #aaa;
-        border-right: 1px solid #aaa;
+        width: 100%;
         border-radius: 5px;
+        border: 1px solid #aaa;
+
+    }
+
+    .tab-list-container {
+        width: 99px;
+        background-color: var(--color-beige);
+        border-right: 1px solid #aaa;
+        margin: -1px 0 -1px -1px;
     }
 
     .tab-list {
@@ -237,18 +248,20 @@ const StyledShelf = styled.div`
         margin: 0;
         padding: 0;
         height: 100%;
-        
     }
+    /* .tab:first-child {
+        border-top: none;
+    } */
 
     .tab {
         cursor: pointer;
         padding: 20px 10px;
         /* box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.09); */
-        /* border-radius: 5px; */
+        border-radius: 10px;
         /* background-color: var(--color-brick-red); */
         border: 1px solid transparent;
-        border-right: 1px solid #aaa;
-        background-color: var(--color-beige);
+        /* border-right: 1px solid #aaa; */
+        /* background-color: var(--color-beige); */
 
         &:hover {
             color: var(--color-burnt-orange);
@@ -258,31 +271,39 @@ const StyledShelf = styled.div`
             color: var(--color-maroon-red);
             outline: none;
         }
+    }
 
-        /* not sure if the below necessary */
-        .tab-panel {
-            display: none;
 
-            &:focus {
-                display: block;
-            }
+    .tab-panel {
+        display: none;
+        display: flex;
+        flex-direction: column;
+
+
+        border-radius: 0 10px 10px 0;
+
+        &:focus {
+            display: block;
+            width: 100%;
+            flex-grow: 1 1 auto;
         }
     }
 
     .selected-tab {
         background-color: #fff;
         border-color: #aaa;
-        border-right: none;
+        border-right: 1px solid transparent;
         color: black;
-        border-radius: 5px 5px 0 0;
+        border-radius: 10px 0 0 10px;
+        margin-right: -1px;
     }
 
     .book-tiles {
-        border: 1px solid;
+        /* width: 100%; */
         display: flex;
         flex-wrap: wrap;
         margin: 30px 50px;
-        gap: 1px;
+        gap: 40px;
     }
 `;
 

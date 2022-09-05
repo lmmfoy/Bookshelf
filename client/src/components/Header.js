@@ -40,6 +40,7 @@ const StyledHeader = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 0 50px 0 40px;
+    margin-bottom: 50px;
     align-items: center;
     height: 150px;
     background-color: var(--color-philippine-bronze);

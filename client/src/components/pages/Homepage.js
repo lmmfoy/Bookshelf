@@ -67,12 +67,10 @@ const StyledHome = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border: 1px solid;
 
     .shelf {
         width: 80%;
         height: 100vh;
-        border: 1px solid;
         /* background-color: var(--color-american-bronze); */
     }
 
