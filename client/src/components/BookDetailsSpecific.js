@@ -18,8 +18,6 @@ const SpecificBookDetails = ({ isbn }) => {
     );
     const [book, setBook] = useState({});
 
-    console.log(shelves);
-    console.log(book);
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
         fetch(`/search/isbn/${isbn}`)

@@ -294,16 +294,15 @@ const StyledShelf = styled.div`
         border-right: 1px solid transparent;
         color: black;
         border-radius: 10px 0 0 10px;
-        width: 100px;
+        width: 102px;
     }
 
     .book-tiles {
         /* width: 100%; */
-        border: 1px solid;
         display: flex;
         flex-wrap: wrap;
         margin: 30px 50px;
-        gap: 1px;
+        gap: 40px;
     }
 `;
 
