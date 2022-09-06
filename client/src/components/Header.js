@@ -43,11 +43,11 @@ const StyledHeader = styled.div`
     margin-bottom: 50px;
     align-items: center;
     height: 150px;
-    background-color: var(--color-philippine-bronze);
     background-color: var(--color-brown-brown);
-    background-color: var(--color-dark-red);
     background-color: var(--color-coffee-brown);
+    background-color: var(--color-dark-red);
     background-color: var(--color-american-bronze);
+    background-color: var(--color-philippine-bronze);
     border-radius: 10px 10px 0 0;
 
     img {
@@ -61,8 +61,9 @@ const StyledHeader = styled.div`
     .header-right {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 35px;
         color: white;
+
     }
 `;
 

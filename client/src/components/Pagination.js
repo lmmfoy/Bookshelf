@@ -24,6 +24,6 @@ const AppPagination = () => {
 };
 
 const StyledPagination = styled.div `
-    margin: 0 auto;
+    margin: 0 auto 50px;
 `
 export default AppPagination;

@@ -26,7 +26,7 @@ export default createGlobalStyle`
     --color-maroon: #451b1b;
     --color-maroon-red: #680822;
     --color-beige: #FBF6EE;
-
+    --color-green: #334b38;
 
     --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
     --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
@@ -101,26 +101,25 @@ export default createGlobalStyle`
   
   button {
     padding: 8px;
-    max-width: 90px;
+    max-width: 150px;
     border: none;
     border-radius: 5px;
     font-weight: 600;
     font-family: 'Frank Ruhl Libre', serif;
     font-size: 1.1em;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.19);
-
+    background-color: var(--color-saddle-brown);
+    color: white;
 
     &:hover {
-      ${"" /* box-shadow: 0 0 5px 1px var(--color-beige); */}
-      transform: scale(1.01);
-      ${'' /* box-shadow: 0 6px 10px 0 rgba(0,0,0,0.4), 0 6px 10px 0 rgba(0,0,0,0.19); */}
-      transition: 0.25s ease-in-out;
+      transform: scale(1.04);
+      transition: 0.1s ease-in-out;
+      background-color: var(--color-brick-red);
     }
 
     &:active {
-      transform: scale(.8);
+      transform: scale(.9);
       transition: 0.10s ease-in-out;
-
       box-shadow: 0 5px 8px 0 rgba(0,0,0,0.4), 0 5px 8px 0 rgba(0,0,0,0.19);
     }
 
