@@ -75,7 +75,7 @@ const NewBookSearch = () => {
 
     return (
         <StyledFormPage>
-            <h2>Add to your books</h2>
+            <h2>Add to my books</h2>
             <div className="forms">
                 <StyledForm onSubmit={handleSubmit}>
                     <h3>General Search</h3>
