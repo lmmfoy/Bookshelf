@@ -21,6 +21,10 @@ const StyledBookWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 50px;
+
+    .book-info {
+        width: 100%;
+    }
 `;
 
 export default SpecificBookPage;

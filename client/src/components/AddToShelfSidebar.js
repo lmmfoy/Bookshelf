@@ -100,19 +100,24 @@ const AddToShelf = ({
 };
 
 const StyledForm = styled.form`
-    border: 2px solid var(--color-burnt-orange-brown);
     padding: 20px;
     background-color: var(--color-philippine-bronze);
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
         0 6px 10px 0 rgba(0, 0, 0, 0.19);
-    height: 100%;
-    z-index: -1;
-    padding-top: 50px;
-    position: absolute;
-    margin: 150px 10px 0 0;
-    right: 0;
-    top: 0;
+    height: 100vh;
+    /* margin: -50px -50px 0 0; */
     width: 350px;
+    /* flex: 0 1 auto; */
+    /* z-index: -1;
+    padding-top: 50px; */
+    /* position: absolute;
+    margin: 160px 10px 0 0;
+    right: 0;
+    top: 0; */
+    align-self: flex-end;
+    position: absolute;
+    margin: -50px -50px 0 0;
+    
 
     h3 {
         font-size: 1.4em;
