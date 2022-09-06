@@ -5,8 +5,6 @@ import SpecificBookDetails from "../BookDetailsSpecific";
 import { useNavigate } from "react-router-dom";
 
 const SpecificBookPage = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    console.log(isLoading);
 
     const navigate = useNavigate();
 
@@ -24,8 +22,6 @@ const SpecificBookPage = () => {
                     <SpecificBookDetails
                         isbn={isbn}
                         setIsbnNotRecognized={setIsbnNotRecognized}
-                        isLoading={isLoading}
-                        setIsLoading={setIsLoading}
                     />
                 </div>
             </div>

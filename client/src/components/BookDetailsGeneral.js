@@ -8,6 +8,7 @@ import styled from "styled-components";
 const GeneralBookDetails = ({ book }) => {
     const navigate = useNavigate();
 
+    const [isLoading, setIsLoading] = useState(true)
     const [editions, setEditions] = useState([]);
     const [options, setOptions] = useState([]);
     const [sortedOptions, setSortedOptions] = useState([]);
@@ -48,6 +49,9 @@ const GeneralBookDetails = ({ book }) => {
                         ]);
                     }
                 })
+                .then(() => {
+                    setIsLoading(false)
+                })
                 .catch((err) => {
                     console.log(err);
                 });
@@ -69,6 +73,8 @@ const GeneralBookDetails = ({ book }) => {
 
         isbn && navigate(`/book/${isbn}`);
     };
+
+
 
     return (
         <StyledBookPage>
@@ -101,6 +107,7 @@ const GeneralBookDetails = ({ book }) => {
                         options={options}
                         isSearchable={true}
                         autoFocus={true}
+                        isLoading={isLoading}
                         // filterOption={}
                     />
                 </div>

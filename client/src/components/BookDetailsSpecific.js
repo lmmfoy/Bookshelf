@@ -12,9 +12,7 @@ import RingLoader from "react-spinners/RingLoader";
 
 const SpecificBookDetails = ({
     isbn,
-    setIsbnNotRecognized,
-    isLoading,
-    setIsLoading,
+    setIsbnNotRecognized
 }) => {
     const [authors, setAuthors] = useState([]);
     const { shelves, setShelves, siteUser } = useContext(UserContext);
@@ -23,6 +21,8 @@ const SpecificBookDetails = ({
         new Array(shelves.length).fill(false)
     );
     const [book, setBook] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+
 
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
