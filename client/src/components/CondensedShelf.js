@@ -184,7 +184,7 @@ const StyledShelf = styled.div`
 
     .loading-div {
         width: 100%;
-        height: 100%;        
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -219,9 +219,11 @@ const StyledShelf = styled.div`
     .tabs-outer {
         display: flex;
         width: 100%;
-        border-radius: 5px;
+        border-radius: 10px;
         border: 2px solid var(--color-burnt-orange-brown);
         box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
+        
+
     }
 
     .tab-list-container {
@@ -241,11 +243,11 @@ const StyledShelf = styled.div`
     .tab {
         cursor: pointer;
         padding: 20px 10px;
-        height: 100px;
+        height: 104.1px;
         display: flex;
         align-items: center;
         padding: 0 5px 0 10px;
-        box-shadow: -1px 1px 0px 1px rgba(0, 0, 0, 0.09);
+        /* box-shadow: -1px 1px 0px 1px rgba(0, 0, 0, 0.09); */
         border-radius: 10px 0 0 10px;
         /* background-color: var(--color-beige); */
         background-color: #eee4e4;
@@ -269,6 +271,7 @@ const StyledShelf = styled.div`
         font-weight: 600;
         color: white;
         background-color: var(--color-saddle-brown);
+        margin: -1px 0;
 
         &:hover {
             color: white;

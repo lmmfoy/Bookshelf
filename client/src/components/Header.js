@@ -11,47 +11,44 @@ const Header = () => {
 
     return (
         <StyledHeader>
-            <Link to="/">
-                <img
-                    className="logo"
-                    src="images/logo-white-germanika-1.png"
-                    alt="Bookshelf logo"
-                />
-                {/* <img className="logo" src="images/logo-white-germanika-2.png" alt="Bookshelf logo" /> 
-        <img className="logo" src="images/logo-white-kelly-2.png" alt="Bookshelf logo" />
-        <img className="logo" src="images/logo-white-kelly-1.png" alt="Bookshelf logo" />
-        {/* <img className="logo" src="images/logo-white-king.png" alt="Bookshelf logo" />  */}
-            </Link>
-            {/* If user is logged in, show welcome + logout button, else show login button */}
-            {isAuthenticated ? (
-                <div className="header-right">
-                    <h2>Welcome back {user.name[0]}</h2>
-                    <LogoutButton />
-                </div>
-            ) : (
-                <LoginButton />
-            )}
+            <div className="header-flex">
+                <Link to="/">
+                <img className="logo" src="images/logo.png" alt="Bookshelf logo" />
+                </Link>
+                {/* If user is logged in, show welcome + logout button, else show login button */}
+                {isAuthenticated ? (
+                    <div className="header-right">
+                        <h2>Welcome back {user.name[0]}</h2>
+                        <LogoutButton />
+                    </div>
+                ) : (
+                    <LoginButton />
+                )}
+            </div>
         </StyledHeader>
     );
 };
 
 const StyledHeader = styled.div`
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 100px 0 80px;
-    margin-bottom: 50px;
-    align-items: center;
-    height: 150px;
-    background-color: var(--color-brown-brown);
-    background-color: var(--color-coffee-brown);
-    background-color: var(--color-dark-red);
-    background-color: var(--color-american-bronze);
     background-color: var(--color-philippine-bronze);
-    border-radius: 10px 10px 0 0;
+    
+    
+    
+    .header-flex {
+        display: flex;
+        height: 180px;
+        justify-content: space-between;
+        padding: 0 100px 0 80px;
+        margin-bottom: 50px;
+        align-items: center;
+        max-width: 1900px;
+        border-radius: 10px 10px 0 0;
+        margin: 0 auto 50px auto;
 
+    }
     img {
-        height: 120px;
+        height: 150x;
     }
     .logo {
         color: white;
@@ -63,7 +60,6 @@ const StyledHeader = styled.div`
         align-items: center;
         gap: 35px;
         color: white;
-
     }
 `;
 

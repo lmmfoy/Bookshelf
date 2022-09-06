@@ -146,7 +146,7 @@ const StyledForm = styled.form`
     border: 2px solid var(--color-burnt-orange-brown);
     box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    margin: 25px;
+    margin: 23px 25px;
     padding: 20px;
     width: 400px;
     flex-grow: 1;

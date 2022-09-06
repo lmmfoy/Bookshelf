@@ -174,6 +174,7 @@ const StyledBookPage = styled.div`
         display: flex;
         justify-content: space-between;
         width: 100%;
+        height: 100%;
         gap: 50px;
 
         .column-1,
@@ -181,11 +182,12 @@ const StyledBookPage = styled.div`
         .column-3 {
             display: flex;
             flex-direction: column;
+            
         }
 
         .column-1 {
             align-self: flex-start;
-            width: 30%;
+            width: 100%;
             flex: 1 1 auto;
             max-width: 550px;
 
@@ -196,7 +198,6 @@ const StyledBookPage = styled.div`
                     max-height: 750px;
                     width: 100%;
                     flex: 1 1 auto;
-                    /* border: 2px solid var(--color-burnt-orange-brown); */
                     border-radius: 10px;
                 }
             }
@@ -211,8 +212,9 @@ const StyledBookPage = styled.div`
 
         .column-2 {
             width: 30%;
-            flex: 1 1 auto;
-            margin: 0 80px;
+            flex: 2 2 auto;
+            margin: 0 50px;
+
 
             .book-details {
                 width: 100%;
@@ -247,9 +249,9 @@ const StyledBookPage = styled.div`
         }
 
         .column-3 {
+            flex: 0 1 auto;
             width: 350px;
-            align-self: stretch;
-            justify-content: stretch;
+            min-height: 100%;
         }
     }
 `;

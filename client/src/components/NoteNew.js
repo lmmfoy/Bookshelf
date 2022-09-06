@@ -148,7 +148,6 @@ const StyledNotes = styled.div`
     border-radius: 10px;
     padding: 20px;
     min-width: 300px;
-    max-width: 500px;
     flex: 1 1 auto;
 
     display: flex;
