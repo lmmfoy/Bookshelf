@@ -113,7 +113,7 @@ export default createGlobalStyle`
     &:hover {
       ${"" /* box-shadow: 0 0 5px 1px var(--color-beige); */}
       transform: scale(1.01);
-      box-shadow: 0 6px 10px 0 rgba(0,0,0,0.4), 0 6px 10px 0 rgba(0,0,0,0.19);
+      ${'' /* box-shadow: 0 6px 10px 0 rgba(0,0,0,0.4), 0 6px 10px 0 rgba(0,0,0,0.19); */}
       transition: 0.25s ease-in-out;
     }
 
