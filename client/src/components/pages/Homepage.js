@@ -66,7 +66,7 @@ const Homepage = () => {
 const StyledHome = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    margin: 0 50px;
 
     .shelf {
         width: 80%;

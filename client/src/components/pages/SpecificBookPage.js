@@ -12,9 +12,6 @@ const SpecificBookPage = () => {
                 <div className="book-info">
                     <SpecificBookDetails isbn={isbn} />
                 </div>
-                <div className="bookshelf">
-                    <h2></h2>
-                </div>
             </div>
         </StyledBookWrapper>
     );
@@ -23,19 +20,7 @@ const SpecificBookPage = () => {
 const StyledBookWrapper = styled.div`
     display: flex;
     flex-direction: column;
-
-    h1 {
-        font-size: 2em;
-    }
-
-    .book-info {
-        display: flex;
-    }
-
-    img {
-        width: 300px;
-        height: 450px;
-    }
+    margin: 0 50px;
 `;
 
 export default SpecificBookPage;

@@ -39,7 +39,7 @@ const StyledHeader = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 50px 0 40px;
+    padding: 0 100px 0 80px;
     margin-bottom: 50px;
     align-items: center;
     height: 150px;
@@ -48,6 +48,7 @@ const StyledHeader = styled.div`
     background-color: var(--color-dark-red);
     background-color: var(--color-coffee-brown);
     background-color: var(--color-american-bronze);
+    border-radius: 10px 10px 0 0;
 
     img {
         height: 120px;

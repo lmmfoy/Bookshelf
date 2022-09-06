@@ -25,16 +25,18 @@ const SpecificBookDetails = ({ isbn }) => {
             .then((data) => {
                 setBook(data.data);
                 console.log(data.data);
+                return data.data.authors;
             })
 
             // Authors are listed in an array of ids and must be fetched separately
-            .then(() => {
-                book.authors &&
-                    book.authors.forEach((author) => {
+            .then((data) => {
+                data &&
+                    data.forEach((author) => {
                         // author.key takes the form "/authors/author_id"
                         fetch(`/search${author.key}`)
                             .then((res) => res.json())
                             .then((data) => {
+                                console.log(data.data);
                                 setAuthors((prev) => [prev, data.data]);
                             });
                     });
@@ -49,45 +51,53 @@ const SpecificBookDetails = ({ isbn }) => {
 
     return (
         <StyledBookPage>
-            {
-                // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
-                book.covers ? (
-                    <img
-                        src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg?`}
-                        alt={`${book.title} book cover`}
-                    />
-                ) : (
-                    <img src="/images/book-cover.png" alt="book cover" />
-                )
-            }
-            <div className="book-details">
-                <h2>{book.title}</h2>
-                <div>
-                    {authors.map((author) => {
-                        return (
-                            <p key={Math.floor(Math.random() * 14000000000)}>
-                                {author.name}
-                            </p>
-                        );
-                        //author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia
-                    })}
+            <div className="book">
+                {
+                    // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
+                    book.covers ? (
+                        <img
+                            src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg?`}
+                            alt={`${book.title} book cover`}
+                        />
+                    ) : (
+                        <img src="/images/book-cover.png" alt="book cover" />
+                    )
+                }
+                <div className="book-details">
+                    <h2>{book.title}</h2>
+                    <div className="author">
+                        {authors.map((author) => {
+                            return (
+                                <p
+                                    key={Math.floor(
+                                        Math.random() * 14000000000
+                                    )}
+                                >
+                                    {author.name}
+                                </p>
+                            );
+                            //author info - links, fuller_name, photos,  alternate_names, bio, wikipedia
+                        })}
+                    </div>
+                    <p>
+                        Published: {book.publish_date},{" "}
+                        {book.publish_places && (
+                            <span>{book.publish_places.join(", ")}, </span>
+                        )}{" "}
+                        {book.publishers && book.publishers.join(", ")}
+                    </p>
+                    <p>ISBN: {isbn}</p>
+                    <p>
+                        {(book.pagination || book.number_of_pages) && (
+                            <span>
+                                Pages: {book.pagination || book.number_of_pages}
+                            </span>
+                        )}
+                    </p>
+                    <p>{book.notes && book.notes}</p>
+                    {/* identifiers for different places: {book.identifiers} */}
                 </div>
-                <p>
-                    Published: {book.publish_date},{" "}
-                    {book.publish_places && (
-                        <span>{book.publish_places.join(", ")}, </span>
-                    )}{" "}
-                    {book.publishers && book.publishers.join(", ")}
-                </p>
-                <p>ISBN: {isbn}</p>
-                <p>
-                    {(book.pagination || book.number_of_pages) && (
-                        <span>
-                            Pages: {book.pagination || book.number_of_pages}
-                        </span>
-                    )}
-                </p>
-                <p>{book.notes && book.notes}</p>
+            </div>
                 <AddToShelf
                     shelves={shelves}
                     checkboxState={checkboxState}
@@ -95,60 +105,63 @@ const SpecificBookDetails = ({ isbn }) => {
                     siteUser={siteUser}
                     book={book}
                 />
-                {/* identifiers for different places: {book.identifiers} */}
+            <div className="notes">
+                <NewNote book={book} isbn={isbn} />
+                {isLoaded && <OldNotes book={book} />}
             </div>
-            {isLoaded && <OldNotes book={book} />}
-            <NewNote book={book} isbn={isbn} />
         </StyledBookPage>
     );
 };
 
 const StyledBookPage = styled.div`
-    display: flex;
+    margin: 0 350px 100px auto;
+    max-width: 1700px;
 
-    form {
-        fieldset {
-            border: 1px solid;
-            padding: 10px;
+    .book {
+        display: flex;
+        gap: 50px;
+        max-width: 1800px;
+        align-items: stretch;
 
-            .shelf-button {
-                position: relative;
-                width: 120px;
-                height: 50px;
-                margin: 5px;
-                /* float: left; */
-                border: 2px solid green;
-                box-sizing: border-box;
+        img {
+            min-width: 300px;
+            max-width: 500px;
+            max-height: 750px;
+            flex: 1 1 auto;
+            /* border: 2px solid var(--color-burnt-orange-brown); */
 
-                div {
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    line-height: 25px;
-                    transition: 0.5s ease;
-                }
+            border-radius: 10px;
+        }
 
-                /* Make the actual checkboxes invisible in order to have checkbox buttons */
-                input {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 120px;
-                    height: 45px;
-                    opacity: 0;
-                    cursor: pointer;
-                }
+        .book-details {
+            font-size: 1.1em;
+            /* border: 2px solid var(--color-burnt-orange-brown); */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: auto;
+            line-height: 1.3em;
+            flex: 2 1 auto;
+            max-width: 500px;
+            /* box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+                0 6px 10px 0 rgba(0, 0, 0, 0.19); */
 
-                input[type="checkbox"]:checked ~ div {
-                    background-color: pink;
-                }
+            h2 {
+                font-size: 2em;
+                line-height: 1.2em;
+                padding-bottom: 8px;
             }
-            input[type="submit"] {
-                margin: 20px;
+
+            .author {
+                font-size: 1.3em;
+                padding: 10px 0 30px;
             }
         }
+    }
+
+    .notes {
+        display: flex;
+        margin-top: 70px;
+        gap: 80px;
     }
 `;
 

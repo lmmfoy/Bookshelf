@@ -87,7 +87,7 @@ const BookTileSpecific = ({ book }) => {
 const StyledNewBook = styled.div`
     /* display: inline-block; */
     padding: 10px;
-    width: 170px;
+    width: 180px;
     flex: 0 1 auto;
     text-align: center;
     padding: 20px;

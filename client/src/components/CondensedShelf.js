@@ -3,9 +3,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { UserContext } from "./UserContext";
 import { useContext, useEffect, useState } from "react";
 import BookTileSpecific from "./BookTileSpecific";
-import Modal from "react-modal";
+import AddShelfModal from "./AddShelfModal";
 
-Modal.setAppElement(document.getElementById("root"));
 
 // This component goes on the homepage and displays the user's shelves
 const CondensedShelf = () => {
@@ -14,16 +13,12 @@ const CondensedShelf = () => {
     const [newShelf, setNewShelf] = useState({ name: "", description: "" });
 
     console.log(shelves);
-    let subtitle;
+
 
     // Causes 'Add Shelf' modal to appear
     const addShelf = () => {
         setModalOpen(true);
     };
-
-    // const afterOpenModal = () => {
-    //     subtitle.style.color = "#f00";
-    // };
 
     // Causes 'Add Shelf' modal close
     const closeModal = () => {
@@ -144,61 +139,14 @@ const CondensedShelf = () => {
                     </>
                 )}
             </Tabs>
-            <Modal
-                isOpen={modalOpen}
-                // onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                contentLabel="Add shelf"
-                // Adding style to the modal
-                className="_"
-                overlayClassName="_"
-                contentElement={(props, children) => (
-                    <ModalStyle {...props}>{children}</ModalStyle>
-                )}
-                overlayElement={(props, contentElement) => (
-                    <OverlayStyle {...props}>{contentElement}</OverlayStyle>
-                )}
-            >
-                <div>
-                    <button className="close-btn" onClick={closeModal}>
-                        x
-                    </button>
-                    <div className="modal-body">
-                        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
-                            Add a new bookshelf
-                        </h2>
-                        <p>
-                            Add a shelf name (for example, "To Read" or
-                            "Favourite Mysteries") and a description.
-                        </p>
-                        <form onSubmit={handleNewShelfSubmit}>
-                            <div>
-                                <label for="shelf-name">Shelf name:</label>
-                                <input
-                                    type="text"
-                                    id="shelf-name"
-                                    className="shelf-name"
-                                    name="name"
-                                    value={newShelf.name}
-                                    onChange={handleChange}
-                                    required
-                                />
-
-                                <label for="description">Description:</label>
-                                <textarea
-                                    id="description"
-                                    className="description"
-                                    name="description"
-                                    value={newShelf.description}
-                                    rows="4"
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <button type="submit">Add shelf</button>
-                        </form>
-                    </div>
-                </div>
-            </Modal>
+            <AddShelfModal
+                handleNewShelfSubmit={handleNewShelfSubmit}
+                handleChange={handleChange}
+                addShelf={addShelf}
+                newShelf={newShelf}
+                modalOpen={modalOpen}
+                closeModal={closeModal}
+            />
         </StyledShelf>
     );
 };
@@ -232,15 +180,14 @@ const StyledShelf = styled.div`
         display: flex;
         width: 100%;
         border-radius: 5px;
-        border: 1px solid #aaa;
-
+        border: 2px solid var(--color-burnt-orange-brown);
     }
 
     .tab-list-container {
-        width: 99px;
-        background-color: var(--color-beige);
-        border-right: 1px solid #aaa;
-        margin: -1px 0 -1px -1px;
+        width: 100px;
+        background-color: white;
+        border-right: 2px solid var(--color-burnt-orange-brown);
+        margin: -2px 0 -2px -3px;
     }
 
     .tab-list {
@@ -248,6 +195,7 @@ const StyledShelf = styled.div`
         margin: 0;
         padding: 0;
         height: 100%;
+        
     }
     /* .tab:first-child {
         border-top: none;
@@ -256,12 +204,19 @@ const StyledShelf = styled.div`
     .tab {
         cursor: pointer;
         padding: 20px 10px;
-        /* box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.09); */
-        border-radius: 10px;
-        /* background-color: var(--color-brick-red); */
-        border: 1px solid transparent;
-        /* border-right: 1px solid #aaa; */
+        height: 100px;
+        display: flex;
+        align-items: center;
+        padding: 0 5px 0 10px;
+        box-shadow: -1px 1px 0px 1px rgba(0, 0, 0, 0.09);
+        border-radius: 10px 0 0 10px;
         /* background-color: var(--color-beige); */
+        background-color: #eee4e4;
+        border-top: 1px solid #d6cbcb;
+        border-bottom: 1px solid #d6cbcb;
+        border-left: 1px solid #d6cbcb;
+        font-size: 1.1em;
+        /* border-right: 1px solid #aaa; */
 
         &:hover {
             color: var(--color-burnt-orange);
@@ -273,14 +228,10 @@ const StyledShelf = styled.div`
         }
     }
 
-
     .tab-panel {
         display: none;
         display: flex;
         flex-direction: column;
-
-
-        border-radius: 0 10px 10px 0;
 
         &:focus {
             display: block;
@@ -291,11 +242,11 @@ const StyledShelf = styled.div`
 
     .selected-tab {
         background-color: #fff;
-        border-color: #aaa;
-        border-right: 1px solid transparent;
+        border: 2px solid var(--color-burnt-orange-brown);
+        border-right: 2px solid transparent;
         color: black;
         border-radius: 10px 0 0 10px;
-        margin-right: -1px;
+        margin-right: -2px;
     }
 
     .book-tiles {
@@ -307,89 +258,6 @@ const StyledShelf = styled.div`
     }
 `;
 
-const ModalStyle = styled.div`
-    min-height: 18rem;
-    margin: 2rem;
-    padding: 20px;
-    background-color: white;
-    border-radius: 0.25rem;
-    /* display: flex;
-    flex-direction: column;
-    gap: 20px; */
 
-    .close-btn {
-        border-radius: 100%;
-        height: 25px;
-        width: 25px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: auto;
-        margin-bottom: -20px;
-        background-color: light-grey;
-    }
-
-    .modal-body {
-        margin: 40px;
-
-        h2 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-        }
-
-        p {
-            margin-bottom: 25px;
-        }
-
-        form {
-            display: flex;
-            gap: 50px;
-            align-items: flex-end;
-
-            div {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                width: 100%;
-
-                label {
-                    margin-bottom: -5px;
-                }
-
-                .shelf-name,
-                .description {
-                    width: 100%;
-                }
-
-                .shelf-name {
-                    margin-bottom: 10px;
-                }
-            }
-
-            button {
-                width: 100%;
-                height: 60px;
-                font-weight: 600;
-
-                &:hover {
-                    background-color: pink;
-                }
-            }
-        }
-    }
-`;
-
-const OverlayStyle = styled.div`
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10;
-    background: #212b3277;
-`;
 
 export default CondensedShelf;

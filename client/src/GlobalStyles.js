@@ -71,6 +71,11 @@ export default createGlobalStyle`
   body {
       line-height: 1;
       padding: 10px;
+      height: 100%;
+  }
+  html {
+    height: 100%;
+
   }
   ol, ul {
       list-style: none;
@@ -102,6 +107,34 @@ export default createGlobalStyle`
     font-weight: 600;
     font-family: 'Frank Ruhl Libre', serif;
     font-size: 1.1em;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.19);
+
+
+    &:hover {
+      ${"" /* box-shadow: 0 0 5px 1px var(--color-beige); */}
+      transform: scale(1.01);
+      box-shadow: 0 6px 10px 0 rgba(0,0,0,0.4), 0 6px 10px 0 rgba(0,0,0,0.19);
+      transition: 0.25s ease-in-out;
+    }
+
+    &:active {
+      transform: scale(.8);
+      transition: 0.10s ease-in-out;
+
+      box-shadow: 0 5px 8px 0 rgba(0,0,0,0.4), 0 5px 8px 0 rgba(0,0,0,0.19);
+    }
+
+    
 }
+
+  input {
+    border-radius: 5px;
+    border: 1px solid var(--color-burnt-orange-brown);
+
+  }
+
+  div {
+    border-color: var(--color-burnt-orange-brown);
+  }
 
 `;
