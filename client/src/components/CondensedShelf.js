@@ -4,9 +4,10 @@ import { UserContext } from "./UserContext";
 import { useContext, useEffect, useState } from "react";
 import BookTileSpecific from "./BookTileSpecific";
 import AddShelfModal from "./AddShelfModal";
+import RingLoader from "react-spinners/RingLoader";
 
 // This component goes on the homepage and displays the user's shelves
-const CondensedShelf = () => {
+const CondensedShelf = ({ isLoading }) => {
     const { shelves, setShelves, siteUser } = useContext(UserContext);
     const [modalOpen, setModalOpen] = useState(false);
     const [newShelf, setNewShelf] = useState({ name: "", description: "" });
@@ -63,87 +64,116 @@ const CondensedShelf = () => {
     };
 
     return (
-        <StyledShelf>
-            <h2>My Shelves</h2>
-            <Tabs
-                className="tabs-outer"
-                defaultFocus={true}
-                selectedTabClassName="selected-tab"
-            >
-                {shelves.length > 0 ? (
-                    <>
-                        <div className="tab-list-container">
-                            <TabList className="tab-list">
-                                {shelves.map((shelf) => {
-                                    return (
+        <>
+            {isLoading ? (
+                <div className="loading-div">
+                    {/* <RingLoader
+                        loading={isLoading}
+                        className="loader"
+                        color={"var(--color-burnt-orange-brown)"}
+                        size={100}
+                    /> */}
+                </div>
+            ) : (
+                <StyledShelf>
+                    <h2>My Shelves</h2>
+                    <Tabs
+                        className="tabs-outer"
+                        defaultFocus={true}
+                        selectedTabClassName="selected-tab"
+                    >
+                        {shelves.length > 0 ? (
+                            <>
+                                <div className="tab-list-container">
+                                    <TabList className="tab-list">
+                                        {shelves.map((shelf) => {
+                                            return (
+                                                <Tab
+                                                    key={Math.floor(
+                                                        Math.random() *
+                                                            14000000000
+                                                    )}
+                                                    className="tab"
+                                                >
+                                                    {shelf.name}
+                                                </Tab>
+                                            );
+                                        })}
                                         <Tab
-                                            key={Math.floor(
-                                                Math.random() * 14000000000
-                                            )}
-                                            className="tab"
+                                            className="tab add-new"
+                                            onClick={addShelf}
+                                            disabled={true}
                                         >
-                                            {shelf.name}
+                                            Add shelf
                                         </Tab>
-                                    );
-                                })}
-                                <Tab className="tab add-new" onClick={addShelf} disabled={true}>
-                                    Add shelf
-                                </Tab>
-                            </TabList>
-                        </div>
-                        <>
-                            {shelves.map((shelf) => {
-                                return (
-                                    <>
-                                        <TabPanel
-                                            className="tab-panel"
-                                            key={Math.floor(
-                                                Math.random() * 14000000000
-                                            )}
+                                    </TabList>
+                                </div>
+                                <>
+                                    {shelves.map((shelf) => {
+                                        return (
+                                            <>
+                                                <TabPanel
+                                                    className="tab-panel"
+                                                    key={Math.floor(
+                                                        Math.random() *
+                                                            14000000000
+                                                    )}
+                                                >
+                                                    <h3>{shelf.name}</h3>
+                                                    <h4>{shelf.description}</h4>
+                                                    <div className="book-tiles">
+                                                        {shelf.books &&
+                                                            shelf.books.map(
+                                                                (book) => {
+                                                                    return (
+                                                                        <BookTileSpecific
+                                                                            key={
+                                                                                book.key
+                                                                            }
+                                                                            book={
+                                                                                book
+                                                                            }
+                                                                        />
+                                                                    );
+                                                                }
+                                                            )}
+                                                    </div>
+                                                </TabPanel>
+                                            </>
+                                        );
+                                    })}
+                                    {/* Empty tab panel because react-tabs doesn't like having tabs without tab panels, and there is an extra tab due to the "Add shelf" button */}
+                                    <TabPanel />
+                                </>
+                            </>
+                        ) : (
+                            <>
+                                <div className="tab-list-container">
+                                    <TabList className="tab-list">
+                                        <Tab
+                                            className="tab"
+                                            onClick={addShelf}
+                                            disabled={true}
                                         >
-                                            <h3>{shelf.name}</h3>
-                                            <h4>{shelf.description}</h4>
-                                            <div className="book-tiles">
-                                                {shelf.books &&
-                                                    shelf.books.map((book) => {
-                                                        return (
-                                                            <BookTileSpecific
-                                                                key={book.key}
-                                                                book={book}
-                                                            />
-                                                        );
-                                                    })}
-                                            </div>
-                                        </TabPanel>
-                                    </>
-                                );
-                            })}
-                            {/* Empty tab panel because react-tabs doesn't like having tabs without tab panels, and there is an extra tab due to the "Add shelf" button */}
-                            <TabPanel />
-                        </>
-                    </>
-                ) : (
-                    <>
-                        <div className="tab-list-container">
-                            <TabList className="tab-list">
-                                <Tab className="tab" onClick={addShelf} disabled={true}>
-                                    Add shelf
-                                </Tab>
-                            </TabList>
-                        </div>
-                        <TabPanel />
-                    </>
-                )}
-            </Tabs>
-            <AddShelfModal
-                handleNewShelfSubmit={handleNewShelfSubmit}
-                handleChange={handleChange}
-                addShelf={addShelf}
-                newShelf={newShelf}
-                modalOpen={modalOpen}
-                closeModal={closeModal}
-            />
-        </StyledShelf>
+                                            Add shelf
+                                        </Tab>
+                                    </TabList>
+                                </div>
+                                <TabPanel />
+                            </>
+                        )}
+                    </Tabs>
+                    <AddShelfModal
+                        handleNewShelfSubmit={handleNewShelfSubmit}
+                        handleChange={handleChange}
+                        addShelf={addShelf}
+                        newShelf={newShelf}
+                        modalOpen={modalOpen}
+                        closeModal={closeModal}
+                    />
+                </StyledShelf>
+            )}
+        </>
     );
 };
 
@@ -151,6 +181,20 @@ const StyledShelf = styled.div`
     flex-grow: 1;
     flex-shrink: 1;
     padding: 0 30px 30px 30px;
+
+    .loading-div {
+        width: 100%;
+        height: 100%;        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+
+        .loader {
+            display: block;
+            align-self: center;
+        }
+    }
 
     h2 {
         font-size: 2em;

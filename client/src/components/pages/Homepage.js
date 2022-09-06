@@ -10,11 +10,12 @@ import { BookSearchContext } from "../CurrentBookSearchContext";
 import { UserContext } from "../UserContext";
 
 const Homepage = () => {
+    const [isLoading, setIsLoading] = useState(true);
     const currentSearchData = useContext(BookSearchContext);
     const { shelves, setShelves, siteUser, setSiteUser } =
         useContext(UserContext);
 
-    const { user, isLoading, isAuthenticated } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
 
     useEffect(() => {
         isAuthenticated &&
@@ -33,10 +34,12 @@ const Homepage = () => {
                 // Add the user's shelves to context if they exist
                 .then((json) => {
                     if (json.data.shelves) {
-                        console.log(json.data);
                         setShelves(json.data.shelves);
                     }
                     setSiteUser(user);
+                })
+                .then(() => {
+                    setIsLoading(false);
                 });
     }, []);
 
@@ -44,7 +47,8 @@ const Homepage = () => {
     return (
         <StyledHome>
             <div className="shelf">
-                <CondensedShelf />
+            
+                <CondensedShelf isLoading={isLoading}/>
             </div>
             <div className="search">
                 <NewBookSearch />
