@@ -18,7 +18,7 @@ const SearchPage = () => {
     // If pagination number changes, fetch 10 results based on new offset
     useEffect(() => {
         if (searchTerms.isbn) {
-            console.log(searchTerms.isbn);
+
         } else {
             fetch(
                 `/search/${searchQuery}&language=eng&limit=10&offset=${
@@ -27,6 +27,7 @@ const SearchPage = () => {
             )
                 .then((res) => res.json())
                 .then((data) => {
+                    console.log(data.data)
                     if (data.data.numFound === 0) {
                         setNoBooks(true);
                     } else {

@@ -8,7 +8,7 @@ import AddToShelf from "./AddToShelfSidebar";
 // This shows the details of a book found using the ISBN search
 // It will show only one specific edition of a book
 
-const SpecificBookDetails = ({ isbn }) => {
+const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
     const [authors, setAuthors] = useState([]);
     const { shelves, setShelves, siteUser } = useContext(UserContext);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -23,9 +23,12 @@ const SpecificBookDetails = ({ isbn }) => {
         fetch(`/search/isbn/${isbn}`)
             .then((res) => res.json())
             .then((data) => {
-                setBook(data.data);
-                console.log(data.data);
-                return data.data.authors;
+                if (!data.data.book) {
+                    setIsbnNotRecognized(true);
+                } else {
+                    setBook(data.data);
+                    return data.data.authors;
+                }
             })
 
             // Authors are listed in an array of ids and must be fetched separately
@@ -49,7 +52,7 @@ const SpecificBookDetails = ({ isbn }) => {
             });
     }, []);
 
-    console.log(authors)
+    console.log(authors);
     return (
         <StyledBookPage>
             <div className="book-wrapper">
@@ -93,10 +96,9 @@ const SpecificBookDetails = ({ isbn }) => {
                             })}
                         </div>
                         <p>
-                        
                             {book.publish_date && (
                                 <span>Published: {book.publish_date}, </span>
-                                ) }
+                            )}
                             {book.publish_places && (
                                 <span>{book.publish_places.join(", ")}, </span>
                             )}{" "}
@@ -219,7 +221,6 @@ const StyledBookPage = styled.div`
             justify-content: stretch;
         }
     }
-
 `;
 
 export default SpecificBookDetails;
