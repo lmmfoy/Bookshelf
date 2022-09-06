@@ -71,6 +71,11 @@ export default createGlobalStyle`
   body {
       line-height: 1;
       padding: 10px;
+      height: 100%;
+  }
+  html {
+    height: 100%;
+
   }
   ol, ul {
       list-style: none;

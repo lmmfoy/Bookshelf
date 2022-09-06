@@ -285,8 +285,6 @@ const StyledShelf = styled.div`
         display: flex;
         flex-direction: column;
 
-        border-radius: 0 10px 10px 0;
-
         &:focus {
             display: block;
             width: 100%;

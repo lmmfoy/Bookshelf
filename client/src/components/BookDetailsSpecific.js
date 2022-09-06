@@ -24,6 +24,7 @@ const SpecificBookDetails = ({ isbn }) => {
             .then((res) => res.json())
             .then((data) => {
                 setBook(data.data);
+                console.log(data.data);
                 return data.data.authors;
             })
 
@@ -75,7 +76,7 @@ const SpecificBookDetails = ({ isbn }) => {
                                     {author.name}
                                 </p>
                             );
-                            //author info - links, fuller_name, photos, birth_date, death_date, alternate_names, bio, wikipedia
+                            //author info - links, fuller_name, photos,  alternate_names, bio, wikipedia
                         })}
                     </div>
                     <p>
@@ -96,6 +97,7 @@ const SpecificBookDetails = ({ isbn }) => {
                     <p>{book.notes && book.notes}</p>
                     {/* identifiers for different places: {book.identifiers} */}
                 </div>
+            </div>
                 <AddToShelf
                     shelves={shelves}
                     checkboxState={checkboxState}
@@ -103,7 +105,6 @@ const SpecificBookDetails = ({ isbn }) => {
                     siteUser={siteUser}
                     book={book}
                 />
-            </div>
             <div className="notes">
                 <NewNote book={book} isbn={isbn} />
                 {isLoaded && <OldNotes book={book} />}
@@ -113,37 +114,41 @@ const SpecificBookDetails = ({ isbn }) => {
 };
 
 const StyledBookPage = styled.div`
-    margin: 0 50px;
+    margin: 0 350px 100px auto;
+    max-width: 1700px;
 
     .book {
         display: flex;
         gap: 50px;
         max-width: 1800px;
+        align-items: stretch;
 
         img {
             min-width: 300px;
             max-width: 500px;
+            max-height: 750px;
             flex: 1 1 auto;
-            padding: 50px;
-            border: 2px solid var(--color-burnt-orange-brown);
+            /* border: 2px solid var(--color-burnt-orange-brown); */
+
             border-radius: 10px;
         }
 
         .book-details {
             font-size: 1.1em;
-            border: 2px solid var(--color-burnt-orange-brown);
+            /* border: 2px solid var(--color-burnt-orange-brown); */
             padding: 20px;
             border-radius: 10px;
             margin-bottom: auto;
             line-height: 1.3em;
             flex: 2 1 auto;
-
+            max-width: 500px;
+            /* box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+                0 6px 10px 0 rgba(0, 0, 0, 0.19); */
 
             h2 {
                 font-size: 2em;
                 line-height: 1.2em;
                 padding-bottom: 8px;
-
             }
 
             .author {

@@ -101,9 +101,18 @@ const AddToShelf = ({
 
 const StyledForm = styled.form`
     border: 2px solid var(--color-burnt-orange-brown);
-    border-radius: 10px;
     padding: 20px;
     background-color: var(--color-philippine-bronze);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+        0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    height: 100%;
+    z-index: -1;
+    padding-top: 50px;
+    position: absolute;
+    margin: 150px 10px 0 0;
+    right: 0;
+    top: 0;
+    width: 350px;
 
     h3 {
         font-size: 1.4em;
@@ -114,7 +123,6 @@ const StyledForm = styled.form`
     fieldset {
         display: flex;
         gap: 20px;
-        
 
         legend {
             font-size: 1.3em;
@@ -186,7 +194,6 @@ const StyledForm = styled.form`
         }
 
         button {
-            
         }
     }
 `;

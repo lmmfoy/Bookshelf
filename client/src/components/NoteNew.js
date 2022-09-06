@@ -141,11 +141,16 @@ const NewNote = ({ book, isbn }) => {
 
 const StyledNotes = styled.div`
     flex: 1 1 auto;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+        0 6px 10px 0 rgba(0, 0, 0, 0.19);
 
-    border: 2px solid var(--color-burnt-orange-brown);
+    /* border: 2px solid var(--color-burnt-orange-brown); */
     border-radius: 10px;
     padding: 20px;
     min-width: 300px;
+    max-width: 500px;
+    flex: 1 1 auto;
+
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -192,7 +197,6 @@ const StyledNotes = styled.div`
             }
 
             &:focus {
-                
             }
         }
 
@@ -211,8 +215,6 @@ const StyledNotes = styled.div`
                 border: none;
                 outline: none;
                 border-style: hidden;
-
-                
             }
         }
     }

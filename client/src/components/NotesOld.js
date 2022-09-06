@@ -26,6 +26,7 @@ const OldNotes = ({ book }) => {
     console.log(notes);
     return (
         <StyledNotes>
+            <h3>My Notes</h3>
             {notes &&
                 notes.map((note) => {
                     return (
@@ -33,9 +34,10 @@ const OldNotes = ({ book }) => {
                             className="note"
                             key={Math.floor(Math.random() * 14000000000)}
                         >
-                            <h3>{note.date}</h3>
-                            <h3>{note.title}</h3>
+                            <h4>{note.title}</h4>
+                            <p className="date">{note.date}</p>
                             <p>{note.noteText}</p>
+                            <hr />
                         </div>
                     );
                 })}
@@ -44,15 +46,39 @@ const OldNotes = ({ book }) => {
 };
 
 const StyledNotes = styled.div`
-    flex: 2 1 auto;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    padding: 30px;
+
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+        0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+
+    h3 {
+        padding: 10px 30px;
+        border-bottom: 2px solid var(--color-burnt-orange-brown);
+        margin-bottom: 25px;
+    }
 
     .note {
-        border: 2px solid var(--color-burnt-orange-brown);
-        border-radius: 10px;
-        padding: 20px;
+        /* border: 2px solid var(--color-burnt-orange-brown); */
+        padding: 10px 30px;
+
+        h4 {
+            font-size: 1.1em;
+            padding-bottom: 10px;
+        }
+
+        .date {
+            padding-bottom: 20px;
+        }
+
+        hr {
+            margin-top: 30px;
+            width: 80%;
+            opacity: 40%;
+        }
     }
 `;
 
