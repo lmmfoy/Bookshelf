@@ -6,19 +6,19 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 import AppPagination from "../Pagination";
 import { BookSearchContext } from "../CurrentBookSearchContext";
+import RingLoader from "react-spinners/RingLoader";
 
 const SearchPage = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
     const { newBooks, searchTerms, searchQuery, page, setNewBooks } =
         useContext(BookSearchContext);
     const [noBooks, setNoBooks] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     console.log(newBooks, searchTerms);
 
     // If pagination number changes, fetch 10 results based on new offset
     useEffect(() => {
         if (searchTerms.isbn) {
-
         } else {
             fetch(
                 `/search/${searchQuery}&language=eng&limit=10&offset=${
@@ -27,13 +27,16 @@ const SearchPage = () => {
             )
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data.data)
+                    console.log(data.data);
                     if (data.data.numFound === 0) {
                         setNoBooks(true);
                     } else {
                         setNewBooks(data.data.bookInfo);
                         setNoBooks(false);
                     }
+                })
+                .then(() => {
+                    setIsLoading(false);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -43,25 +46,38 @@ const SearchPage = () => {
 
     console.log(newBooks);
     return (
-        <StyledSearchPage>
+        <StyledSearchPage setIsLoading={setIsLoading}>
             <NewBookSearch />
             <StyledResults>
-                {newBooks &&
-                    newBooks.map((book) => {
-                        {
-                            /* Only show works with ISBN numbers */
-                        }
-                        return (
-                            book.isbn && (
-                                <BookTileGeneral
-                                    className="tile"
-                                    key={book.key}
-                                    book={book}
-                                />
-                            )
-                        );
-                    })}
-                {noBooks && <div>NO RESULTS FOUND</div>}
+                {isLoading ? (
+                    <div className="loading-div">
+                        <RingLoader
+                            loading={isLoading}
+                            className="loader"
+                            color={"var(--color-burnt-orange-brown)"}
+                            size={100}
+                        />
+                    </div>
+                ) : (
+                    <>
+                        {newBooks &&
+                            newBooks.map((book) => {
+                                {
+                                    /* Only show works with ISBN numbers */
+                                }
+                                return (
+                                    book.isbn && (
+                                        <BookTileGeneral
+                                            className="tile"
+                                            key={book.key}
+                                            book={book}
+                                        />
+                                    )
+                                );
+                            })}
+                        {noBooks && <div>NO RESULTS FOUND</div>}
+                    </>
+                )}
             </StyledResults>
             <AppPagination className="pagination" />
         </StyledSearchPage>

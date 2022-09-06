@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BookSearchContext } from "./CurrentBookSearchContext";
 import { useNavigate } from "react-router-dom";
 
-const NewBookSearch = () => {
+const NewBookSearch = ({ setIsLoading }) => {
     const navigate = useNavigate();
     const {
         setNewBooks,
@@ -18,6 +18,9 @@ const NewBookSearch = () => {
 
     // This function fetches a list of books based on the search criteria (author and/or title), sets the information in Context, and navigates the user to the Search page to see the list of results
     const handleSubmit = (e) => {
+        
+        // If setIsLoading prop has been passed down, set it to true
+        setIsLoading && setIsLoading(true);
         e.preventDefault();
 
         // Get the user values and replace spaces with "+"
@@ -25,7 +28,6 @@ const NewBookSearch = () => {
             author: searchTerms.author.replace(/ /g, "+"),
             title: searchTerms.title.replace(/ /g, "+"),
         };
-        console.log(params)
 
         if (!params.author && !params.title) {
             return;
@@ -52,6 +54,9 @@ const NewBookSearch = () => {
                     setNewBooks(data.data.bookInfo); // Set all books that meet search criteria in state (in context)
                     setNumPages(data.data.numFound); // Set number of pages of books
                     navigate("/search"); // Navigate to Search page
+                })
+                .then(() => {
+                    setIsLoading(false);
                 })
                 .catch((err) => {
                     console.log(err);

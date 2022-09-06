@@ -5,6 +5,7 @@ import SpecificBookDetails from "../BookDetailsSpecific";
 import { useNavigate } from "react-router-dom";
 
 const SpecificBookPage = () => {
+
     const navigate = useNavigate();
 
     const isbn = useParams().isbn;
@@ -14,7 +15,6 @@ const SpecificBookPage = () => {
         navigate("/search");
     }
 
-    console.log(isbnNotRecognized)
     return (
         <StyledBookWrapper>
             <div>
