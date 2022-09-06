@@ -70,7 +70,9 @@ const Homepage = () => {
 const StyledHome = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 0 50px;
+    margin: 0 auto;
+    max-width: 1900px;
+
 
     .shelf {
         width: 80%;
