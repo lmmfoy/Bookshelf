@@ -268,12 +268,12 @@ const StyledShelf = styled.div`
     .add-new {
         font-weight: 600;
         color: white;
-        background-color: #9c461e;
+        background-color: var(--color-saddle-brown);
 
         &:hover {
             color: white;
             transform: scale(1.04);
-            transition: 0.25s ease-in-out;
+            transition: 0.1s ease-in-out;
         }
     }
 
