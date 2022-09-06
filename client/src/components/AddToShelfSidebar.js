@@ -93,7 +93,9 @@ const AddToShelf = ({
                         );
                     })}
                 </div>
-                <button type="submit">Add to shelf</button>
+                <button type="submit" className="submit">
+                    Add to shelf
+                </button>
             </fieldset>
         </StyledForm>
     );
@@ -101,7 +103,7 @@ const AddToShelf = ({
 
 const StyledForm = styled.form`
     padding: 20px;
-    background-color: var(--color-philippine-bronze);
+    background-color: var(--color-american-bronze);
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
         0 6px 10px 0 rgba(0, 0, 0, 0.19);
     height: 100vh;
@@ -117,7 +119,6 @@ const StyledForm = styled.form`
     align-self: flex-end;
     position: absolute;
     margin: -50px -50px 0 0;
-    
 
     h3 {
         font-size: 1.4em;
@@ -152,7 +153,7 @@ const StyledForm = styled.form`
             box-sizing: border-box;
             border-radius: 10px;
             color: var(--color-beige);
-            background-color: var(--color-burnt-orange);
+            background-color: var(--color-philippine-bronze);
 
             /*     --color-american-bronze: #3e1404;
         --color-philippine-bronze: #6a2b05;
@@ -198,7 +199,10 @@ const StyledForm = styled.form`
             }
         }
 
-        button {
+        .submit {
+            &:hover {
+                box-shadow: 0 0 5px 1px var(--color-beige);
+            }
         }
     }
 `;
