@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import BookTileSpecific from "./BookTileSpecific";
 import AddShelfModal from "./AddShelfModal";
 
-
 // This component goes on the homepage and displays the user's shelves
 const CondensedShelf = () => {
     const { shelves, setShelves, siteUser } = useContext(UserContext);
@@ -87,8 +86,8 @@ const CondensedShelf = () => {
                                         </Tab>
                                     );
                                 })}
-                                <Tab className="tab" onClick={addShelf}>
-                                    + Add shelf
+                                <Tab className="tab add-new" onClick={addShelf} disabled={true}>
+                                    Add shelf
                                 </Tab>
                             </TabList>
                         </div>
@@ -127,8 +126,8 @@ const CondensedShelf = () => {
                     <>
                         <div className="tab-list-container">
                             <TabList className="tab-list">
-                                <Tab className="tab" onClick={addShelf}>
-                                    + Add shelf
+                                <Tab className="tab" onClick={addShelf} disabled={true}>
+                                    Add shelf
                                 </Tab>
                             </TabList>
                         </div>
@@ -179,7 +178,6 @@ const StyledShelf = styled.div`
         border-radius: 5px;
         border: 2px solid var(--color-burnt-orange-brown);
         box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
-
     }
 
     .tab-list-container {
@@ -187,18 +185,14 @@ const StyledShelf = styled.div`
         background-color: white;
         border-right: 2px solid var(--color-burnt-orange-brown);
         margin: -2px 0 -2px -3px;
-    }
 
-    .tab-list {
-        /* border-bottom: 1px solid #aaa; */
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        
+        .tab-list {
+            /* border-bottom: 1px solid #aaa; */
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
     }
-    /* .tab:first-child {
-        border-top: none;
-    } */
 
     .tab {
         cursor: pointer;
@@ -227,12 +221,26 @@ const StyledShelf = styled.div`
         }
     }
 
+    .add-new {
+        font-weight: 600;
+        color: white;
+        background-color: #9c461e;
+
+        &:hover {
+            color: white;
+            transform: scale(1.04);
+            transition: 0.25s ease-in-out;
+        }
+    }
+
+    /* .tab:first-child {
+        border-top: none;
+    } */
+
     .tab-panel {
         display: none;
         display: flex;
         flex-direction: column;
-        
-
 
         &:focus {
             display: block;
@@ -257,10 +265,6 @@ const StyledShelf = styled.div`
         margin: 30px 50px;
         gap: 40px;
     }
-
-
 `;
-
-
 
 export default CondensedShelf;
