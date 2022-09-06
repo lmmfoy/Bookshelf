@@ -11,6 +11,7 @@ const SearchPage = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const { newBooks, searchTerms, searchQuery, page, setNewBooks } =
         useContext(BookSearchContext);
+    const [noBooks, setNoBooks] = useState(false);
 
     console.log(newBooks, searchTerms);
 
@@ -26,7 +27,12 @@ const SearchPage = () => {
             )
                 .then((res) => res.json())
                 .then((data) => {
-                    setNewBooks(data.data.bookInfo);
+                    if (data.data.numFound === 0) {
+                        setNoBooks(true);
+                    } else {
+                        setNewBooks(data.data.bookInfo);
+                        setNoBooks(false);
+                    }
                 })
                 .catch((err) => {
                     console.log(err);
@@ -34,6 +40,7 @@ const SearchPage = () => {
         }
     }, [page]);
 
+    console.log(newBooks);
     return (
         <StyledSearchPage>
             <NewBookSearch />
@@ -53,6 +60,7 @@ const SearchPage = () => {
                             )
                         );
                     })}
+                {noBooks && <div>NO RESULTS FOUND</div>}
             </StyledResults>
             <AppPagination className="pagination" />
         </StyledSearchPage>
