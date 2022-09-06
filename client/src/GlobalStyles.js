@@ -69,8 +69,6 @@ export default createGlobalStyle`
       display: block;
   }
   body {
-      line-height: 1;
-      padding: 10px;
       height: 100%;
   }
   html {

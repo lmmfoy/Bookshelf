@@ -8,7 +8,7 @@ import styled from "styled-components";
 const GeneralBookDetails = ({ book }) => {
     const navigate = useNavigate();
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
     const [editions, setEditions] = useState([]);
     const [options, setOptions] = useState([]);
     const [sortedOptions, setSortedOptions] = useState([]);
@@ -50,7 +50,7 @@ const GeneralBookDetails = ({ book }) => {
                     }
                 })
                 .then(() => {
-                    setIsLoading(false)
+                    setIsLoading(false);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -74,10 +74,9 @@ const GeneralBookDetails = ({ book }) => {
         isbn && navigate(`/book/${isbn}`);
     };
 
-
-
     return (
         <StyledBookPage>
+                <div className="cover">
             {
                 // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
                 book.cover_i ? (
@@ -89,6 +88,7 @@ const GeneralBookDetails = ({ book }) => {
                     <img src="images/book-cover.png" alt="book cover" />
                 )
             }
+                </div>
             <div className="book-details">
                 <h2>{book.title}</h2>
                 <p className="author">
@@ -120,29 +120,40 @@ const GeneralBookDetails = ({ book }) => {
 
 const StyledBookPage = styled.div`
     margin: 0 100px;
-    max-width: 1700px;
-
+    width: 100%;
     display: flex;
     gap: 50px;
+    justify-content: stretch;
+    height: 100vh;
 
+    .cover {
+        flex: 1 1 auto;
+        
+
+    }
     img {
         /* min-width: 400px;
         max-width: 500px; */
-        max-height: 900px;
-        flex: 1 1 auto;
         /* border: 2px solid var(--color-burnt-orange-brown); */
         border-radius: 10px;
+        max-height: 750px;
+
+        max-height: 750px;
+        flex: 1 1 auto;
+
+        /* flex: 0 1 auto; */
     }
 
     .book-details {
-        border: 1px solid;
-
+        border: 2px solid var(--color-burnt-orange-brown);
+        box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
         font-size: 1.1em;
         /* border: 2px solid var(--color-burnt-orange-brown); */
         padding: 20px;
         border-radius: 10px;
         line-height: 1.3em;
-        flex: 1 1 auto;
+        flex: 2 1 auto;
+        width: 100%;
         /* box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
             0 6px 10px 0 rgba(0, 0, 0, 0.19); */
 

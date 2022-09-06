@@ -117,8 +117,10 @@ const StyledForm = styled.form`
     right: 0;
     top: 0; */
     align-self: flex-end;
-    position: absolute;
+    /* position: absolute; */
     margin: -50px -50px 0 0;
+    position: sticky;
+    top: 0;
 
     h3 {
         font-size: 1.4em;
