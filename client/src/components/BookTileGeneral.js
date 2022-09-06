@@ -10,11 +10,6 @@ const BookTileGeneral = ({ book }) => {
         // navigate(`/book/title${book.key}`, { state: { type: "general", book: book } });
     };
 
-
-    if (book.edition_count > 1) {
-        console.log(book.edition_count, book.title);
-    }
-
     return (
         <StyledNewBook onClick={onBookClick}>
             <div className="img-div">

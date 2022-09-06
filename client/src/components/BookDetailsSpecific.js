@@ -23,7 +23,7 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
         fetch(`/search/isbn/${isbn}`)
             .then((res) => res.json())
             .then((data) => {
-                if (!data.data.book) {
+                if (typeof data.data === "string") {
                     setIsbnNotRecognized(true);
                 } else {
                     setBook(data.data);
@@ -39,7 +39,6 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
                         fetch(`/search${author.key}`)
                             .then((res) => res.json())
                             .then((data) => {
-                                console.log(data.data);
                                 setAuthors((prev) => [prev, data.data]);
                             });
                     });

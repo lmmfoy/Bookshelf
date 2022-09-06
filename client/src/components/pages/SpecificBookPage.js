@@ -13,6 +13,8 @@ const SpecificBookPage = () => {
     if (isbnNotRecognized) {
         navigate("/search");
     }
+
+    console.log(isbnNotRecognized)
     return (
         <StyledBookWrapper>
             <div>
