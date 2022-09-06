@@ -112,14 +112,14 @@ export default createGlobalStyle`
 
     &:hover {
       ${"" /* box-shadow: 0 0 5px 1px var(--color-beige); */}
-      transform: scale(1.02);
+      transform: scale(1.01);
       box-shadow: 0 6px 10px 0 rgba(0,0,0,0.4), 0 6px 10px 0 rgba(0,0,0,0.19);
       transition: 0.25s ease-in-out;
     }
 
     &:active {
-      transform: scale(1);
-      transition: 0.25s ease-in-out;
+      transform: scale(.8);
+      transition: 0.10s ease-in-out;
 
       box-shadow: 0 5px 8px 0 rgba(0,0,0,0.4), 0 5px 8px 0 rgba(0,0,0,0.19);
     }
