@@ -87,7 +87,7 @@ const BookTileSpecific = ({ book }) => {
 const StyledNewBook = styled.div`
     /* display: inline-block; */
     padding: 10px;
-    width: 180px;
+    width: 190px;
     flex: 0 1 auto;
     text-align: center;
     padding: 20px;
@@ -120,7 +120,7 @@ const StyledNewBook = styled.div`
 
                 img {
                     max-width: 100%;
-                    height: 170px;
+                    max-height: 170px;
                 }
             }
         }

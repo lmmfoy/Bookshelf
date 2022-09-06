@@ -232,6 +232,9 @@ const StyledShelf = styled.div`
         display: none;
         display: flex;
         flex-direction: column;
+        box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
+
+
 
         &:focus {
             display: block;
