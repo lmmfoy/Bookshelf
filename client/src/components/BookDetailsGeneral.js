@@ -119,15 +119,17 @@ const StyledBookPage = styled.div`
     gap: 50px;
 
     img {
-        min-width: 400px;
-        max-width: 500px;
-        max-height: 750px;
+        /* min-width: 400px;
+        max-width: 500px; */
+        max-height: 900px;
         flex: 1 1 auto;
         /* border: 2px solid var(--color-burnt-orange-brown); */
         border-radius: 10px;
     }
 
     .book-details {
+        border: 1px solid;
+
         font-size: 1.1em;
         /* border: 2px solid var(--color-burnt-orange-brown); */
         padding: 20px;

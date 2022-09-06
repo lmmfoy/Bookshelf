@@ -12,9 +12,6 @@ const CondensedShelf = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [newShelf, setNewShelf] = useState({ name: "", description: "" });
 
-    console.log(shelves);
-
-
     // Causes 'Add Shelf' modal to appear
     const addShelf = () => {
         setModalOpen(true);
@@ -181,6 +178,8 @@ const StyledShelf = styled.div`
         width: 100%;
         border-radius: 5px;
         border: 2px solid var(--color-burnt-orange-brown);
+        box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
+
     }
 
     .tab-list-container {
@@ -232,8 +231,7 @@ const StyledShelf = styled.div`
         display: none;
         display: flex;
         flex-direction: column;
-        box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
-
+        
 
 
         &:focus {
@@ -259,6 +257,8 @@ const StyledShelf = styled.div`
         margin: 30px 50px;
         gap: 40px;
     }
+
+
 `;
 
 
