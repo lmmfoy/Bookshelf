@@ -10,9 +10,9 @@ const bookSearch = async (req, res) => {
         const parsedResult = await JSON.parse(result);
         // The book objects returned have a lot of keys, just return some of these
         const bookInfo = parsedResult.docs.map((item) => {
-            item.edition_key.map(key => {
-                console.log(key)
-            })
+            // item.edition_key.map(key => {
+            //     console.log(key)
+            // })
             const {
                 key,
                 title,
@@ -49,7 +49,7 @@ const bookSearch = async (req, res) => {
                 edition_key,
             };
         });
-        // console.log(parsedResult)
+
 
         const bookObject = {bookInfo: bookInfo, numFound: parsedResult.num_found, start: parsedResult.start}
         res.status(200).json({ status: 200, data: bookObject});

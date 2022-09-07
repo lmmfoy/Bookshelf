@@ -50,7 +50,6 @@ const NewBookSearch = ({ setIsLoading }) => {
             fetch(`/search/${search_query}&language=eng&limit=10`)
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data.data);
                     setNewBooks(data.data.bookInfo); // Set all books that meet search criteria in state (in context)
                     setNumPages(data.data.numFound); // Set number of pages of books
                     navigate("/search"); // Navigate to Search page

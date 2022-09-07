@@ -14,7 +14,7 @@ const client = new MongoClient(MONGO_URI, options);
 
 const addNote = async (req, res) => {
     const { isbn, note, email, key } = req.body;
-    console.log(isbn, note, email, key);
+
 
     try {
         await client.connect();
@@ -41,7 +41,7 @@ const addNote = async (req, res) => {
                 });
             newShelves.push(shelf);
         });
-        console.log(newShelves);
+
 
         const added = await db
             .collection("users")

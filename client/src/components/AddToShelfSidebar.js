@@ -27,10 +27,7 @@ const AddToShelf = ({
             return checkboxState[index] === true;
         });
 
-        console.log(chosenShelves);
-
         chosenShelves.forEach((shelf) => {
-            console.log(shelf);
             fetch("/user/shelves", {
                 method: "PATCH",
                 body: JSON.stringify({
@@ -47,7 +44,6 @@ const AddToShelf = ({
             })
                 .then((res) => res.json())
                 .then((json) => {
-                    console.log(json.data);
                     json.data.modifiedCount === 0 &&
                         alert(
                             `This edition has already been added to "${shelf.name}", cannot add again.`

@@ -13,7 +13,6 @@ const options = {
 const client = new MongoClient(MONGO_URI, options);
 
 const getShelf = async(req, res) => {
-    console.log(req)
 
     try {
         await client.connect();

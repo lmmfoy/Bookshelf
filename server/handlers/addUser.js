@@ -15,7 +15,7 @@ const client = new MongoClient(MONGO_URI, options);
 // Add new user to database
 const addUser = async (req, res) => {
     const {_id, email} = req.body;
-    console.log(_id, email)
+
 
     try {
         await client.connect();

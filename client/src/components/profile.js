@@ -8,7 +8,7 @@ const Profile = () => {
     return <div>Loading ...</div>;
   }
 
-  console.log(user)
+
 
   return (
     // Check to make sure Auth0 has authenticated user before showing user info

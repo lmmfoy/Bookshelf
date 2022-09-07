@@ -5,7 +5,7 @@ import styled from "styled-components";
 const BookTileSpecific = ({ book }) => {
     const navigate = useNavigate();
     const [authors, setAuthors] = useState([]);
-    console.log(book);
+  
 
     const onBookClick = () => {
         navigate(`/book/${book.isbn || book.isbn_10 || book.isbn_13}`);

@@ -14,7 +14,7 @@ const SearchPage = () => {
     const [noBooks, setNoBooks] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    console.log(newBooks, searchTerms);
+
 
     // If pagination number changes, fetch 10 results based on new offset
     useEffect(() => {
@@ -27,7 +27,6 @@ const SearchPage = () => {
             )
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data.data);
                     if (data.data.numFound === 0) {
                         setNoBooks(true);
                     } else {
@@ -44,7 +43,7 @@ const SearchPage = () => {
         }
     }, [page]);
 
-    console.log(newBooks);
+
     return (
         <StyledSearchPage setIsLoading={setIsLoading}>
             <NewBookSearch />

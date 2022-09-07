@@ -14,7 +14,7 @@ const GeneralBookDetails = ({ book }) => {
     const [sortedOptions, setSortedOptions] = useState([]);
     const [selectedOption, setSelectedOption] = useState(null);
 
-    console.log(editions);
+   
     useEffect(() => {
         book.edition_key.forEach((key) => {
             fetch(`/search/ol/${key}`)
@@ -60,8 +60,7 @@ const GeneralBookDetails = ({ book }) => {
 
     // When an edition is selected, the reader is navigated to that edition's page
     const onChange = (e) => {
-        console.log(e.book);
-        console.log(e.book.isbn_10);
+
         let isbn;
         if (e.book.isbn_13) {
             isbn = e.book.isbn_13[0];

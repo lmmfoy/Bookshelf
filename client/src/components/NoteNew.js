@@ -18,7 +18,6 @@ const NewNote = ({ book, isbn }) => {
 
     const handleChange = (e) => {
         const value = e.target.value;
-        console.log(value);
         setNote({ ...note, [e.target.name]: value });
     };
 
@@ -70,7 +69,6 @@ const NewNote = ({ book, isbn }) => {
         })
             .then((res) => res.json())
             .then((json) => {
-                console.log(json);
                 // Update shelves
                 setShelves(json.data);
                 // Empty new note values
@@ -78,7 +76,6 @@ const NewNote = ({ book, isbn }) => {
             });
     };
 
-    console.log(shelves);
 
     return (
         <StyledNotes>
@@ -121,19 +118,6 @@ const NewNote = ({ book, isbn }) => {
                 />
             </div>
 
-            {/* <div>
-                    <EditText
-                        name="notes"
-                        rows={4}
-                        style={{ paddingTop: 0 }}
-                        placeholder="Enter notes"
-                        value={note.noteText}
-                        onChange={handleChange}
-                        // onSave={() => {
-                        //     console.log(note)
-                        // }}
-                    />
-                </div> */}
             <button onClick={handleSubmit}>Enter</button>
         </StyledNotes>
     );

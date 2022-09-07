@@ -43,7 +43,7 @@ const Homepage = () => {
                 });
     }, []);
 
-    console.log(shelves);
+
     return (
         <StyledHome>
             <div className="shelf">

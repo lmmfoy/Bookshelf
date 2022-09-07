@@ -6,7 +6,6 @@ const OldNotes = ({ book }) => {
     const { shelves, setShelves, siteUser } = useContext(UserContext);
     const [notes, setNotes] = useState([]);
 
-    console.log(book);
 
     useEffect(() => {
         // Check each shelf for the current book. If found, return an array with the book object (filter out any 'undefined' results)
@@ -23,7 +22,7 @@ const OldNotes = ({ book }) => {
         setNotes(oldNotes);
     }, [shelves]);
 
-    console.log(notes);
+
     return (
         <StyledNotes>
             <h3>My Notes</h3>

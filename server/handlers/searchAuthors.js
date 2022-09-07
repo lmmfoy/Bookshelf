@@ -7,7 +7,7 @@ const searchAuthors = async(req, res) => {
     try {
         const result = await request(`https://openlibrary.org/authors/${author_id}.json`);
         const parsedResult = await JSON.parse(result);
-        console.log(parsedResult)
+
 
         res.status(200).json({ status: 200, data: parsedResult});
     } catch (err) {
