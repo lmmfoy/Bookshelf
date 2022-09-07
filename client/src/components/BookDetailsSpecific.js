@@ -70,21 +70,23 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
 
                     <div className="column-0"></div>
                     <div className="column-1">
-                        {
-                            // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
-                            book.covers ? (
-                                <img
-                                    src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg?`}
-                                    alt={`${book.title} book cover`}
-                                />
-                            ) : (
-                                <img
-                                    src="/images/book-cover.png"
-                                    alt="book cover"
-                                    className="generic-cover"
-                                />
-                            )
-                        }
+                        <div className="cover-div">
+                            {
+                                // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
+                                book.covers ? (
+                                    <img
+                                        src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg?`}
+                                        alt={`${book.title} book cover`}
+                                    />
+                                ) : (
+                                    <img
+                                        src="/images/book-cover.png"
+                                        alt="book cover"
+                                        className="generic-cover"
+                                    />
+                                )
+                            }
+                        </div>
 
                         <div className="new-notes">
                             <NewNote book={book} isbn={isbn} />
@@ -133,7 +135,9 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
                             </p>
                             <div className="space-div"></div>
                             <div className="old-notes">
-                                {!isLoading && <OldNotes book={book} />}
+                                <div>
+                                    {!isLoading && <OldNotes book={book} />}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,6 +159,7 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
 
 const StyledBookPage = styled.div`
     /* margin: 0 350px 100px auto; */
+    height: 100%;
 
     .loading-div {
         height: 60vh;
@@ -210,17 +215,23 @@ const StyledBookPage = styled.div`
             align-self: flex-start;
             flex: 1 1 auto;
             max-width: 550px;
-            img {
-                /* max-height: 750px; */
-                width: 100%;
-                flex: 1 1 auto;
-                border-radius: 10px;
-                box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 10px 0 rgba(0, 0, 0, 0.19);
-            }
 
-            .generic-cover {
-                box-shadow: none;
+            .cover-div {
+                width: 100%;
+                min-height: 600px;
+
+                img {
+                    /* max-height: 750px; */
+                    width: 100%;
+                    flex: 1 1 auto;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+                        0 6px 10px 0 rgba(0, 0, 0, 0.19);
+                }
+
+                .generic-cover {
+                    box-shadow: none;
+                }
             }
 
             .new-notes {
@@ -257,15 +268,22 @@ const StyledBookPage = styled.div`
                 height: 300px;
                 flex: 1 1 auto;
             }
+
             .old-notes {
                 width: 100%;
-                height: 100px;
+                height: 100%;
+                margin-bottom: 50px;
+                
+                div {
+                    height: 100%;
+                }
             }
         }
         .column-3 {
             flex: 1 1 auto;
             max-width: 500px;
             min-height: 100%;
+            
         }
     }
 `;

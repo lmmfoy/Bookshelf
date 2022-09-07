@@ -110,7 +110,6 @@ const StyledForm = styled.form`
     margin: -90px 0 0 0;
     position: sticky;
     top: 0;
-   
     width: 100%;
 
     h3 {
@@ -140,7 +139,7 @@ const StyledForm = styled.form`
                     height: 70px;
                     margin: 5px;
                     /* float: left; */
-                    border: px solid var(--color-beige);
+                    /* border: px solid var(--color-beige); */
                     box-sizing: border-box;
                     border-radius: 10px;
                     color: var(--color-beige);

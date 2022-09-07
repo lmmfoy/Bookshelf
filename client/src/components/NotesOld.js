@@ -46,13 +46,15 @@ const OldNotes = ({ book }) => {
 };
 
 const StyledNotes = styled.div`
-    
     /* flex: 1 1 auto; */
     display: flex;
     flex-direction: column;
     padding: 30px;
+    /* height: 100%; */
     /* width: 100%; */
-    
+    overflow-y: scroll;
+    scrollbar-color: var(--color-green) var(--color-burnt-orange-brown);
+    scrollbar-width: thin;
 
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
         0 6px 10px 0 rgba(0, 0, 0, 0.19);
