@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
-import Profile from "./Profile";
 
 const Header = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
 
     return (
         <StyledHeader>
@@ -18,7 +17,7 @@ const Header = () => {
                 {/* If user is logged in, show welcome + logout button, else show login button */}
                 {isAuthenticated ? (
                     <div className="header-right">
-                        <h2>Welcome back {user.name[0]}</h2>
+                        <h2>Welcome back {user.nickname}</h2>
                         <LogoutButton />
                     </div>
                 ) : (
@@ -34,8 +33,6 @@ const StyledHeader = styled.div`
     background-color: var(--color-philippine-bronze);
     margin-bottom: 90px;
 
-    
-    
     .header-flex {
         display: flex;
         height: 180px;

@@ -1,24 +1,22 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
-import { BookSearchContext } from "./CurrentBookSearchContext";
 import { useNavigate } from "react-router-dom";
 
+import { BookSearchContext } from "./CurrentBookSearchContext";
+
+// Search page, navigated to from the homepage when an author/title search is made
 const NewBookSearch = ({ setIsLoading }) => {
     const navigate = useNavigate();
     const {
         setNewBooks,
-        page,
-        setPage,
         setNumPages,
         searchTerms,
         setSearchTerms,
-        searchQuery,
         setSearchQuery,
     } = useContext(BookSearchContext);
 
     // This function fetches a list of books based on the search criteria (author and/or title), sets the information in Context, and navigates the user to the Search page to see the list of results
     const handleSubmit = (e) => {
-        
         // If setIsLoading prop has been passed down, set it to true
         setIsLoading && setIsLoading(true);
         e.preventDefault();
@@ -29,12 +27,10 @@ const NewBookSearch = ({ setIsLoading }) => {
             title: searchTerms.title.replace(/ /g, "+"),
         };
 
+        // If there are no search terms, return
         if (!params.author && !params.title) {
             return;
         } else {
-            // Save the search terms so that when user searches on homepage and is redirected to Search page, their search terms remain
-            // setSearchTerms(params);
-
             // Filter out the items in the params with empty values, then join the search parameters together
             const search_query = Object.keys(params)
                 .filter((param) => params[param])
@@ -50,7 +46,6 @@ const NewBookSearch = ({ setIsLoading }) => {
             fetch(`/search/${search_query}&language=eng&limit=10`)
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data.data);
                     setNewBooks(data.data.bookInfo); // Set all books that meet search criteria in state (in context)
                     setNumPages(data.data.numFound); // Set number of pages of books
                     navigate("/search"); // Navigate to Search page
@@ -68,11 +63,10 @@ const NewBookSearch = ({ setIsLoading }) => {
     // This function fetches the result of the ISBN search, sets the information in Context, and navigates directly to the book page
     const handleISBNSubmit = (e) => {
         e.preventDefault();
-        // setSearchTerms({ isbn: e.target[0].value });
-
         navigate(`/book/${e.target[0].value}`);
     };
 
+    // Keeps track of search terms being input
     const handleChange = (e) => {
         const value = e.target.value;
         setSearchTerms({ ...searchTerms, [e.target.name]: value });
@@ -127,7 +121,6 @@ const NewBookSearch = ({ setIsLoading }) => {
 
 const StyledFormPage = styled.div`
     margin: 0 25px 25px 25px;
-    /* max-width: 700px; */
     min-width: 400px;
 
     h2 {

@@ -14,20 +14,22 @@ const client = new MongoClient(MONGO_URI, options);
 
 // Add new user to database
 const addUser = async (req, res) => {
-    const {_id, email} = req.body;
-    console.log(_id, email)
+    const { _id, email } = req.body;
 
     try {
         await client.connect();
         const db = client.db("Users");
 
         // Check to see whether user is new
-        const priorUser = await (await db.collection("users").findOne({_id}))
-        
+        const priorUser = await await db.collection("users").findOne({ _id });
+
         if (priorUser) {
             res.status(200).json({ status: 200, data: priorUser });
         } else {
-            const inserted = await db.collection("users").insertOne({ _id: _id, email: email })
+            // If a new user, add to database
+            const inserted = await db
+                .collection("users")
+                .insertOne({ _id: _id, email: email });
             res.status(200).json({ status: 200, data: inserted });
         }
     } catch (err) {

@@ -12,16 +12,16 @@ const options = {
 
 const client = new MongoClient(MONGO_URI, options);
 
+// Add a note to a book object in the user's object in the database
 const addNote = async (req, res) => {
-    const { isbn, note, email, key } = req.body;
-    console.log(isbn, note, email, key);
+    const { note, email, key } = req.body;
 
     try {
         await client.connect();
         const db = client.db("Users");
 
+        // Find user and create a newShelves array
         const user = await db.collection("users").findOne({ email: email });
-
         const newShelves = [];
 
         // Check each shelf to see if it has books, then check those to see if the current book is among them
@@ -41,9 +41,9 @@ const addNote = async (req, res) => {
                 });
             newShelves.push(shelf);
         });
-        console.log(newShelves);
 
-        const added = await db
+        // Update the shelves in the database to the new array, to include the new note
+        await db
             .collection("users")
             .updateOne({ email: email }, { $set: { shelves: newShelves } });
 

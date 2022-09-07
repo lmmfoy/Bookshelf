@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+// These book cards show on the search page after an author/title search
 const BookTileGeneral = ({ book }) => {
     const navigate = useNavigate();
 
+    // When user selects book, sends them to the GeneralBookPage
     const onBookClick = () => {
         navigate("/book", { state: { book: book } });
-        // navigate(`/book/title${book.key}`, { state: { type: "general", book: book } });
     };
 
     return (
@@ -21,13 +21,18 @@ const BookTileGeneral = ({ book }) => {
                             alt={`${book.title} book cover`}
                         />
                     ) : (
-                        <img src="images/book-cover.png" alt="book cover" />
+                        <img
+                            className="generic-cover"
+                            src="images/book-cover.png"
+                            alt="book cover"
+                        />
                     )
                 }
             </div>
             <div className="book-info">
                 <h4>{book.title && book.title}</h4>
                 <>
+                    {/* If there are more than 2 authors, just show the first 2 */}
                     {book.author_name &&
                         (book.author_name.length > 2 ? (
                             <h5>
@@ -87,6 +92,11 @@ const StyledNewBook = styled.div`
         box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.33);
         height: 200px;
         margin: -60px 0 0 0;
+        background: transparent;
+    }
+
+    .generic-cover {
+        background: transparent;
     }
 
     .book-info {
@@ -95,7 +105,6 @@ const StyledNewBook = styled.div`
         height: 250px;
         border-radius: 10px;
         overflow: hidden;
-        /* border: 2px solid black; */
     }
 `;
 

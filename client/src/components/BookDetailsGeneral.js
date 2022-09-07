@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -9,17 +9,22 @@ const GeneralBookDetails = ({ book }) => {
     const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState(true);
-    const [editions, setEditions] = useState([]);
+    // The different editions of the work
     const [options, setOptions] = useState([]);
-    const [sortedOptions, setSortedOptions] = useState([]);
     const [selectedOption, setSelectedOption] = useState(null);
 
-    console.log(editions);
+    // Returns the editions of the work
     useEffect(() => {
+        // Each work in the OpenLibrary API includes a list of edition keys to specific editions of the work
+        // Map through these and fetch the specific editions
         book.edition_key.forEach((key) => {
             fetch(`/search/ol/${key}`)
                 .then((res) => res.json())
                 .then((data) => {
+                    // Only return those that are in English or don't indicate which language they're in,
+                    // are actually books, or don't indicate what format they are,
+                    // have a publish year/date, have publisher and author data, and have an ISBN
+                    // The object keys returned are quite uneven, hence the various conditionals
                     if (
                         (!data.data.languages ||
                             data.data.languages[0].key === "/languages/eng") &&
@@ -35,7 +40,7 @@ const GeneralBookDetails = ({ book }) => {
                         data.data.authors &&
                         (data.data.isbn_13 || data.data.isbn_10)
                     ) {
-                        setEditions((prev) => [...prev, data.data]);
+                        // Add the edition to the options state
                         setOptions((prev) => [
                             ...prev,
                             {
@@ -60,8 +65,7 @@ const GeneralBookDetails = ({ book }) => {
 
     // When an edition is selected, the reader is navigated to that edition's page
     const onChange = (e) => {
-        console.log(e.book);
-        console.log(e.book.isbn_10);
+        // There are different ISBN possibilities
         let isbn;
         if (e.book.isbn_13) {
             isbn = e.book.isbn_13[0];
@@ -94,7 +98,6 @@ const GeneralBookDetails = ({ book }) => {
                 <p className="author">
                     {book.author_name && book.author_name.join(", ")}
                 </p>
-                {/* <p>{book.contributions && book.contributions.join(", ")}</p> */}
                 <p className="date">
                     First published: {book.first_publish_year}
                 </p>
@@ -108,11 +111,9 @@ const GeneralBookDetails = ({ book }) => {
                         isSearchable={true}
                         autoFocus={true}
                         isLoading={isLoading}
-                        // filterOption={}
+                        className="select-dropdown"
                     />
                 </div>
-
-                {/* publisher: {book.publisher} */}
             </div>
         </StyledBookPage>
     );
@@ -162,6 +163,33 @@ const StyledBookPage = styled.div`
 
         .select {
             padding: 40px 0 10px;
+        }
+
+        .select-dropdown {
+            border: 1px solid;
+        }
+
+        input {
+        }
+        .css-6j8wv5-Input {
+            background-color: var(--color-beige);
+        }
+
+        .css-319lph-ValueContainer {
+            background-color: var(--color-beige);
+        }
+
+        .css-1s2u09g-control {
+            border: none;
+            outline: none;
+        }
+
+        .dZucby .book-details .css-1s2u09g-control {
+            background-color: var(--color-beige);
+        }
+
+        .css-1hb7zxy-IndicatorsContainer {
+            background-color: var(--color-beige);
         }
     }
 `;

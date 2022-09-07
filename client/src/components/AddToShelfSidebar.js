@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// This sidebar is a component on the SpecificBookPage. It allows users to add the book to their shelves.
 const AddToShelf = ({
     shelves,
     checkboxState,
@@ -20,17 +21,17 @@ const AddToShelf = ({
         setCheckboxState(updatedState);
     };
 
+    // When "Add to Shelf" button clicked, book is added to indicated shelf
     const handleAddBookSubmit = (e) => {
         e.preventDefault();
 
+        // Identifies the chosen shelf
         const chosenShelves = shelves.filter((shelf, index) => {
             return checkboxState[index] === true;
         });
 
-        console.log(chosenShelves);
-
+        // Adds the book to the shelf unless it's already there
         chosenShelves.forEach((shelf) => {
-            console.log(shelf);
             fetch("/user/shelves", {
                 method: "PATCH",
                 body: JSON.stringify({
@@ -47,11 +48,12 @@ const AddToShelf = ({
             })
                 .then((res) => res.json())
                 .then((json) => {
-                    console.log(json.data);
+                    // No modifiction made because book already on shelf
                     json.data.modifiedCount === 0 &&
                         alert(
                             `This edition has already been added to "${shelf.name}", cannot add again.`
                         );
+                    // Modification to shelf made
                     json.data.modifiedCount === 1 &&
                         alert(
                             `This edition has successfully been added to "${shelf.name}"`
@@ -138,8 +140,6 @@ const StyledForm = styled.form`
                     max-width: 350px;
                     height: 70px;
                     margin: 5px;
-                    /* float: left; */
-                    /* border: px solid var(--color-beige); */
                     box-sizing: border-box;
                     border-radius: 10px;
                     color: var(--color-beige);
@@ -172,7 +172,7 @@ const StyledForm = styled.form`
                     }
 
                     input[type="checkbox"]:checked ~ div {
-                        background-color: var(--color-american-bronze);
+                        background-color: var(--color-saddle-brown);
                         border-radius: 10px;
                     }
                 }

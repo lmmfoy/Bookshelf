@@ -1,53 +1,54 @@
-import NewBookSearch from "../NewBookSearch";
-import BookTileGeneral from "../BookTileGeneral";
-
 import { useContext, useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
-import AppPagination from "../Pagination";
-import { BookSearchContext } from "../CurrentBookSearchContext";
 import RingLoader from "react-spinners/RingLoader";
 
+import NewBookSearch from "../NewBookSearch";
+import BookTileGeneral from "../BookTileGeneral";
+import AppPagination from "../Pagination";
+
+import { BookSearchContext } from "../CurrentBookSearchContext";
+
+// This page renders when a user searches by author or title from the homepage.
+// It allows for author/title searches and searches by ISBN
 const SearchPage = () => {
     const { newBooks, searchTerms, searchQuery, page, setNewBooks } =
         useContext(BookSearchContext);
+    // This keeps track of searches that yield no results
     const [noBooks, setNoBooks] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    console.log(newBooks, searchTerms);
-
-    // If pagination number changes, fetch 10 results based on new offset
+    // If the user changes the pagination number, fetch 10 results from the OpenLibrary API based on the new offset
     useEffect(() => {
-        if (searchTerms.isbn) {
-        } else {
-            fetch(
-                `/search/${searchQuery}&language=eng&limit=10&offset=${
-                    page * 10 - 10
-                }`
-            )
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data.data);
-                    if (data.data.numFound === 0) {
-                        setNoBooks(true);
-                    } else {
-                        setNewBooks(data.data.bookInfo);
-                        setNoBooks(false);
-                    }
-                })
-                .then(() => {
-                    setIsLoading(false);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
+        fetch(
+            `/search/${searchQuery}&language=eng&limit=10&offset=${
+                page * 10 - 10
+            }`
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                // If no books found, set noBooks to true
+                if (data.data.numFound === 0) {
+                    setNoBooks(true);
+                } else {
+                    // Add results to newBooks, set noBooks to false
+                    setNewBooks(data.data.bookInfo);
+                    setNoBooks(false);
+                }
+            })
+            // Update loading state
+            .then(() => {
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, [page]);
 
-    console.log(newBooks);
     return (
         <StyledSearchPage setIsLoading={setIsLoading}>
             <NewBookSearch />
+
+            {/* Show loading animation until search results are fetched */}
             <StyledResults>
                 {isLoading ? (
                     <div className="loading-div">
@@ -60,11 +61,9 @@ const SearchPage = () => {
                     </div>
                 ) : (
                     <>
+                        {/* If there are book results, render those that include ISBN in the book object */}
                         {newBooks &&
                             newBooks.map((book) => {
-                                {
-                                    /* Only show works with ISBN numbers */
-                                }
                                 return (
                                     book.isbn && (
                                         <BookTileGeneral
@@ -75,6 +74,8 @@ const SearchPage = () => {
                                     )
                                 );
                             })}
+
+                        {/* If no books found */}
                         {noBooks && <div>NO RESULTS FOUND</div>}
                     </>
                 )}
@@ -98,11 +99,7 @@ const StyledResults = styled.div`
     flex-wrap: wrap;
     margin: 50px;
     gap: 150px 70px;
-
     padding: 25px;
-
-    .tile {
-    }
 `;
 
 export default SearchPage;
