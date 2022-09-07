@@ -43,11 +43,15 @@ const addNote = async (req, res) => {
         });
 
         // Update the shelves in the database to the new array, to include the new note
-        await db
+        const result = await db
             .collection("users")
             .updateOne({ email: email }, { $set: { shelves: newShelves } });
 
-        res.status(200).json({ status: 200, data: newShelves });
+        if (result.modifiedCount === 0) {
+            res.status(200).json({ status: 200, data: 0 });
+        } else {
+            res.status(200).json({ status: 200, data: newShelves });
+        }
     } catch (err) {
         res.status(400).json({ status: 400, data: err.message });
     }

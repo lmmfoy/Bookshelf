@@ -43,10 +43,14 @@ const NewNote = ({ book, isbn }) => {
         })
             .then((res) => res.json())
             .then((json) => {
-                // Update shelves in state
-                setShelves(json.data);
-                // Empty new note values
-                setNote({ date: readableDate, title: "", noteText: "" });
+                if (json.data === 0) {
+                    alert("Book must be added to a shelf first");
+                } else {
+                    // Update shelves in state
+                    setShelves(json.data);
+                    // Empty new note values
+                    setNote({ date: readableDate, title: "", noteText: "" });
+                }
             });
     };
 
