@@ -60,7 +60,7 @@ const StyledHome = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
-    max-width: 1900px;
+    max-width: 1750px;
 
     .shelf {
         width: 80%;

@@ -41,7 +41,7 @@ const StyledHeader = styled.div`
         align-items: center;
         max-width: 2100px;
         border-radius: 10px 10px 0 0;
-        margin: 0 auto 50px auto;
+        margin: 0 0 50px 50px;
 
     }
     img {
