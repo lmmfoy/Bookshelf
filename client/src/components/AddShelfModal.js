@@ -1,9 +1,9 @@
 import Modal from "react-modal";
-import { useState } from "react";
 import styled from "styled-components";
 
 Modal.setAppElement(document.getElementById("root"));
 
+// This modal is used to add a new shelf
 const AddShelfModal = ({
     handleNewShelfSubmit,
     handleChange,
@@ -11,23 +11,9 @@ const AddShelfModal = ({
     modalOpen,
     closeModal,
 }) => {
-    // const [modalOpen, setModalOpen] = useState(false);
-
-    let subtitle;
-
-    // const afterOpenModal = () => {
-    //     subtitle.style.color = "#f00";
-    // };
-
-    // Causes 'Add Shelf' modal close
-    // const closeModal = () => {
-    //     setModalOpen(false);
-    // };
-
     return (
         <Modal
             isOpen={modalOpen}
-            // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             contentLabel="Add shelf"
             // Adding style to the modal
@@ -45,9 +31,7 @@ const AddShelfModal = ({
                     x
                 </button>
                 <div className="modal-body">
-                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
-                        Add a new bookshelf
-                    </h2>
+                    <h2>Add a new bookshelf</h2>
                     <p>
                         Add a shelf name (for example, "To Read" or "Favourite
                         Mysteries") and a description.
@@ -64,7 +48,6 @@ const AddShelfModal = ({
                                 onChange={handleChange}
                                 required
                             />
-
                             <label for="description">Description:</label>
                             <textarea
                                 id="description"
@@ -89,9 +72,6 @@ const ModalStyle = styled.div`
     padding: 20px;
     background-color: var(--color-beige);
     border-radius: 0.25rem;
-    /* display: flex;
-    flex-direction: column;
-    gap: 20px; */
 
     .close-btn {
         border-radius: 100%;
@@ -102,7 +82,6 @@ const ModalStyle = styled.div`
         align-items: center;
         margin-left: auto;
         margin-bottom: -20px;
-        background-color: light-grey;
         box-shadow: none;
     }
 
@@ -143,14 +122,11 @@ const ModalStyle = styled.div`
                     margin-bottom: 10px;
                     line-height: 1.3em;
                 }
-            }
 
-            button {
-                width: 100%;
-                height: 60px;
-                font-weight: 600;
-
-                &:hover {
+                button {
+                    width: 100%;
+                    height: 60px;
+                    font-weight: 600;
                 }
             }
         }

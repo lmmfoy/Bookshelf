@@ -1,6 +1,8 @@
 import styled from "styled-components";
+
 import LoginButton from "../Login";
 
+// This page displayed before user logs in/after they log out
 const LoggedOutWelcome = () => {
     return (
         <StyledWelcome>
@@ -11,7 +13,6 @@ const LoggedOutWelcome = () => {
                     src="images/logo-green.png"
                     alt="Bookshelf logo"
                 />
-
                 <p>Your internet library</p>
                 <LoginButton />
             </div>

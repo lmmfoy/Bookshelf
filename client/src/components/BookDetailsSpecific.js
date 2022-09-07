@@ -1,24 +1,28 @@
-import { useState } from "react";
+import { useEffect, useContext, useState } from "react";
+import RingLoader from "react-spinners/RingLoader";
 import styled from "styled-components";
-import { useEffect, useContext } from "react";
-import { UserContext } from "./UserContext";
+
 import NewNote from "./NoteNew";
 import OldNotes from "./NotesOld";
 import AddToShelf from "./AddToShelfSidebar";
-import RingLoader from "react-spinners/RingLoader";
+
+import { UserContext } from "./UserContext";
 
 // This shows the details of a book found using the ISBN search
 // It will show only one specific edition of a book
-
 const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
+    const { shelves, siteUser } = useContext(UserContext);
+
+    // Keep track of authors and the book
     const [authors, setAuthors] = useState([]);
-    const { shelves, setShelves, siteUser } = useContext(UserContext);
-    // Initialize state with array of falses
+    const [book, setBook] = useState({});
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Initialize state with array of falses - this is to keep track which shelf button is clicked
     const [checkboxState, setCheckboxState] = useState(
         new Array(shelves.length).fill(false)
     );
-    const [book, setBook] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
 
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
@@ -55,6 +59,7 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
 
     return (
         <StyledBookPage>
+            {/* Shows loading animation until book information loaded */}
             {isLoading ? (
                 <div className="loading-div">
                     <RingLoader
@@ -67,7 +72,6 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
             ) : (
                 <div className="book-wrapper">
                     <div className="background-div"></div>
-
                     <div className="column-0"></div>
                     <div className="column-1">
                         <div className="cover-div">
@@ -97,6 +101,7 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
                         <div className="book-details">
                             <h2>{book.title}</h2>
                             <div className="author">
+                                {/* Display all author names */}
                                 {authors.map((author) => {
                                     return (
                                         <p
@@ -107,7 +112,6 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
                                             {author.name}
                                         </p>
                                     );
-                                    //author info - links, fuller_name, photos,  alternate_names, bio, wikipedia
                                 })}
                             </div>
                             <p>
@@ -158,7 +162,6 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
 };
 
 const StyledBookPage = styled.div`
-    /* margin: 0 350px 100px auto; */
     height: 100%;
 
     .loading-div {
@@ -173,7 +176,6 @@ const StyledBookPage = styled.div`
     }
     .book-wrapper {
         margin-left: auto;
-        /* max-width: 2095px; */
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -182,16 +184,14 @@ const StyledBookPage = styled.div`
 
         .background-div {
             position: absolute;
-            /* top: 240px; */
             top: 21%;
-
             width: 70%;
             height: 450px;
-            background-color: #eee4e4;
+            background-color: #f7d7d4;
             z-index: -1;
             box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
                 0 6px 10px 0 rgba(0, 0, 0, 0.19);
-            border-radius: 10px;
+            border-radius: 0 10px 10px 0;
         }
 
         .column-0,
@@ -203,7 +203,6 @@ const StyledBookPage = styled.div`
         }
 
         .column-0 {
-            /* background-color: var(--color-american-bronze); */
             width: 20px;
             position: sticky;
             top: 0;
@@ -235,8 +234,6 @@ const StyledBookPage = styled.div`
             }
 
             .new-notes {
-                /* min-width: 300px;
-                max-width: 500px; */
                 width: 100%;
                 margin-top: 50px;
             }
@@ -271,9 +268,9 @@ const StyledBookPage = styled.div`
 
             .old-notes {
                 width: 100%;
-                height: 100%;
+                height: 60%;
                 margin-bottom: 50px;
-                
+
                 div {
                     height: 100%;
                 }
@@ -283,7 +280,6 @@ const StyledBookPage = styled.div`
             flex: 1 1 auto;
             max-width: 500px;
             min-height: 100%;
-            
         }
     }
 `;

@@ -1,50 +1,33 @@
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+// These book cards are shown on the shelves on the homepage
 const BookTileSpecific = ({ book }) => {
     const navigate = useNavigate();
+    // Keep track of authors
     const [authors, setAuthors] = useState([]);
-  
 
+    // When user clicks card, is navigated to specific book page
     const onBookClick = () => {
         navigate(`/book/${book.isbn || book.isbn_10 || book.isbn_13}`);
     };
 
+    // Fetches the authors for the book
     useEffect(() => {
         book.authors &&
-        book.authors.forEach((author) => {
-            // author.key takes the form "/authors/author_id"
-            fetch(`/search${author.key}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setAuthors((prev) => [prev, data.data.name]);
-                });
-        });
-    }, [])
-
-    // const mouseOn = () => {
-    //     book.authors &&
-    //         book.authors.forEach((author) => {
-    //             // author.key takes the form "/authors/author_id"
-    //             fetch(`/search${author.key}`)
-    //                 .then((res) => res.json())
-    //                 .then((data) => {
-    //                     setAuthors((prev) => [prev, data.data.name]);
-    //                 });
-    //         });
-    // };
-
-    // const mouseOff = () => {
-    //     setAuthors([]);
-    // };
+            book.authors.forEach((author) => {
+                // author.key takes the form "/authors/author_id"
+                fetch(`/search${author.key}`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setAuthors((prev) => [prev, data.data.name]);
+                    });
+            });
+    }, []);
 
     return (
-        <StyledNewBook
-            onClick={onBookClick}
-            // onMouseEnter={mouseOn}
-            // onMouseLeave={mouseOff}
-        >
+        <StyledNewBook onClick={onBookClick}>
             <div className="book-inner">
                 <div className="front">
                     <div className="cover">
@@ -65,6 +48,7 @@ const BookTileSpecific = ({ book }) => {
                     </div>
                     <p>{book.title && book.title}</p>
                 </div>
+                {/* This is shown when card hovered over */}
                 <div className="back">
                     <h5>{book.title && book.title}</h5>
                     {authors.map((author) => {
@@ -74,18 +58,17 @@ const BookTileSpecific = ({ book }) => {
                             </p>
                         );
                     })}
-                    <p className="italics">{book.publishers && book.publishers[0]}</p>
+                    <p className="italics">
+                        {book.publishers && book.publishers[0]}
+                    </p>
                     <p>{book.publish_date && book.publish_date}</p>
                 </div>
             </div>
-            {/* <p>{book.authors && book.authors.join(", ")}</p> */}
-            {/* {book.publish_date && <p>{book.publish_date}</p>} */}
         </StyledNewBook>
     );
 };
 
 const StyledNewBook = styled.div`
-    /* display: inline-block; */
     padding: 10px;
     width: 190px;
     flex: 0 1 auto;

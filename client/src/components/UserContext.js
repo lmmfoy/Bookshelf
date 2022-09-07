@@ -3,7 +3,9 @@ import { useState, createContext } from "react";
 export const UserContext = createContext(null);
 
 export const UserContextProvider = ({ children }) => {
+    // Keeping track of user information
     const [siteUser, setSiteUser] = useState(null);
+    // Keeping track of user's shelves
     const [shelves, setShelves] = useState([]);
 
     return (
@@ -19,4 +21,3 @@ export const UserContextProvider = ({ children }) => {
         </UserContext.Provider>
     );
 };
-

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
+// Log out button linked to auth0 
 const LogoutButton = () => {
     const { logout } = useAuth0();
 

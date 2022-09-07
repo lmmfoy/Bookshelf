@@ -83,11 +83,19 @@ export default createGlobalStyle`
 }
 
   input {
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid var(--color-burnt-orange-brown);
     background-color: var(--color-beige);
     font-family: 'Frank Ruhl Libre', serif;
+    padding: 10px;
+  }
 
+  textarea {
+    background-color: var(--color-beige);
+    border-radius: 10px;
+    border: 1px solid var(--color-burnt-orange-brown);
+    padding: 10px;
+    font-family: 'Frank Ruhl Libre', serif;
   }
 
   div {

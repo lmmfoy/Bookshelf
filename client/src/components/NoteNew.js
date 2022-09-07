@@ -4,55 +4,29 @@ import { UserContext } from "./UserContext";
 
 import { EditText, EditTextarea } from "react-edit-text";
 
+// Appears on SpecificBookPage, gives user ability to keep notes about books they have on their shelves
 const NewNote = ({ book, isbn }) => {
-    const { shelves, setShelves, siteUser } = useContext(UserContext);
+    const { setShelves, siteUser } = useContext(UserContext);
 
+    // Get current date to add to new note
     const date = new Date();
     const readableDate = date.toDateString();
 
+    // Keep track of new note
     const [note, setNote] = useState({
         date: readableDate,
         title: "",
         noteText: "",
     });
 
+    // As note entered, add it to note state
     const handleChange = (e) => {
         const value = e.target.value;
         setNote({ ...note, [e.target.name]: value });
     };
 
-    // const onShelf = shelves.filter((shelf) => {
-    //     if (!shelf.books) {
-    //         return false;
-    //     }
-    //     return (
-    //         shelf.books.filter((entry) => {
-    //             return entry.key === book.key;
-    //         }).length > 0
-    //     );
-    // });
-
+    // When note submitted, add to user's entry in database
     const handleSubmit = () => {
-        const newShelves = [];
-
-        // Check each shelf to see if it has books, then check those to see if the current book is among them
-        // If so, add the note (create the notes array if none yet added, else push the new note)
-        // Save in newShelves
-        // shelves.forEach((shelf) => {
-        //     shelf.books &&
-        //         shelf.books.map((entry) => {
-        //             if (entry.key === book.key) {
-        //                 if (!entry.userNotes) {
-        //                     entry.userNotes = [note];
-        //                 } else {
-        //                     entry.userNotes.push(note);
-        //                 }
-        //             }
-        //             return entry;
-        //         });
-        //     newShelves.push(shelf);
-        // });
-
         // Send request to backend to update the shelves
         fetch("/user/books", {
             method: "PATCH",
@@ -69,13 +43,12 @@ const NewNote = ({ book, isbn }) => {
         })
             .then((res) => res.json())
             .then((json) => {
-                // Update shelves
+                // Update shelves in state
                 setShelves(json.data);
                 // Empty new note values
                 setNote({ date: readableDate, title: "", noteText: "" });
             });
     };
-
 
     return (
         <StyledNotes>
@@ -83,7 +56,6 @@ const NewNote = ({ book, isbn }) => {
                 <strong>
                     <label for="date">Date: </label>
                 </strong>
-
                 <EditText
                     name="date"
                     type="date"
@@ -93,7 +65,6 @@ const NewNote = ({ book, isbn }) => {
                     readonly
                 />
             </div>
-
             <div className="section">
                 <EditText
                     name="title"
@@ -105,7 +76,6 @@ const NewNote = ({ book, isbn }) => {
                     onChange={handleChange}
                 />
             </div>
-
             <div className="section">
                 <EditTextarea
                     name="noteText"
@@ -117,7 +87,6 @@ const NewNote = ({ book, isbn }) => {
                     onChange={handleChange}
                 />
             </div>
-
             <button onClick={handleSubmit}>Enter</button>
         </StyledNotes>
     );
@@ -128,7 +97,6 @@ const StyledNotes = styled.div`
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
         0 6px 10px 0 rgba(0, 0, 0, 0.19);
 
-    /* border: 2px solid var(--color-burnt-orange-brown); */
     border-radius: 10px;
     padding: 20px;
     min-width: 300px;
@@ -151,9 +119,6 @@ const StyledNotes = styled.div`
             text-overflow: ellipsis;
             white-space: nowrap;
 
-            /* transition: background 0.2s ease; */
-            /* min-height: 30px; */
-
             &:hover {
                 cursor: pointer;
                 background: rgba(220, 220, 220, 0.4);
@@ -172,7 +137,6 @@ const StyledNotes = styled.div`
         .noteText {
             overflow-y: auto;
             min-height: 200px;
-            /* transition: background 0.2s ease; */
 
             &:hover {
                 cursor: pointer;

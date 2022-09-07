@@ -1,26 +1,20 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import GlobalStyles from "./GlobalStyles";
+import { useContext } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+
 import Header from "./components/Header";
 import Homepage from "./components/pages/Homepage";
 import LoggedOutWelcome from "./components/pages/LoggedOutWelcome";
-import { useAuth0 } from "@auth0/auth0-react";
 import SearchPage from "./components/pages/SearchPage";
 import GeneralBookPage from "./components/pages/GeneralBookPage";
 import SpecificBookPage from "./components/pages/SpecificBookPage";
-import { useEffect, useState, useContext } from "react";
+import GlobalStyles from "./GlobalStyles";
+
 import { UserContext } from "./components/UserContext";
 
 const App = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { isAuthenticated, isLoading } = useAuth0();
     const { siteUser } = useContext(UserContext);
-    // const { siteUser, setSiteUser } = useContext(UserContext);
-
-    // const determineLoginState = async () => {
-    //     await isAuthenticated;
-    //     isAuthenticated && setSiteUser({email: user.email, });
-    // };
-
-    // determineLoginState();
 
     return (
         <BrowserRouter>
@@ -32,12 +26,12 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Homepage />} />
                         <Route path="/search" element={<SearchPage />} />
-                        <Route path="/book/:isbn" element={<SpecificBookPage />} />
+                        <Route
+                            path="/book/:isbn"
+                            element={<SpecificBookPage />}
+                        />
                         <Route path="/book" element={<GeneralBookPage />} />
                         <Route path="/welcome" element={<LoggedOutWelcome />} />
-                        {/* <Route path="/shelf" /> */}
-                        {/* <Route path="/friends" />
-                        <Route path="/user" /> */}
                     </Routes>
                 </>
             ) : (

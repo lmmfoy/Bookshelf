@@ -1,13 +1,13 @@
 import { Pagination } from "@mui/material";
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { BookSearchContext } from "./CurrentBookSearchContext";
 import styled from "styled-components";
 
-const pageSize = 3;
-
+// Pagination for search results on the search page
 const AppPagination = () => {
     const { numPages, setPage } = useContext(BookSearchContext);
 
+    // When page changed, set page
     const handleChange = (page) => {
         setPage(page);
         window.scroll(0, 0);
@@ -23,7 +23,8 @@ const AppPagination = () => {
     );
 };
 
-const StyledPagination = styled.div `
+const StyledPagination = styled.div`
     margin: 0 auto 50px;
-`
+`;
+
 export default AppPagination;

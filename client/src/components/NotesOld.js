@@ -1,27 +1,28 @@
 import { useEffect, useContext, useState } from "react";
-import { UserContext } from "./UserContext";
 import styled from "styled-components";
 
+import { UserContext } from "./UserContext";
+
+// Shows user notes on the SpecificBookPage
 const OldNotes = ({ book }) => {
-    const { shelves, setShelves, siteUser } = useContext(UserContext);
+    const { shelves } = useContext(UserContext);
+    // Keeps track of user notes
     const [notes, setNotes] = useState([]);
 
-
+    // Check each shelf for the current book. If found, return an array with the book object (filter out any 'undefined' results)
     useEffect(() => {
-        // Check each shelf for the current book. If found, return an array with the book object (filter out any 'undefined' results)
         let oldNotes = [];
         shelves.forEach((shelf) => {
             shelf.books &&
                 shelf.books.forEach((entry) => {
+                    // If there are userNotes included in the book object, add them to state
                     if (entry.key === book.key) {
                         oldNotes = entry.userNotes;
                     }
                 });
         });
-
         setNotes(oldNotes);
     }, [shelves]);
-
 
     return (
         <StyledNotes>
@@ -45,16 +46,12 @@ const OldNotes = ({ book }) => {
 };
 
 const StyledNotes = styled.div`
-    /* flex: 1 1 auto; */
     display: flex;
     flex-direction: column;
     padding: 30px;
-    /* height: 100%; */
-    /* width: 100%; */
     overflow-y: scroll;
     scrollbar-color: var(--color-green) var(--color-burnt-orange-brown);
     scrollbar-width: thin;
-
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
         0 6px 10px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
@@ -66,7 +63,6 @@ const StyledNotes = styled.div`
     }
 
     .note {
-        /* border: 2px solid var(--color-burnt-orange-brown); */
         padding: 10px 30px;
         overflow-wrap: break-word;
 
