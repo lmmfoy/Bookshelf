@@ -78,6 +78,7 @@ const NewNote = ({ book, isbn }) => {
                     placeholder="Enter a title"
                     value={note.title}
                     onChange={handleChange}
+                    required
                 />
             </div>
             <div className="section">
@@ -89,6 +90,7 @@ const NewNote = ({ book, isbn }) => {
                     placeholder="Enter notes"
                     value={note.noteText}
                     onChange={handleChange}
+                    required
                 />
             </div>
             <button onClick={handleSubmit}>Enter</button>
