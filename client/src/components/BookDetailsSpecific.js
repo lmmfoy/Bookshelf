@@ -132,7 +132,9 @@ const SpecificBookDetails = ({
                                     </span>
                                 )}
                             </p>
-                            {/* identifiers for different places: {book.identifiers} */}
+                            <div className="space-div">
+
+                            </div>
                             <div className="old-notes">
                                 {!isLoading && <OldNotes book={book} />}
                             </div>
@@ -156,10 +158,9 @@ const SpecificBookDetails = ({
 
 const StyledBookPage = styled.div`
     /* margin: 0 350px 100px auto; */
-    /* max-width: 1700px; */
-    width: 100%;
-
-    .loading-div {
+    
+        
+        .loading-div {
         height: 60vh;
         display: flex;
         align-items: center;
@@ -169,14 +170,15 @@ const StyledBookPage = styled.div`
             margin: 0 auto;
         }
     }
-
     .book-wrapper {
+        margin-left: auto;  
+        max-width: 2095px;
         display: flex;
         justify-content: space-between;
         width: 100%;
         height: 100%;
         gap: 50px;
-
+        
         .column-1,
         .column-2,
         .column-3 {
@@ -184,16 +186,13 @@ const StyledBookPage = styled.div`
             flex-direction: column;
             
         }
-
         .column-1 {
+            border: 1px solid;
             align-self: flex-start;
-            width: 100%;
             flex: 1 1 auto;
             max-width: 550px;
-
             .cover {
                 height: 50%;
-
                 img {
                     max-height: 750px;
                     width: 100%;
@@ -201,7 +200,6 @@ const StyledBookPage = styled.div`
                     border-radius: 10px;
                 }
             }
-
             .new-notes {
                 /* min-width: 300px;
                 max-width: 500px; */
@@ -209,17 +207,16 @@ const StyledBookPage = styled.div`
                 margin-top: 50px;
             }
         }
-
         .column-2 {
-            width: 30%;
+            max-width: 900px;
             flex: 2 2 auto;
             margin: 0 50px;
-
-
+            border: 1px solid;
+            
             .book-details {
                 width: 100%;
-
                 font-size: 1.1em;
+                height: 700px;
                 /* border: 2px solid var(--color-burnt-orange-brown); */
                 /* padding: 20px; */
                 border-radius: 10px;
@@ -229,30 +226,32 @@ const StyledBookPage = styled.div`
                 /* max-width: 500px; */
                 /* box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
                     0 6px 10px 0 rgba(0, 0, 0, 0.19); */
-
                 h2 {
                     font-size: 2em;
                     line-height: 1.2em;
                     padding-bottom: 8px;
                 }
-
                 .author {
                     font-size: 1.3em;
                     padding: 10px 0 30px;
                 }
             }
 
+            .space-div {
+                height: 0;
+            }
             .old-notes {
                 width: 100%;
                 margin-top: 50px;
             }
         }
-
         .column-3 {
-            flex: 0 1 auto;
-            width: 350px;
+            flex: 1 1 auto;
+            max-width: 500px;
             min-height: 100%;
         }
+
+
     }
 `;
 

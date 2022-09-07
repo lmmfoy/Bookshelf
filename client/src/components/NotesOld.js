@@ -51,7 +51,7 @@ const StyledNotes = styled.div`
     display: flex;
     flex-direction: column;
     padding: 30px;
-    width: 100%;
+    /* width: 100%; */
     
 
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
@@ -67,7 +67,7 @@ const StyledNotes = styled.div`
     .note {
         /* border: 2px solid var(--color-burnt-orange-brown); */
         padding: 10px 30px;
-        overflow-wrap: break-word;
+        /* overflow-wrap: break-word; */
 
         h4 {
             font-size: 1.1em;
