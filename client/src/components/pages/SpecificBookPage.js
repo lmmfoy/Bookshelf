@@ -5,7 +5,6 @@ import SpecificBookDetails from "../BookDetailsSpecific";
 import { useNavigate } from "react-router-dom";
 
 const SpecificBookPage = () => {
-
     const navigate = useNavigate();
 
     const isbn = useParams().isbn;
@@ -32,7 +31,8 @@ const SpecificBookPage = () => {
 const StyledBookWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    
+
+
 
     .book-info {
         width: 100%;

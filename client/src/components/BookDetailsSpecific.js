@@ -66,24 +66,26 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
                 </div>
             ) : (
                 <div className="book-wrapper">
+                    <div className="background-div"></div>
+
                     <div className="column-0"></div>
                     <div className="column-1">
-                        <div className="cover">
-                            {
-                                // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
-                                book.covers ? (
-                                    <img
-                                        src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg?`}
-                                        alt={`${book.title} book cover`}
-                                    />
-                                ) : (
-                                    <img
-                                        src="/images/book-cover.png"
-                                        alt="book cover"
-                                    />
-                                )
-                            }
-                        </div>
+                        {
+                            // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
+                            book.covers ? (
+                                <img
+                                    src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg?`}
+                                    alt={`${book.title} book cover`}
+                                />
+                            ) : (
+                                <img
+                                    src="/images/book-cover.png"
+                                    alt="book cover"
+                                    className="generic-cover"
+                                />
+                            )
+                        }
+
                         <div className="new-notes">
                             <NewNote book={book} isbn={isbn} />
                         </div>
@@ -173,6 +175,20 @@ const StyledBookPage = styled.div`
         height: 100%;
         gap: 50px;
 
+        .background-div {
+            position: absolute;
+            /* top: 240px; */
+            top: 21%;
+
+            width: 70%;
+            height: 450px;
+            background-color: #eee4e4;
+            z-index: -1;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+                0 6px 10px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+        }
+
         .column-0,
         .column-1,
         .column-2,
@@ -182,7 +198,7 @@ const StyledBookPage = styled.div`
         }
 
         .column-0 {
-            background-color: var(--color-american-bronze);
+            /* background-color: var(--color-american-bronze); */
             width: 20px;
             position: sticky;
             top: 0;
@@ -194,15 +210,19 @@ const StyledBookPage = styled.div`
             align-self: flex-start;
             flex: 1 1 auto;
             max-width: 550px;
-            .cover {
-                height: 50%;
-                img {
-                    max-height: 750px;
-                    width: 100%;
-                    flex: 1 1 auto;
-                    border-radius: 10px;
-                }
+            img {
+                /* max-height: 750px; */
+                width: 100%;
+                flex: 1 1 auto;
+                border-radius: 10px;
+                box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+                    0 6px 10px 0 rgba(0, 0, 0, 0.19);
             }
+
+            .generic-cover {
+                box-shadow: none;
+            }
+
             .new-notes {
                 /* min-width: 300px;
                 max-width: 500px; */
@@ -221,7 +241,6 @@ const StyledBookPage = styled.div`
                 height: 700px;
                 border-radius: 10px;
                 line-height: 1.3em;
-                
 
                 h2 {
                     font-size: 2em;
@@ -235,13 +254,12 @@ const StyledBookPage = styled.div`
             }
 
             .space-div {
-                height: 500px;
-                max-height: 800px;
-                flex: 4 4 auto;
+                height: 300px;
+                flex: 1 1 auto;
             }
             .old-notes {
                 width: 100%;
-                margin-top: 50px;
+                height: 100px;
             }
         }
         .column-3 {

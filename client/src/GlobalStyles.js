@@ -86,6 +86,7 @@ export default createGlobalStyle`
     border-radius: 5px;
     border: 1px solid var(--color-burnt-orange-brown);
     background-color: var(--color-beige);
+    font-family: 'Frank Ruhl Libre', serif;
 
   }
 
