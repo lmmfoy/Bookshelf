@@ -67,7 +67,7 @@ const StyledNotes = styled.div`
     .note {
         /* border: 2px solid var(--color-burnt-orange-brown); */
         padding: 10px 30px;
-        /* overflow-wrap: break-word; */
+        overflow-wrap: break-word;
 
         h4 {
             font-size: 1.1em;

@@ -236,7 +236,7 @@ const StyledBookPage = styled.div`
             margin: 0 50px;
 
             .book-details {
-                width: 100%;
+                width: 80%;
                 font-size: 1.1em;
                 height: 700px;
                 border-radius: 10px;

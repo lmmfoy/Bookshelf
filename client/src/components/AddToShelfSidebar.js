@@ -110,6 +110,7 @@ const StyledForm = styled.form`
     margin: -90px 0 0 0;
     position: sticky;
     top: 0;
+   
     width: 100%;
 
     h3 {
