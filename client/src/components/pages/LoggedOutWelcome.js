@@ -29,7 +29,7 @@ const StyledWelcome = styled.div`
     color: #233e22;
 
     .welcome {
-        background-color: white;
+        background-color: var(--color-beige);
         height: 350px;
         width: 500px;
         border-radius: 20px;

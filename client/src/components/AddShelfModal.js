@@ -87,7 +87,7 @@ const ModalStyle = styled.div`
     min-height: 18rem;
     margin: 2rem;
     padding: 20px;
-    background-color: white;
+    background-color: var(--color-beige);
     border-radius: 0.25rem;
     /* display: flex;
     flex-direction: column;

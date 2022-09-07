@@ -51,7 +51,7 @@ const StyledHeader = styled.div`
         height: 150x;
     }
     .logo {
-        color: white;
+        color: var(--color-beige);
         margin-top: 5px;
     }
 
@@ -59,7 +59,7 @@ const StyledHeader = styled.div`
         display: flex;
         align-items: center;
         gap: 35px;
-        color: white;
+        color: var(--color-beige);
     }
 `;
 
