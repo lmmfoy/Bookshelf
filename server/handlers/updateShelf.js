@@ -42,6 +42,7 @@ const addBook = async (db, email, shelf, res) => {
     res.status(200).json({ status: 200, data: added });
 };
 
+
 // Add a new shelf to the database if it doesn't already exist
 // If it already exists, the response will be sent with "modifiedCount: 0"
 // This function is called in updateShelf
@@ -55,6 +56,7 @@ const addShelf = async (db, email, shelf, res) => {
 
     res.status(200).json({ status: 200, data: added });
 };
+
 
 // This function checks whether the user is trying to add a book to a shelf or add a new shelf, then calls the appropriate function
 const updateShelf = async (req, res) => {
