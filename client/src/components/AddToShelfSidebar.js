@@ -113,6 +113,8 @@ const StyledForm = styled.form`
     position: sticky;
     top: 0;
     width: 100%;
+    padding-right: 100px;
+
 
     h3 {
         font-size: 1.4em;
@@ -158,6 +160,7 @@ const StyledForm = styled.form`
                         align-items: center;
                         line-height: 25px;
                         transition: 0.5s ease;
+                        
                     }
 
                     /* Make the actual checkboxes invisible in order to have checkbox buttons */

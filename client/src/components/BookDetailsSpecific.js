@@ -203,7 +203,7 @@ const StyledBookPage = styled.div`
         }
 
         .column-0 {
-            width: 100px;
+            width: 60px;
             position: sticky;
             top: 0;
             margin: -50px 0 0 0;

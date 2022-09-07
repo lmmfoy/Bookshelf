@@ -55,6 +55,7 @@ const StyledHeader = styled.div`
     .header-right {
         display: flex;
         align-items: center;
+        margin-right: 25px;
         gap: 35px;
         color: var(--color-beige);
     }
