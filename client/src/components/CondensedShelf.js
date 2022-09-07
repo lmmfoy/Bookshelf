@@ -74,7 +74,7 @@ const CondensedShelf = () => {
                     defaultFocus={true}
                     selectedTabClassName="selected-tab"
                 >
-                {/* If there are shelves, show them + the "Add shelf" tab */}
+                    {/* If there are shelves, show them + the "Add shelf" tab */}
                     {shelves.length > 0 ? (
                         <>
                             <div className="tab-list-container">
@@ -139,7 +139,7 @@ const CondensedShelf = () => {
                         </>
                     ) : (
                         <>
-                        {/* If there are no shelves, just show "Add shelf" tab */}
+                            {/* If there are no shelves, just show "Add shelf" tab */}
                             <div className="tab-list-container">
                                 <TabList className="tab-list">
                                     <Tab
@@ -212,8 +212,7 @@ const StyledShelf = styled.div`
         width: 100%;
         border-radius: 10px;
         border: 2px solid var(--color-burnt-orange-brown);
-        box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
-    }
+        box-shadow: 20px 0px 10px -10px rgba(0, 0, 0, 0.2), 55px 55px 10px -45px rgba(0, 0, 0, 0.05);    
 
     .tab-list-container {
         width: 100px;

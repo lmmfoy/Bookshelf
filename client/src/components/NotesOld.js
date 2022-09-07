@@ -55,6 +55,8 @@ const StyledNotes = styled.div`
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
         0 6px 10px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
+    background-color: #f7d7d4;
+    width: 600px;
 
     h3 {
         padding: 10px 30px;
