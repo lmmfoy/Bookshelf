@@ -57,7 +57,7 @@ const StyledNewBook = styled.div`
     min-height: 350px;
     max-width: 250px;
     min-width: 230px;
-    background-color: white;
+    background-color: var(--color-beige);
     border-radius: 10px;
     box-shadow: 5px 10px 20px 5px rgba(0, 0, 0, 0.33);
     color: var(--color-beige);

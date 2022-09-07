@@ -10,10 +10,7 @@ import RingLoader from "react-spinners/RingLoader";
 // This shows the details of a book found using the ISBN search
 // It will show only one specific edition of a book
 
-const SpecificBookDetails = ({
-    isbn,
-    setIsbnNotRecognized
-}) => {
+const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
     const [authors, setAuthors] = useState([]);
     const { shelves, setShelves, siteUser } = useContext(UserContext);
     // Initialize state with array of falses
@@ -22,7 +19,6 @@ const SpecificBookDetails = ({
     );
     const [book, setBook] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-
 
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
@@ -70,8 +66,11 @@ const SpecificBookDetails = ({
                 </div>
             ) : (
                 <div className="book-wrapper">
+                    <div className="background-div"></div>
+
+                    <div className="column-0"></div>
                     <div className="column-1">
-                        <div className="cover">
+                        <div className="cover-div">
                             {
                                 // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
                                 book.covers ? (
@@ -83,10 +82,12 @@ const SpecificBookDetails = ({
                                     <img
                                         src="/images/book-cover.png"
                                         alt="book cover"
+                                        className="generic-cover"
                                     />
                                 )
                             }
                         </div>
+
                         <div className="new-notes">
                             <NewNote book={book} isbn={isbn} />
                         </div>
@@ -132,9 +133,11 @@ const SpecificBookDetails = ({
                                     </span>
                                 )}
                             </p>
-                            {/* identifiers for different places: {book.identifiers} */}
+                            <div className="space-div"></div>
                             <div className="old-notes">
-                                {!isLoading && <OldNotes book={book} />}
+                                <div>
+                                    {!isLoading && <OldNotes book={book} />}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,8 +159,7 @@ const SpecificBookDetails = ({
 
 const StyledBookPage = styled.div`
     /* margin: 0 350px 100px auto; */
-    /* max-width: 1700px; */
-    width: 100%;
+    height: 100%;
 
     .loading-div {
         height: 60vh;
@@ -169,36 +171,66 @@ const StyledBookPage = styled.div`
             margin: 0 auto;
         }
     }
-
     .book-wrapper {
+        margin-left: auto;
+        /* max-width: 2095px; */
         display: flex;
         justify-content: space-between;
         width: 100%;
         height: 100%;
         gap: 50px;
 
+        .background-div {
+            position: absolute;
+            /* top: 240px; */
+            top: 21%;
+
+            width: 70%;
+            height: 450px;
+            background-color: #eee4e4;
+            z-index: -1;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+                0 6px 10px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+        }
+
+        .column-0,
         .column-1,
         .column-2,
         .column-3 {
             display: flex;
             flex-direction: column;
-            
+        }
+
+        .column-0 {
+            /* background-color: var(--color-american-bronze); */
+            width: 20px;
+            position: sticky;
+            top: 0;
+            margin: -50px 0 0 0;
+            flex: 1 2 auto;
         }
 
         .column-1 {
             align-self: flex-start;
-            width: 100%;
             flex: 1 1 auto;
             max-width: 550px;
 
-            .cover {
-                height: 50%;
+            .cover-div {
+                width: 100%;
+                min-height: 600px;
 
                 img {
-                    max-height: 750px;
+                    /* max-height: 750px; */
                     width: 100%;
                     flex: 1 1 auto;
                     border-radius: 10px;
+                    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
+                        0 6px 10px 0 rgba(0, 0, 0, 0.19);
+                }
+
+                .generic-cover {
+                    box-shadow: none;
                 }
             }
 
@@ -209,49 +241,49 @@ const StyledBookPage = styled.div`
                 margin-top: 50px;
             }
         }
-
         .column-2 {
-            width: 30%;
+            max-width: 900px;
             flex: 2 2 auto;
             margin: 0 50px;
 
-
             .book-details {
-                width: 100%;
-
+                width: 80%;
                 font-size: 1.1em;
-                /* border: 2px solid var(--color-burnt-orange-brown); */
-                /* padding: 20px; */
+                height: 700px;
                 border-radius: 10px;
-                /* margin-bottom: auto; */
                 line-height: 1.3em;
-                /* flex: 2 1 auto; */
-                /* max-width: 500px; */
-                /* box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 10px 0 rgba(0, 0, 0, 0.19); */
 
                 h2 {
                     font-size: 2em;
                     line-height: 1.2em;
                     padding-bottom: 8px;
                 }
-
                 .author {
                     font-size: 1.3em;
                     padding: 10px 0 30px;
                 }
             }
 
+            .space-div {
+                height: 300px;
+                flex: 1 1 auto;
+            }
+
             .old-notes {
                 width: 100%;
-                margin-top: 50px;
+                height: 100%;
+                margin-bottom: 50px;
+                
+                div {
+                    height: 100%;
+                }
             }
         }
-
         .column-3 {
-            flex: 0 1 auto;
-            width: 350px;
+            flex: 1 1 auto;
+            max-width: 500px;
             min-height: 100%;
+            
         }
     }
 `;

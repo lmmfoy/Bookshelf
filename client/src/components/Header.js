@@ -32,7 +32,8 @@ const Header = () => {
 const StyledHeader = styled.div`
     width: 100%;
     background-color: var(--color-philippine-bronze);
-    
+    margin-bottom: 90px;
+
     
     
     .header-flex {
@@ -40,9 +41,8 @@ const StyledHeader = styled.div`
         height: 180px;
         justify-content: space-between;
         padding: 0 100px 0 80px;
-        margin-bottom: 50px;
         align-items: center;
-        max-width: 1900px;
+        max-width: 2100px;
         border-radius: 10px 10px 0 0;
         margin: 0 auto 50px auto;
 
@@ -51,7 +51,7 @@ const StyledHeader = styled.div`
         height: 150x;
     }
     .logo {
-        color: white;
+        color: var(--color-beige);
         margin-top: 5px;
     }
 
@@ -59,7 +59,7 @@ const StyledHeader = styled.div`
         display: flex;
         align-items: center;
         gap: 35px;
-        color: white;
+        color: var(--color-beige);
     }
 `;
 

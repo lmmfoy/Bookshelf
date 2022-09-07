@@ -25,6 +25,8 @@ const GeneralBookPage = () => {
 const StyledBookWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
 
     h1 {
         font-size: 2em;

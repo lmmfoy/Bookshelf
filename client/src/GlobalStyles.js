@@ -33,6 +33,8 @@ export default createGlobalStyle`
 
   body {
       height: 100%;
+      background-color: var(--color-beige);
+
   }
   html {
     height: 100%;
@@ -63,7 +65,7 @@ export default createGlobalStyle`
     font-size: 1.1em;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.19);
     background-color: var(--color-saddle-brown);
-    color: white;
+    color: var(--color-beige);
 
     &:hover {
       transform: scale(1.04);
@@ -83,6 +85,8 @@ export default createGlobalStyle`
   input {
     border-radius: 5px;
     border: 1px solid var(--color-burnt-orange-brown);
+    background-color: var(--color-beige);
+    font-family: 'Frank Ruhl Libre', serif;
 
   }
 

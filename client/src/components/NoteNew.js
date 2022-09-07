@@ -242,23 +242,6 @@ const StyledNotes = styled.div`
     ._-wzeg:hover {
         cursor: auto !important;
     }
-
-    /* ._IYz6Z {
-        display: flex;
-    }
-
-    ._NGZSv {
-        background-color: #fff;
-        color: black;
-        border: 0;
-        outline: none;
-        min-width: 28px;
-    }
-
-    ._NGZSv:focus {
-        border: 0;
-        outline: none;
-    } */
 `;
 
 export default NewNote;

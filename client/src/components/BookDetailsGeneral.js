@@ -76,19 +76,19 @@ const GeneralBookDetails = ({ book }) => {
 
     return (
         <StyledBookPage>
-                <div className="cover">
-            {
-                // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
-                book.cover_i ? (
-                    <img
-                        src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?`}
-                        alt={`${book.title} book cover`}
-                    />
-                ) : (
-                    <img src="images/book-cover.png" alt="book cover" />
-                )
-            }
-                </div>
+            <div className="cover">
+                {
+                    // If the book entry has a cover ID, show the OpenLibrary cover, else show a generic cover
+                    book.cover_i ? (
+                        <img
+                            src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?`}
+                            alt={`${book.title} book cover`}
+                        />
+                    ) : (
+                        <img src="images/book-cover.png" alt="book cover" />
+                    )
+                }
+            </div>
             <div className="book-details">
                 <h2>{book.title}</h2>
                 <p className="author">
@@ -123,39 +123,27 @@ const StyledBookPage = styled.div`
     width: 100%;
     display: flex;
     gap: 50px;
-    justify-content: stretch;
-    height: 100vh;
+    max-width: 1700px;
 
     .cover {
         flex: 1 1 auto;
-        
-
     }
     img {
-        /* min-width: 400px;
-        max-width: 500px; */
-        /* border: 2px solid var(--color-burnt-orange-brown); */
         border-radius: 10px;
-        max-height: 750px;
-
-        max-height: 750px;
-        flex: 1 1 auto;
-
-        /* flex: 0 1 auto; */
+        width: 500px;
+        height: 750px;
     }
 
     .book-details {
         border: 2px solid var(--color-burnt-orange-brown);
         box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
         font-size: 1.1em;
-        /* border: 2px solid var(--color-burnt-orange-brown); */
         padding: 20px;
         border-radius: 10px;
         line-height: 1.3em;
         flex: 2 1 auto;
         width: 100%;
-        /* box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
-            0 6px 10px 0 rgba(0, 0, 0, 0.19); */
+        width: 700px;
 
         h2 {
             font-size: 2em;
