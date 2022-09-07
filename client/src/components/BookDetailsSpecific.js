@@ -10,10 +10,7 @@ import RingLoader from "react-spinners/RingLoader";
 // This shows the details of a book found using the ISBN search
 // It will show only one specific edition of a book
 
-const SpecificBookDetails = ({
-    isbn,
-    setIsbnNotRecognized
-}) => {
+const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
     const [authors, setAuthors] = useState([]);
     const { shelves, setShelves, siteUser } = useContext(UserContext);
     // Initialize state with array of falses
@@ -22,7 +19,6 @@ const SpecificBookDetails = ({
     );
     const [book, setBook] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-
 
     // This function fetches the result of the ISBN search, sets the information in state
     useEffect(() => {
@@ -70,6 +66,7 @@ const SpecificBookDetails = ({
                 </div>
             ) : (
                 <div className="book-wrapper">
+                    <div className="column-0"></div>
                     <div className="column-1">
                         <div className="cover">
                             {
@@ -132,9 +129,7 @@ const SpecificBookDetails = ({
                                     </span>
                                 )}
                             </p>
-                            <div className="space-div">
-
-                            </div>
+                            <div className="space-div"></div>
                             <div className="old-notes">
                                 {!isLoading && <OldNotes book={book} />}
                             </div>
@@ -158,9 +153,8 @@ const SpecificBookDetails = ({
 
 const StyledBookPage = styled.div`
     /* margin: 0 350px 100px auto; */
-    
-        
-        .loading-div {
+
+    .loading-div {
         height: 60vh;
         display: flex;
         align-items: center;
@@ -171,23 +165,32 @@ const StyledBookPage = styled.div`
         }
     }
     .book-wrapper {
-        margin-left: auto;  
-        max-width: 2095px;
+        margin-left: auto;
+        /* max-width: 2095px; */
         display: flex;
         justify-content: space-between;
         width: 100%;
         height: 100%;
         gap: 50px;
-        
+
+        .column-0,
         .column-1,
         .column-2,
         .column-3 {
             display: flex;
             flex-direction: column;
-            
         }
+
+        .column-0 {
+            background-color: var(--color-american-bronze);
+            width: 20px;
+            position: sticky;
+            top: 0;
+            margin: -50px 0 0 0;
+            flex: 1 2 auto;
+        }
+
         .column-1 {
-            border: 1px solid;
             align-self: flex-start;
             flex: 1 1 auto;
             max-width: 550px;
@@ -211,21 +214,15 @@ const StyledBookPage = styled.div`
             max-width: 900px;
             flex: 2 2 auto;
             margin: 0 50px;
-            border: 1px solid;
-            
+
             .book-details {
                 width: 100%;
                 font-size: 1.1em;
                 height: 700px;
-                /* border: 2px solid var(--color-burnt-orange-brown); */
-                /* padding: 20px; */
                 border-radius: 10px;
-                /* margin-bottom: auto; */
                 line-height: 1.3em;
-                /* flex: 2 1 auto; */
-                /* max-width: 500px; */
-                /* box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 10px 0 rgba(0, 0, 0, 0.19); */
+                
+
                 h2 {
                     font-size: 2em;
                     line-height: 1.2em;
@@ -238,7 +235,9 @@ const StyledBookPage = styled.div`
             }
 
             .space-div {
-                height: 0;
+                height: 500px;
+                max-height: 800px;
+                flex: 4 4 auto;
             }
             .old-notes {
                 width: 100%;
@@ -250,8 +249,6 @@ const StyledBookPage = styled.div`
             max-width: 500px;
             min-height: 100%;
         }
-
-
     }
 `;
 

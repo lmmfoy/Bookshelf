@@ -42,7 +42,7 @@ const StyledHeader = styled.div`
         padding: 0 100px 0 80px;
         margin-bottom: 50px;
         align-items: center;
-        max-width: 1850px;
+        max-width: 2100px;
         border-radius: 10px 10px 0 0;
         margin: 0 auto 50px auto;
 
