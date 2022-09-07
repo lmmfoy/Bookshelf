@@ -184,7 +184,7 @@ const StyledBookPage = styled.div`
 
         .background-div {
             position: absolute;
-            top: 21%;
+            top: 24%;
             width: 70%;
             height: 450px;
             background-color: #f7d7d4;
@@ -203,7 +203,7 @@ const StyledBookPage = styled.div`
         }
 
         .column-0 {
-            width: 20px;
+            width: 70px;
             position: sticky;
             top: 0;
             margin: -50px 0 0 0;
