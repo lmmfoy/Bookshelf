@@ -31,7 +31,7 @@ const Header = () => {
 const StyledHeader = styled.div`
     width: 100%;
     background-color: var(--color-philippine-bronze);
-    margin-bottom: 90px;
+    margin-bottom: 80px;
 
     .header-flex {
         display: flex;

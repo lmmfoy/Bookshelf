@@ -75,7 +75,7 @@ const StyledNewBook = styled.div`
     text-align: center;
     padding: 20px;
     perspective: 1000px;
-
+    background-color: hsl(37, 62%, 99%);
     box-shadow: 0 0 20px #aaa;
     border-radius: 5px;
 
@@ -97,6 +97,10 @@ const StyledNewBook = styled.div`
         }
 
         .front {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
             .cover {
                 overflow: hidden;
                 margin-bottom: 10px;
@@ -132,7 +136,7 @@ const StyledNewBook = styled.div`
 
     &:hover {
         transform: scale(1.02);
-        box-shadow: 5px 10px 25px 5px rgba(0, 0, 0, 0.43);
+        box-shadow: 0px 0px 5px 2px rgb(123, 32, 24, .5), 5px 10px 25px 5px rgba(0, 0, 0, 0.43);
         transition: 1s ease-in-out;
     }
 `;

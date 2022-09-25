@@ -138,12 +138,12 @@ const SpecificBookDetails = ({ isbn, setIsbnNotRecognized }) => {
                                 )}
                             </p>
                             <div className="space-div"></div>
+                        </div>
                             <div className="old-notes">
                                 <div>
                                     {!isLoading && <OldNotes book={book} />}
                                 </div>
                             </div>
-                        </div>
                     </div>
 
                     <div className="column-3">
@@ -213,14 +213,12 @@ const StyledBookPage = styled.div`
         .column-1 {
             align-self: flex-start;
             flex: 1 1 auto;
-            max-width: 550px;
+            gap: 35px;
+
 
             .cover-div {
-                width: 100%;
-                min-height: 600px;
 
                 img {
-                    /* max-height: 750px; */
                     width: 100%;
                     flex: 1 1 auto;
                     border-radius: 10px;
@@ -235,18 +233,20 @@ const StyledBookPage = styled.div`
 
             .new-notes {
                 width: 100%;
-                margin-top: 50px;
+                /* margin-top: 50px; */
             }
         }
         .column-2 {
-            max-width: 900px;
-            flex: 2 2 auto;
+            /* max-width: 900px; */
+            /* width: 100%; */
+            flex: 1 1 auto;
             margin: 0 50px;
+            gap: 20px;
 
             .book-details {
                 width: 80%;
                 font-size: 1.1em;
-                height: 700px;
+                min-height: 450px;
                 border-radius: 10px;
                 line-height: 1.3em;
 
@@ -261,10 +261,11 @@ const StyledBookPage = styled.div`
                 }
             }
 
-            .space-div {
+            /* .space-div {
                 height: 270px;
                 flex: 1 1 auto;
-            }
+                border: 1px solid;
+            } */
 
             .old-notes {
                 width: 100%;

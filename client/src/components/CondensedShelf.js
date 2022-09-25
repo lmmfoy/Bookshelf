@@ -212,7 +212,9 @@ const StyledShelf = styled.div`
         width: 100%;
         border-radius: 10px;
         border: 2px solid var(--color-burnt-orange-brown);
-        box-shadow: 20px 0px 10px -10px rgba(0, 0, 0, 0.2), 55px 55px 10px -45px rgba(0, 0, 0, 0.05);    
+        box-shadow: 15px 0px 10px -10px rgba(0, 0, 0, 0.2),
+            55px 55px 10px -45px rgba(0, 0, 0, 0.05);
+    }
 
     .tab-list-container {
         width: 100px;
@@ -255,7 +257,9 @@ const StyledShelf = styled.div`
         font-weight: 600;
         color: var(--color-beige);
         background-color: var(--color-saddle-brown);
-        margin: -1px 0;
+        margin: -1px 0 -1px;
+        border-top: var(--color-saddle-brown);
+        box-shadow: 3px 8px 10px -3px rgba(0, 0, 0, 0.2);
 
         &:hover {
             color: var(--color-beige);
@@ -279,7 +283,7 @@ const StyledShelf = styled.div`
     .selected-tab {
         background-color: var(--color-beige);
         border: 2px solid var(--color-burnt-orange-brown);
-        border-right: 2px solid transparent;
+        border-right: none;
         color: black;
         border-radius: 10px 0 0 10px;
         margin-right: -2px;

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
 // This sidebar is a component on the SpecificBookPage. It allows users to add the book to their shelves.
@@ -20,6 +21,18 @@ const AddToShelf = ({
         });
         setCheckboxState(updatedState);
     };
+
+    // useEffect(() => {
+    //     shelves.forEach((shelf) => {
+    //         if (shelf.books) {
+    //             shelf.books.forEach((item) => {
+    //                 if (item.key === book.key) {
+    //                     console.log(shelf);
+    //                 }
+    //             });
+    //         }
+    //     });
+    // }, []);
 
     // When "Add to Shelf" button clicked, book is added to indicated shelf
     const handleAddBookSubmit = (e) => {
@@ -75,9 +88,23 @@ const AddToShelf = ({
             <fieldset>
                 <div className="flex-div">
                     {shelves.map((shelf, index) => {
+                        let disabled = false;
+                        // Disable input if book already on that shelf
+                        if (shelf.books) {
+                            shelf.books.forEach((item) => {
+                                if (item.key === book.key) {
+                                    console.log(shelf.name);
+                                    disabled = true;
+                                }
+                            });
+                        }
                         return (
                             <div className="button-div">
-                                <div className="shelf-button">
+                                <div
+                                    className={`shelf-button ${
+                                        !disabled && "hoverable"
+                                    }`}
+                                >
                                     <input
                                         type="checkbox"
                                         id={`shelf-{shelf.name}`}
@@ -85,6 +112,7 @@ const AddToShelf = ({
                                         value={shelf.name}
                                         checked={checkboxState[index]}
                                         onChange={() => handleOnChange(index)}
+                                        disabled={disabled}
                                     />
                                     <div>
                                         <span> {shelf.name}</span>
@@ -109,12 +137,11 @@ const StyledForm = styled.form`
         0 6px 10px 0 rgba(0, 0, 0, 0.19);
     height: 100vh;
     align-self: flex-end;
-    margin: -90px 0 0 0;
+    margin: -80px 0 0 0;
     position: sticky;
     top: 0;
     width: 100%;
     padding-right: 100px;
-
 
     h3 {
         font-size: 1.4em;
@@ -145,12 +172,7 @@ const StyledForm = styled.form`
                     box-sizing: border-box;
                     border-radius: 10px;
                     color: var(--color-beige);
-                    background-color: var(--color-philippine-bronze);
-
-                    &:hover {
-                        background-color: var(--color-burnt-orange);
-                        box-shadow: 0 0 5px 1px var(--color-beige);
-                    }
+                    background-color: #7d3306;
 
                     div {
                         width: 100%;
@@ -160,7 +182,6 @@ const StyledForm = styled.form`
                         align-items: center;
                         line-height: 25px;
                         transition: 0.5s ease;
-                        
                     }
 
                     /* Make the actual checkboxes invisible in order to have checkbox buttons */
@@ -174,10 +195,22 @@ const StyledForm = styled.form`
                         cursor: pointer;
                     }
 
-                    input[type="checkbox"]:checked ~ div {
-                        background-color: var(--color-saddle-brown);
+                    input[type="checkbox"]:disabled ~ div {
                         border-radius: 10px;
+                        opacity: 30%;
+                        background-color: #0c0500;
                     }
+
+                    input[type="checkbox"]:checked ~ div {
+                        /* background-color: var(--color-saddle-brown); */
+                        border-radius: 10px;
+                        border: 1px solid;
+                    }
+                }
+
+                .hoverable:hover {
+                    background-color: var(--color-burnt-orange);
+                    box-shadow: 0 0 5px 1px var(--color-beige);
                 }
             }
         }
@@ -186,8 +219,11 @@ const StyledForm = styled.form`
             width: 100%;
             min-width: 100px;
             max-width: 150px;
+            background-color: #7d3306;
+
             &:hover {
                 box-shadow: 0 0 5px 1px var(--color-beige);
+                background-color: var(--color-saddle-brown);
             }
         }
     }
