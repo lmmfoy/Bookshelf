@@ -62,6 +62,7 @@ const CondensedShelf = () => {
     // Adding title, description to newShelf state
     const handleChange = (e) => {
         const value = e.target.value;
+        console.log(value);
         setNewShelf({ ...newShelf, [e.target.name]: value });
     };
 
@@ -71,7 +72,6 @@ const CondensedShelf = () => {
                 <h2>My Shelves</h2>
                 <Tabs
                     className="tabs-outer"
-                    defaultFocus={true}
                     selectedTabClassName="selected-tab"
                 >
                     {/* If there are shelves, show them + the "Add shelf" tab */}

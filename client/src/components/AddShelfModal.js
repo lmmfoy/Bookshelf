@@ -1,5 +1,6 @@
 import Modal from "react-modal";
 import styled from "styled-components";
+import { useRef, useEffect } from "react";
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -11,6 +12,23 @@ const AddShelfModal = ({
     modalOpen,
     closeModal,
 }) => {
+    const titleInput = useRef(null);
+
+    // useEffect(() => {
+    //     if (titleInput.current) {
+    //         titleInput.current.focus();
+    //     }
+    // }, []);
+    
+
+    document.addEventListener(
+        "focusin",
+        function () {
+            console.log("focused: ", document.activeElement);
+        },
+        true
+    );
+
     return (
         <Modal
             isOpen={modalOpen}
@@ -47,6 +65,7 @@ const AddShelfModal = ({
                                 value={newShelf.name}
                                 onChange={handleChange}
                                 required
+                                ref={titleInput}
                             />
                             <label for="description">Description:</label>
                             <textarea
