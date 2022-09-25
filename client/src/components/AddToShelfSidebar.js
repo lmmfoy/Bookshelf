@@ -109,7 +109,7 @@ const StyledForm = styled.form`
         0 6px 10px 0 rgba(0, 0, 0, 0.19);
     height: 100vh;
     align-self: flex-end;
-    margin: -90px 0 0 0;
+    margin: -80px 0 0 0;
     position: sticky;
     top: 0;
     width: 100%;
