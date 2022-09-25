@@ -1,16 +1,56 @@
 import Modal from "react-modal";
 import styled from "styled-components";
+import { useState } from "react";
 
 Modal.setAppElement(document.getElementById("root"));
 
 // This modal is used to add a new shelf
-const AddShelfModal = ({
-    handleNewShelfSubmit,
-    handleChange,
-    newShelf,
-    modalOpen,
-    closeModal,
-}) => {
+const AddShelfModal = ({ modalOpen, closeModal, setShelves, siteUser }) => {
+    // Keep track of new shelf
+    const [newShelf, setNewShelf] = useState({ name: "", description: "" });
+
+    // When form on modal submitted, add the new shelf to the shelves state, then update database
+    const handleNewShelfSubmit = (e) => {
+        e.preventDefault();
+
+        // Add new shelf to database
+        fetch("/user/shelves", {
+            method: "PATCH",
+            body: JSON.stringify({
+                email: siteUser.email,
+                shelf: {
+                    name: newShelf.name,
+                    description: newShelf.description,
+                },
+            }),
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                if (json.data.modifiedCount === 1) {
+                    setShelves((prev) => [
+                        ...prev,
+                        {
+                            name: newShelf.name,
+                            description: newShelf.description,
+                        },
+                    ]);
+                    closeModal();
+                } else {
+                    alert("You already have a shelf with this name!");
+                }
+            });
+    };
+    // Adding title, description to newShelf state
+    const handleChange = (e) => {
+        const value = e.target.value;
+        console.log(value);
+        setNewShelf({ ...newShelf, [e.target.name]: value });
+    };
+
     return (
         <Modal
             isOpen={modalOpen}
