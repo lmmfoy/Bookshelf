@@ -10,8 +10,6 @@ const CondensedShelf = () => {
     const { shelves, setShelves, siteUser } = useContext(UserContext);
     // Prompts modal to open
     const [modalOpen, setModalOpen] = useState(false);
-    // Keep track of new shelf
-    const [newShelf, setNewShelf] = useState({ name: "", description: "" });
 
     // Causes 'Add Shelf' modal to appear
     const addShelf = () => {
@@ -21,49 +19,6 @@ const CondensedShelf = () => {
     // Causes 'Add Shelf' modal close
     const closeModal = () => {
         setModalOpen(false);
-    };
-
-    // When form on modal submitted, add the new shelf to the shelves state, then update database
-    const handleNewShelfSubmit = (e) => {
-        e.preventDefault();
-
-        // Add new shelf to database
-        fetch("/user/shelves", {
-            method: "PATCH",
-            body: JSON.stringify({
-                email: siteUser.email,
-                shelf: {
-                    name: newShelf.name,
-                    description: newShelf.description,
-                },
-            }),
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        })
-            .then((res) => res.json())
-            .then((json) => {
-                if (json.data.modifiedCount === 1) {
-                    setShelves((prev) => [
-                        ...prev,
-                        {
-                            name: newShelf.name,
-                            description: newShelf.description,
-                        },
-                    ]);
-                    closeModal();
-                } else {
-                    alert("You already have a shelf with this name!");
-                }
-            });
-    };
-
-    // Adding title, description to newShelf state
-    const handleChange = (e) => {
-        const value = e.target.value;
-        console.log(value);
-        setNewShelf({ ...newShelf, [e.target.name]: value });
     };
 
     return (
@@ -156,12 +111,11 @@ const CondensedShelf = () => {
                     )}
                 </Tabs>
                 <AddShelfModal
-                    handleNewShelfSubmit={handleNewShelfSubmit}
-                    handleChange={handleChange}
                     addShelf={addShelf}
-                    newShelf={newShelf}
                     modalOpen={modalOpen}
                     closeModal={closeModal}
+                    setShelves={setShelves}
+                    siteUser={siteUser}
                 />
             </StyledShelf>
         </>
