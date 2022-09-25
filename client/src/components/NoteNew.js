@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
 
 import { EditText, EditTextarea } from "react-edit-text";
+import { BookSearchContext } from "./CurrentBookSearchContext";
 
 // Appears on SpecificBookPage, gives user ability to keep notes about books they have on their shelves
 const NewNote = ({ book, isbn }) => {
@@ -102,7 +103,7 @@ const StyledNotes = styled.div`
     flex: 1 1 auto;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2),
         0 6px 10px 0 rgba(0, 0, 0, 0.19);
-        background-color: #f7d7d4;
+    background-color: #f7d7d4;
 
     border-radius: 10px;
     padding: 20px;
@@ -168,6 +169,7 @@ const StyledNotes = styled.div`
                 font-size: 1.2em;
                 border: none;
                 outline: none;
+                background-color: #f7d7d4;
                 border-style: hidden;
             }
         }
@@ -180,6 +182,8 @@ const StyledNotes = styled.div`
         border: none;
         outline: none;
         border-radius: 10px;
+        background-color: #f7d7d4;
+
     }
 
     ._TDklp {

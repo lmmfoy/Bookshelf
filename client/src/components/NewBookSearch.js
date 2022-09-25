@@ -1,12 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { BookSearchContext } from "./CurrentBookSearchContext";
 
 // Search page, navigated to from the homepage when an author/title search is made
 const NewBookSearch = ({ setIsLoading }) => {
     const navigate = useNavigate();
+    const path = useLocation().pathname;
     const {
         setNewBooks,
         setNumPages,
@@ -15,16 +16,25 @@ const NewBookSearch = ({ setIsLoading }) => {
         setSearchQuery,
     } = useContext(BookSearchContext);
 
+    // Keeping track of the search terms used
+    const [tempTerms, setTempTerms] = useState({
+        author: "",
+        title: "",
+    });
+
     // This function fetches a list of books based on the search criteria (author and/or title), sets the information in Context, and navigates the user to the Search page to see the list of results
     const handleSubmit = (e) => {
         // If setIsLoading prop has been passed down, set it to true
         setIsLoading && setIsLoading(true);
         e.preventDefault();
 
+        // Add search terms to context (important if navigating from homepage to search page)
+        setSearchTerms(tempTerms);
+
         // Get the user values and replace spaces with "+"
         const params = {
-            author: searchTerms.author.replace(/ /g, "+"),
-            title: searchTerms.title.replace(/ /g, "+"),
+            author: tempTerms.author.replace(/ /g, "+"),
+            title: tempTerms.title.replace(/ /g, "+"),
         };
 
         // If there are no search terms, return
@@ -51,7 +61,7 @@ const NewBookSearch = ({ setIsLoading }) => {
                     navigate("/search"); // Navigate to Search page
                 })
                 .then(() => {
-                    setIsLoading(false);
+                    setIsLoading && setIsLoading(false);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -68,8 +78,7 @@ const NewBookSearch = ({ setIsLoading }) => {
 
     // Keeps track of search terms being input
     const handleChange = (e) => {
-        const value = e.target.value;
-        setSearchTerms({ ...searchTerms, [e.target.name]: value });
+        setTempTerms({ ...tempTerms, [e.target.name]: e.target.value });
     };
 
     return (
@@ -84,7 +93,11 @@ const NewBookSearch = ({ setIsLoading }) => {
                             type="text"
                             id="author"
                             name="author"
-                            defaultValue={searchTerms.author}
+                            defaultValue={
+                                path === "/search" && searchTerms.author
+                                    ? searchTerms.author
+                                    : ""
+                            }
                             onChange={handleChange}
                         />
                     </label>
@@ -94,7 +107,11 @@ const NewBookSearch = ({ setIsLoading }) => {
                             type="text"
                             id="title"
                             name="title"
-                            defaultValue={searchTerms.title}
+                            defaultValue={
+                                path === "/search" && searchTerms.title
+                                    ? searchTerms.title
+                                    : ""
+                            }
                             onChange={handleChange}
                         />
                     </label>
