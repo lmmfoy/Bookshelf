@@ -6,16 +6,21 @@ Keep track of your reading with Bookshelf.
 Bookshelf is designed to give readers a cozy personal library to save the books they're interested in, along with notes about what they've read. 
 
 
-<img width="700" alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196831139-a90d60a0-3ee7-4b56-8148-3759e19cea10.png">
+<img width="900" alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196831139-a90d60a0-3ee7-4b56-8148-3759e19cea10.png">
 
 
-<img width="700" alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196829348-cafea159-e7e2-4a81-9338-75dc944a10b3.png">
+## Using Bookshelf
+
+<img align="right" width="300" alt="Sign in screenshot" src="https://user-images.githubusercontent.com/46614864/196831455-52e0b512-b63f-4eab-98be-ff273cb2a0dd.png">
+
+New users will need to create an account to use the site. Bookshelf uses Auth0 for authentication, ensuring that login data remains secure, and allowing users to log in using their Google accounts if they choose.
+
 
 
 Search for books by author, title, or ISBN, add them to your shelves, and keep notes on what you're reading.
 
 
-![02](https://user-images.githubusercontent.com/46614864/196829371-3238112d-f174-489d-84fe-7ab25dfcb10e.png)
+![02]()
 ![03](https://user-images.githubusercontent.com/46614864/196829375-c198676f-b6e7-4ff3-bf1f-7d6ad5fc2021.png)
 <img width="817" alt="05" src="https://user-images.githubusercontent.com/46614864/196829445-50f0c28c-26cb-48c7-b156-97bd707e2364.png">
 ![06](https://user-images.githubusercontent.com/46614864/196829454-ef35b8d3-40c9-4f8e-b772-2fcb39ee99d9.png)
