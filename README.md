@@ -28,8 +28,9 @@ Once logged in, users will be brought to their dashboard. From here, they can ac
 
 <hr width="1">
 
+## Dashboard
 
-## User Shelves
+### User Shelves
 
 All the user's bookshelves will be saved on their dashboard. New shelves will be added as new tabs under "My Shelves." 
 
