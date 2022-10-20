@@ -59,7 +59,7 @@ The books on the shelves will initially show simply the book cover and title, bu
 
 <hr width="1">
 
-<img alt="05" align="left" width="600" src="https://user-images.githubusercontent.com/46614864/196829445-50f0c28c-26cb-48c7-b156-97bd707e2364.png">
+<img alt="New shelf screenshot" align="left" width="600" src="https://user-images.githubusercontent.com/46614864/196829445-50f0c28c-26cb-48c7-b156-97bd707e2364.png">
 
 <hr width="1">
 
@@ -68,13 +68,22 @@ The books on the shelves will initially show simply the book cover and title, bu
 Users can add new bookshelves on their dashboard by clicking the "Add shelf" tag. This will open a modal allowing them to add shelf name and description.
 New shelves will be added to the user's account and appear in their shelf tabs.
 
-<hr width="3">
+<hr width="1">
+
+<hr width="1">
+
+<img alt="Book search screenshot" align="right" width="400" src="https://user-images.githubusercontent.com/46614864/197016399-bd7c88dd-26ea-4ccb-94cf-40a49c71a3c8.png">
 
 
-<hr width="3">
+### Book Search
 
-## Book Search
-Search for books by author, title, or ISBN, add them to your shelves, and keep notes on what you're reading.
+Users can search for books by author, title, or ISBN from their dashboard. This will bring them to the dedicated search page.
+
+<hr width="1">
+
+<hr width="1">
+
+## Search Page
 
 <img alt="09" src="https://user-images.githubusercontent.com/46614864/196829469-a8f69e60-a682-487a-bb6a-68b2ebfcdacc.png">
 <img alt="10" src="https://user-images.githubusercontent.com/46614864/196829473-35b887f0-78a3-4049-824f-e6cda41b942e.png">
