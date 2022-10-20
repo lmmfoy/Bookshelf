@@ -21,6 +21,8 @@ Users must first create an account for themselves. Bookshelf uses Auth0 for auth
 
 Once logged in, users will be brought to their dashboard. From here, they can access their bookshelves or search for new books.
 
+***
+
 ### User Dashboard
 
 All the user's bookshelves will be saved on their dashboard. New shelves will be added as new tabs under "My Shelves." 
