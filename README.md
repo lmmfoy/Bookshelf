@@ -2,6 +2,8 @@
 
 Keep track of your reading with Bookshelf. 
 
+<hr width="1">
+
 ## About the site
 Bookshelf is designed to give readers a cozy personal library to save the books they're interested in, along with notes about what they've read. 
 
@@ -13,7 +15,9 @@ Bookshelf is designed to give readers a cozy personal library to save the books 
 <img align="right" width="300" alt="Sign in screenshot" src="https://user-images.githubusercontent.com/46614864/196832462-b993b4fd-e53e-4a98-81b4-70e7181015d3.png">
 
 
-***
+<hr width="1">
+
+
 
 # Using Bookshelf
 
@@ -22,20 +26,24 @@ Users must first create an account for themselves. Bookshelf uses Auth0 for auth
 
 Once logged in, users will be brought to their dashboard. From here, they can access their bookshelves or search for new books.
 
-<hr width="3">
+<hr width="1">
 
 
 ## User Shelves
 
 All the user's bookshelves will be saved on their dashboard. New shelves will be added as new tabs under "My Shelves." 
 
-<hr width="3">
+<hr width="1">
 
 <img alt="Dashboard screenshot" src="https://user-images.githubusercontent.com/46614864/196829375-c198676f-b6e7-4ff3-bf1f-7d6ad5fc2021.png">
 
-<hr width="3">
+<hr width="1">
 
-<img width="300" align="right" alt="Book card screenshot" src="https://user-images.githubusercontent.com/46614864/197013202-f8f1258a-6836-45fa-8600-0f067b6cfc4d.png">
+<hr width="1">
+
+<img width="400" align="right" alt="Book card screenshot" src="https://user-images.githubusercontent.com/46614864/197013202-f8f1258a-6836-45fa-8600-0f067b6cfc4d.png">
+
+### Book Information
 
 The books on the shelves will initially show simply the book cover and title, but will flip to show further information when hovered over.
 
@@ -47,7 +55,13 @@ The books on the shelves will initially show simply the book cover and title, bu
 
 <hr width="1">
 
-<img alt="05" align="left" width="500" src="https://user-images.githubusercontent.com/46614864/196829445-50f0c28c-26cb-48c7-b156-97bd707e2364.png">
+<hr width="1">
+
+<hr width="1">
+
+<img alt="05" align="left" width="600" src="https://user-images.githubusercontent.com/46614864/196829445-50f0c28c-26cb-48c7-b156-97bd707e2364.png">
+
+<hr width="1">
 
 ### Adding Shelves
 
