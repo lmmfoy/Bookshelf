@@ -35,13 +35,19 @@ All the user's bookshelves will be saved on their dashboard. New shelves will be
 
 <hr width="3">
 
+<img width="300" align="right" alt="Book card screenshot" src="https://user-images.githubusercontent.com/46614864/197013202-f8f1258a-6836-45fa-8600-0f067b6cfc4d.png">
+
 The books on the shelves will initially show simply the book cover and title, but will flip to show further information when hovered over.
 
-<hr width="3">
+<hr width="1">
 
-<img alt="Dashboard screenshot" src="https://user-images.githubusercontent.com/46614864/196833355-413341c4-34aa-4c9f-b865-c633cfc26cc0.png">
+<hr width="1">
 
-<hr width="3">
+<hr width="1">
+
+<hr width="1">
+
+<img alt="05" align="left" width="500" src="https://user-images.githubusercontent.com/46614864/196829445-50f0c28c-26cb-48c7-b156-97bd707e2364.png">
 
 ### Adding Shelves
 
@@ -50,16 +56,19 @@ New shelves will be added to the user's account and appear in their shelf tabs.
 
 <hr width="3">
 
-<img alt="05" src="https://user-images.githubusercontent.com/46614864/196829445-50f0c28c-26cb-48c7-b156-97bd707e2364.png">
 
+<hr width="3">
 
+## Book Search
 Search for books by author, title, or ISBN, add them to your shelves, and keep notes on what you're reading.
 
+<img alt="09" src="https://user-images.githubusercontent.com/46614864/196829469-a8f69e60-a682-487a-bb6a-68b2ebfcdacc.png">
+<img alt="10" src="https://user-images.githubusercontent.com/46614864/196829473-35b887f0-78a3-4049-824f-e6cda41b942e.png">
 
 
+<img width="600" align="left" alt="Book card screenshot" src="https://user-images.githubusercontent.com/46614864/196833355-413341c4-34aa-4c9f-b865-c633cfc26cc0.png">
 
 ![06](https://user-images.githubusercontent.com/46614864/196829454-ef35b8d3-40c9-4f8e-b772-2fcb39ee99d9.png)
 <img width="960" alt="07" src="https://user-images.githubusercontent.com/46614864/196829465-843896e0-14a0-4fd1-919b-8dbb520ecfe9.png">
-<img width="956" alt="09" src="https://user-images.githubusercontent.com/46614864/196829469-a8f69e60-a682-487a-bb6a-68b2ebfcdacc.png">
-<img width="960" alt="10" src="https://user-images.githubusercontent.com/46614864/196829473-35b887f0-78a3-4049-824f-e6cda41b942e.png">
+
 <img width="960" alt="11" src="https://user-images.githubusercontent.com/46614864/196829478-5fde75bb-52d1-4484-adfc-d82bab62543a.png">
