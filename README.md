@@ -93,10 +93,13 @@ The results of searches from the user dashboard will be displayed on the Search 
 
 Clicking on a book card from the Search page, will bring users to the Book Editions page. From here they can select the edition they want, which will navigate them to a specific Book page.
 
-## Specific Book Page
-
 <img alt="Book editions page screenshot" src="https://user-images.githubusercontent.com/46614864/196829478-5fde75bb-52d1-4484-adfc-d82bab62543a.png">
 
-![06](https://user-images.githubusercontent.com/46614864/196829454-ef35b8d3-40c9-4f8e-b772-2fcb39ee99d9.png)
-<img width="960" alt="07" src="https://user-images.githubusercontent.com/46614864/196829465-843896e0-14a0-4fd1-919b-8dbb520ecfe9.png">
+## Specific Book Page
+
+The specific Book pages can be navigated to directly through an ISBN search, from a Book Editions page, or by selecting a book from the bookshelves displayed on the dashboard.
+
+<img alt="Specific book page screenshot" src="https://user-images.githubusercontent.com/46614864/196829454-ef35b8d3-40c9-4f8e-b772-2fcb39ee99d9.png">
+
+<img alt="Book notes screenshot" src="https://user-images.githubusercontent.com/46614864/196829465-843896e0-14a0-4fd1-919b-8dbb520ecfe9.png">
 
