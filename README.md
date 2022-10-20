@@ -4,11 +4,7 @@ Keep track of your reading with Bookshelf.
 
 ## About the site
 Bookshelf is designed to give readers a cozy personal library to save the books they're interested in, along with notes about what they've read. 
-
-
-<p align="right">
-  <img width="700" alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196829348-cafea159-e7e2-4a81-9338-75dc944a10b3.png">
-</p>
+  <align="right" img width="700" alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196829348-cafea159-e7e2-4a81-9338-75dc944a10b3.png">
 
 
 Search for books by author, title, or ISBN, add them to your shelves, and keep notes on what you're reading.
