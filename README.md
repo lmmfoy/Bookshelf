@@ -77,7 +77,7 @@ New shelves will be added to the user's account and appear in their shelf tabs.
 
 ### Book Search
 
-Users can search for books by author, title, or ISBN from their dashboard. This will bring them to the dedicated search page.
+Users can search for books by author, title, or ISBN from their dashboard. If they know the ISBN of the book they wish to find they will be navigated to the book's specific page. If they search by author or title they will be navigate to a search page displaying the results.
 
 <hr width="1">
 
@@ -86,6 +86,8 @@ Users can search for books by author, title, or ISBN from their dashboard. This 
 <hr width="1">
 
 ## Search Page
+
+The results of searches from the user dashboard will be displayed on the search page. It also allows users to make further searches. Book results are displayed as cards with publishing details and the number of editions found.
 
 <img alt="Search page screenshot" src="https://user-images.githubusercontent.com/46614864/197017542-2b6feec4-2aa0-4ac4-9515-12f87b4e2605.png">
 
