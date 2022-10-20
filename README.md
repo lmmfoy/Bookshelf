@@ -97,10 +97,19 @@ Clicking on a book card from the Search page, will bring users to the Book Editi
 
 ## Specific Book Page
 
-The specific Book pages can be navigated to directly through an ISBN search, from a Book Editions page, or by selecting a book from the bookshelves displayed on the dashboard.
+The specific Book pages can be navigated to directly through an ISBN search, from a Book Editions page, or by selecting a book from the bookshelves displayed on the dashboard. It displays publishing information and the book's cover (if this is unavailable, a placeholder book cover image will be used instead).
 
 <img alt="Specific book page screenshot" src="https://user-images.githubusercontent.com/46614864/196829454-ef35b8d3-40c9-4f8e-b772-2fcb39ee99d9.png">
+
+<hr width="1">
 
 <img align="right" width="600" alt="Book notes screenshot" src="https://user-images.githubusercontent.com/46614864/197024350-5310e717-b149-4f22-a7a2-f295682f6aa9.png">
 
 
+### Adding to Shelves
+
+Users can add books to their shelves by selecting the shelf on the right-hand side of the page.
+
+### Adding Notes
+
+Notes can be added to books on this page as well, as long as the user has already added the book to one or more of their shelves. Users can keep track of thoughts on their reading, favourite quotations, or reminders of passages they want to come back to.
