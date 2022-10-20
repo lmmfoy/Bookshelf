@@ -8,10 +8,8 @@ Bookshelf is designed to give readers a cozy personal library to save the books 
 
 <img width="900" alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196831139-a90d60a0-3ee7-4b56-8148-3759e19cea10.png">
 
-
+<img align="right" width="300" alt="Sign in screenshot" src="https://user-images.githubusercontent.com/46614864/196831455-52e0b512-b63f-4eab-98be-ff273cb2a0dd.png">
 ## Using Bookshelf
-
-<img align="right" width="200" alt="Sign in screenshot" src="https://user-images.githubusercontent.com/46614864/196831455-52e0b512-b63f-4eab-98be-ff273cb2a0dd.png">
 
 Users must first create an account for themselves. Bookshelf uses Auth0 for authentication, ensuring that login data remains secure and allowing users to log in using their Google accounts if they choose. 
 
