@@ -13,6 +13,7 @@ Bookshelf is designed to give readers a cozy personal library to save the books 
 <img align="right" width="300" alt="Sign in screenshot" src="https://user-images.githubusercontent.com/46614864/196832462-b993b4fd-e53e-4a98-81b4-70e7181015d3.png">
 
 
+***
 
 ## Using Bookshelf
 
