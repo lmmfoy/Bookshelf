@@ -16,10 +16,12 @@ Bookshelf is designed to give readers a cozy personal library to save the books 
 
 ## Using Bookshelf
 
+### Logging In
 Users must first create an account for themselves. Bookshelf uses Auth0 for authentication, ensuring that login data remains secure and allowing users to log in using their Google accounts if they choose. 
 
 Once logged in, users will be brought to their dashboard. From here, they can access their bookshelves or search for new books.
 
+### User Dashboard
 <img width="900" alt="Dashboard screenshot" src="https://user-images.githubusercontent.com/46614864/196829375-c198676f-b6e7-4ff3-bf1f-7d6ad5fc2021.png">
 
 
