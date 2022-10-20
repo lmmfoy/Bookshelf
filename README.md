@@ -57,8 +57,6 @@ The books on the shelves will initially show simply the book cover and title, bu
 
 <hr width="1">
 
-<hr width="1">
-
 <img alt="New shelf screenshot" align="left" width="600" src="https://user-images.githubusercontent.com/46614864/196829445-50f0c28c-26cb-48c7-b156-97bd707e2364.png">
 
 <hr width="1">
@@ -87,13 +85,18 @@ Users can search for books by author, title, or ISBN from their dashboard. If th
 
 ## Search Page
 
-The results of searches from the user dashboard will be displayed on the search page. It also allows users to make further searches. Book results are displayed as cards with publishing details and the number of editions found.
+The results of searches from the user dashboard will be displayed on the Search page. It also allows users to make further searches. Book results are displayed as cards with publishing details and the number of editions found.
 
 <img alt="Search page screenshot" src="https://user-images.githubusercontent.com/46614864/197017542-2b6feec4-2aa0-4ac4-9515-12f87b4e2605.png">
 
-<img width="600" align="left" alt="Book card screenshot" src="https://user-images.githubusercontent.com/46614864/196833355-413341c4-34aa-4c9f-b865-c633cfc26cc0.png">
+## Book Editions Page
+
+Clicking on a book card from the Search page, will bring users to the Book Editions page. From here they can select the edition they want, which will navigate them to a specific Book page.
+
+## Specific Book Page
+
+<img alt="Book editions page screenshot" src="https://user-images.githubusercontent.com/46614864/196829478-5fde75bb-52d1-4484-adfc-d82bab62543a.png">
 
 ![06](https://user-images.githubusercontent.com/46614864/196829454-ef35b8d3-40c9-4f8e-b772-2fcb39ee99d9.png)
 <img width="960" alt="07" src="https://user-images.githubusercontent.com/46614864/196829465-843896e0-14a0-4fd1-919b-8dbb520ecfe9.png">
 
-<img width="960" alt="11" src="https://user-images.githubusercontent.com/46614864/196829478-5fde75bb-52d1-4484-adfc-d82bab62543a.png">
