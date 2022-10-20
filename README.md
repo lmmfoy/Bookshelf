@@ -1,10 +1,14 @@
 # Bookshelf
 
 Keep track of your reading with Bookshelf. 
+![01](https://user-images.githubusercontent.com/46614864/196829348-cafea159-e7e2-4a81-9338-75dc944a10b3.png)
+
+## About the site
+Bookshelf is designed to give readers a cozy personal library to save the books they're interested in, along with notes about what they've read. 
 
 Search for books by author, title, or ISBN, add them to your shelves, and keep notes on what you're reading.
 
-![01](https://user-images.githubusercontent.com/46614864/196829348-cafea159-e7e2-4a81-9338-75dc944a10b3.png)
+
 ![02](https://user-images.githubusercontent.com/46614864/196829371-3238112d-f174-489d-84fe-7ab25dfcb10e.png)
 ![03](https://user-images.githubusercontent.com/46614864/196829375-c198676f-b6e7-4ff3-bf1f-7d6ad5fc2021.png)
 <img width="817" alt="05" src="https://user-images.githubusercontent.com/46614864/196829445-50f0c28c-26cb-48c7-b156-97bd707e2364.png">
