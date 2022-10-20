@@ -83,11 +83,11 @@ Users can search for books by author, title, or ISBN from their dashboard. This 
 
 <hr width="1">
 
+<hr width="1">
+
 ## Search Page
 
-<img alt="09" src="https://user-images.githubusercontent.com/46614864/196829469-a8f69e60-a682-487a-bb6a-68b2ebfcdacc.png">
-<img alt="10" src="https://user-images.githubusercontent.com/46614864/196829473-35b887f0-78a3-4049-824f-e6cda41b942e.png">
-
+<img alt="Search page screenshot" src="https://user-images.githubusercontent.com/46614864/197017542-2b6feec4-2aa0-4ac4-9515-12f87b4e2605.png">
 
 <img width="600" align="left" alt="Book card screenshot" src="https://user-images.githubusercontent.com/46614864/196833355-413341c4-34aa-4c9f-b865-c633cfc26cc0.png">
 
