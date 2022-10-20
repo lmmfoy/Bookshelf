@@ -22,23 +22,26 @@ Users must first create an account for themselves. Bookshelf uses Auth0 for auth
 
 Once logged in, users will be brought to their dashboard. From here, they can access their bookshelves or search for new books.
 
-***
+<hr width="3">
+
 
 ### User Dashboard
 
 All the user's bookshelves will be saved on their dashboard. New shelves will be added as new tabs under "My Shelves." 
 
+<hr width="3">
+
 <img alt="Dashboard screenshot" src="https://user-images.githubusercontent.com/46614864/196829375-c198676f-b6e7-4ff3-bf1f-7d6ad5fc2021.png">
 
-<hr width="400" align="center">
+<hr width="3">
 
 The books on the shelves will initially show simply the book cover and title, but will flip to show further information when hovered over.
 
+<hr width="3">
+
 <img alt="Dashboard screenshot" src="https://user-images.githubusercontent.com/46614864/196833355-413341c4-34aa-4c9f-b865-c633cfc26cc0.png">
 
-<h3 width="400" color="blue" align: "right">
-  Users can add new bookshelves on their dashboard by clicking the "Add shelf" tag. This will open a modal allowing them to add shelf name and description.
-</h3>
+Users can add new bookshelves on their dashboard by clicking the "Add shelf" tag. This will open a modal allowing them to add shelf name and description.
 
 
 <img width="461" alt="04--" src="">
