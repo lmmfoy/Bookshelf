@@ -6,7 +6,7 @@ Keep track of your reading with Bookshelf.
 Bookshelf is designed to give readers a cozy personal library to save the books they're interested in, along with notes about what they've read. 
 
 
-<img width="900" alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196831139-a90d60a0-3ee7-4b56-8148-3759e19cea10.png">
+<img alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196831139-a90d60a0-3ee7-4b56-8148-3759e19cea10.png">
 
 
 
