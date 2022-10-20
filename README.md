@@ -101,5 +101,6 @@ The specific Book pages can be navigated to directly through an ISBN search, fro
 
 <img alt="Specific book page screenshot" src="https://user-images.githubusercontent.com/46614864/196829454-ef35b8d3-40c9-4f8e-b772-2fcb39ee99d9.png">
 
-<img alt="Book notes screenshot" src="https://user-images.githubusercontent.com/46614864/196829465-843896e0-14a0-4fd1-919b-8dbb520ecfe9.png">
+<img align="right" width="600" alt="Book notes screenshot" src="https://user-images.githubusercontent.com/46614864/197024350-5310e717-b149-4f22-a7a2-f295682f6aa9.png">
+
 
