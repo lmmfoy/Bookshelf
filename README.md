@@ -5,6 +5,8 @@ A cozy personal library to keep track of your reading.
 ## About the Site
 Bookshelf is designed to give readers a place to save the books they're interested in, along with notes about what they've read. It uses the MERN stack: React for the frontend, Node.js and Express.js for the backend, and MongoDB to keep track of users' data.
 
+<hr width="1">
+
 <img alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196831139-a90d60a0-3ee7-4b56-8148-3759e19cea10.png">
 
 ### APIs Used:
@@ -21,7 +23,7 @@ This project makes use of the following RESTful APIs made available by [Open Lib
 
 # Using Bookshelf
 
-<img align="right" width="300" alt="Sign in screenshot" src="https://user-images.githubusercontent.com/46614864/196832462-b993b4fd-e53e-4a98-81b4-70e7181015d3.png">
+<img align="right" width="350" alt="Sign in screenshot" src="https://user-images.githubusercontent.com/46614864/196832462-b993b4fd-e53e-4a98-81b4-70e7181015d3.png">
 
 ## Logging In
 
@@ -41,7 +43,6 @@ All the user's bookshelves will be saved on their dashboard. New shelves will be
 
 <hr width="1">
 
-<hr width="1">
 
 <img width="400" align="right" alt="Book card screenshot" src="https://user-images.githubusercontent.com/46614864/197013202-f8f1258a-6836-45fa-8600-0f067b6cfc4d.png">
 
