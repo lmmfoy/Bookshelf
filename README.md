@@ -7,10 +7,6 @@ Bookshelf is designed to give readers a place to save the books they're interest
 
 <img alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196831139-a90d60a0-3ee7-4b56-8148-3759e19cea10.png">
 
-
-
-
-
 ### APIs Used:
 This project makes use of the following RESTful APIs made available by [Open Library](https://openlibrary.org/developers/api), a project by the [Internet Archive](https://archive.org/) aiming to document every book ever published:
 
@@ -27,17 +23,11 @@ This project makes use of the following RESTful APIs made available by [Open Lib
 
 <img align="right" width="300" alt="Sign in screenshot" src="https://user-images.githubusercontent.com/46614864/196832462-b993b4fd-e53e-4a98-81b4-70e7181015d3.png">
 
-<hr width="1">
-
 ## Logging In
 
 Users must first create an account for themselves. Bookshelf uses Auth0 for authentication, ensuring that login data remains secure and allowing users to log in using their Google accounts if they choose. 
 
 Once logged in, users will be brought to their dashboard. From here, they can access their bookshelves or search for new books.
-
-
-
-<hr width="1">
 
 ## Dashboard
 
@@ -57,7 +47,7 @@ All the user's bookshelves will be saved on their dashboard. New shelves will be
 
 ### Book Information
 
-The books on the shelves will initially show simply the book cover and title, but will flip to show further information when hovered over.
+The book cards on the shelves will initially show simply the book cover and title, but will flip to show further information when hovered over.
 
 <hr width="1">
 
@@ -88,8 +78,6 @@ New shelves will be added to the user's account and appear in their shelf tabs.
 ### Book Search
 
 Users can search for books by author, title, or ISBN from their dashboard. If they know the ISBN of the book they wish to find they will be navigated to the book's specific page. If they search by author or title they will be navigate to a search page displaying the results.
-
-<hr width="1">
 
 <hr width="1">
 
