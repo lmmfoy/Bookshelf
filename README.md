@@ -1,12 +1,11 @@
 # Bookshelf
 
-Keep track of your reading with Bookshelf. 
+A cozy personal library to keep track of your reading.
 
 <hr width="1">
 
 ## About the site
-Bookshelf is designed to give readers a cozy personal library to save the books they're interested in, along with notes about what they've read. 
-
+Bookshelf is designed to give readers a place to save the books they're interested in, along with notes about what they've read. It uses the MERN stack: React for the frontend, Node.js and Express.js for the backend, and MongoDB to keep track of users' data.
 
 <img alt="Welcome page screenshot" src="https://user-images.githubusercontent.com/46614864/196831139-a90d60a0-3ee7-4b56-8148-3759e19cea10.png">
 
@@ -90,15 +89,23 @@ The results of searches from the user dashboard will be displayed on the Search 
 
 <img alt="Search page screenshot" src="https://user-images.githubusercontent.com/46614864/197017542-2b6feec4-2aa0-4ac4-9515-12f87b4e2605.png">
 
+<hr width="1">
+
 ## Book Editions Page
 
-Clicking on a book card from the Search page, will bring users to the Book Editions page. From here they can select the edition they want, which will navigate them to a specific Book page.
+Clicking on a book card from the Search page will bring users to the Book Editions page. From here they can select the edition they want, which will navigate them to a specific Book page.
 
 <img alt="Book editions page screenshot" src="https://user-images.githubusercontent.com/46614864/196829478-5fde75bb-52d1-4484-adfc-d82bab62543a.png">
 
+<hr width="1">
+
 ## Specific Book Page
 
-The specific Book pages can be navigated to directly through an ISBN search, from a Book Editions page, or by selecting a book from the bookshelves displayed on the dashboard. It displays publishing information and the book's cover (if this is unavailable, a placeholder book cover image will be used instead).
+A specific Book page can be navigated to directly through an ISBN search, from a Book Editions page, or by selecting the book from the bookshelves displayed on the dashboard. It displays publishing information and the book's cover (if this is unavailable, a placeholder book cover image will be used instead).
+
+### Adding to Shelves
+
+Users can add books to their shelves by selecting the shelf on the right-hand side of the page.
 
 <img alt="Specific book page screenshot" src="https://user-images.githubusercontent.com/46614864/196829454-ef35b8d3-40c9-4f8e-b772-2fcb39ee99d9.png">
 
@@ -107,10 +114,6 @@ The specific Book pages can be navigated to directly through an ISBN search, fro
 <img align="right" width="600" alt="Book notes screenshot" src="https://user-images.githubusercontent.com/46614864/197024350-5310e717-b149-4f22-a7a2-f295682f6aa9.png">
 
 
-### Adding to Shelves
-
-Users can add books to their shelves by selecting the shelf on the right-hand side of the page.
-
 ### Adding Notes
 
-Notes can be added to books on this page as well, as long as the user has already added the book to one or more of their shelves. Users can keep track of thoughts on their reading, favourite quotations, or reminders of passages they want to come back to.
+Notes can be added to books on this page, as long as the user has already added the book to one or more of their shelves. Users can keep track of thoughts on their reading, favourite quotations, or reminders of passages they want to come back to.
